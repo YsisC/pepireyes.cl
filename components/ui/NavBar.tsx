@@ -40,7 +40,7 @@ export const Navbar = () => {
       };
 
     return (
-        <AppBar>
+        <AppBar color='primary'>
             <Toolbar>
 
                 <Link href='/' display='flex' alignItems='center'>
@@ -59,17 +59,17 @@ export const Navbar = () => {
                     className="fadeIn">
 
                     <Link href='/category/menu'>
-                        <Button color={asPath === '/category/menu' ? 'primary' : 'info'}>Menu</Button>
+                        <Button color={asPath === '/category/menu' ? 'secondary' : 'primary'}>Menu</Button>
                     </Link>
 
 
                     <Link href='/cupon'>
-                        <Button color={asPath === '/cupon' ? 'primary' : 'info'}>Promociones</Button>
+                        <Button color={asPath === '/cupon' ? 'secondary' : 'primary'}>Promociones</Button>
                     </Link>
 
 
                     <Link href='/about'>
-                        <Button color={asPath === '/about' ? 'primary' : 'info'}>Sobre nosotros</Button>
+                        <Button color={asPath === '/about' ? 'secondary' : 'primary'}>Sobre nosotros</Button>
                     </Link>
 
 
@@ -132,6 +132,7 @@ export const Navbar = () => {
 
 
                 <Button
+                color="primary"
                 //  onClick={toggleSideMenu}
                  >
                   <SegmentIcon/>

@@ -1,6 +1,7 @@
 import { createTheme } from '@mui/material/styles';
-import { red,  } from '@mui/material/colors';
+import { red, black } from '@mui/material/colors';
 import { Roboto } from 'next/font/google';
+
 
 export const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
@@ -13,13 +14,15 @@ export const  theme  = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#1E1E1E'
+      main: '#1E1E1E' //BLACK,
+      
     },
+
     secondary: {
-      main: '#ffbc0d'
+      main: '#ffbc0d' //YELLOW
     },
     info: {
-      main: '#fff'
+      main: '#ffff' //white
     },
   error: {
     main: red.A400,
@@ -38,7 +41,7 @@ export const  theme  = createTheme({
       },
       styleOverrides: {
         root: {
-          backgroundColor: 'white',
+          backgroundColor: 'black',
           height: 60
         },
       }
@@ -68,7 +71,8 @@ export const  theme  = createTheme({
         variant: 'contained',
         size: 'small',
         disableElevation: true,
-        color: 'info'
+        color: 'info',
+       
       },
       styleOverrides: {
         root: {
@@ -76,7 +80,7 @@ export const  theme  = createTheme({
           boxShadow: 'none',
           borderRadius: 10,
           ":hover": {
-            backgroundColor: 'rgba(0,0,0,0.05)',
+            backgroundColor: '#ffbc0d',
             transition: 'all 0.3s ease-in-out'
           }
         }
