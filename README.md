@@ -8,7 +8,7 @@
 ## 1. Definición del producto
 Local de comida rapida
 
-![Getting Started](./public/video/pepireyes.mkv)
+![Getting Started](./public/screenshot/home%20page%20pepireyes.png)
 
 
 
