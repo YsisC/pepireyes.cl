@@ -1,43 +1,64 @@
 .wrapper {
     overflow: hidden;
-    background-color: white;
+    /* background-color: white; */
    
+}
+.wrapper h2{
+    font-size: xx-large;
+}
+
+.wrapper span{
+    color:  #ffbc0d;
 }
 .container {
     margin-top: 8rem/* 128px */;
     margin-bottom: 8rem/* 128px */;
     display: flex;
-   
     margin-right: auto;
     flex-direction: column;
     padding: 0 1.5rem 0 1.5rem;
-    max-width: 72rem;
+    max-width: 80vw
 } 
+.bannerText {
+    background-color: rgb(241, 236, 236);
+    padding: 1rem 0.5rem 1rem 0.5rem;
+    font-size: smaller;
+}
 
+@media (min-width: 640px) {
+    .container {
+        
+        max-width: 640px;
+    }
+}
 @media (min-width: 1024px) {
     .container {
         flex-direction: row;
         padding-left: 0px;
         padding-right: 0px;
     }
-}
 
-.bannerText {
-    background-color: rgb(241, 236, 236);
-    padding: 1rem 0.5rem 1rem 0.5rem;
-}
-
-
-@media (min-width:  1024px) {
-    .bannerText {
-    padding: 4rem 2rem 4rem 2rem;
-     height: 80%;
-     margin-top: 12rem;
-     margin-left: -5rem;
+    .bannerText { 
+        position: absolute;
+        padding: 1rem 2rem 1rem 2rem;
+        height: 22rem;
+        margin-top: 14rem;
+        margin-left: 17rem;
+        width: 47rem;
+    
     }
 }
-@media (min-width: 640px) {
-    .container {
-        max-width: 640px;
+
+@media (min-width: 1280px) {
+    .bannerText { 
+       
+        width: 49rem;
+        height: 22rem;
+    }
+}
+@media (min-width: 1536px) {
+    .bannerText { 
+        width: 52rem;
+        height: 22rem;
     }
 }

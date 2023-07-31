@@ -33,7 +33,7 @@ const mainFeaturedPost = {
   title: 'Los mejores pepitos de santiago',
   description:
     "Disdruta con nosotros de los mejores pepitos, hamburguesas, patacones, y mas con el estilo venezonalo. Te esperamos",
-  image: '2023-07-03 at 14.25.14 (17).jpeg',
+  image: '/products/2023-07-03 at 14.25.14 (17).jpeg',
   imageText: 'main image description',
  
 };
@@ -44,15 +44,15 @@ const featuredPosts = [
     date: 'Pepireyes Estacion Central',
     description:
       'Estamos ubicados en Ecuador 4404, Estacion Central.',
-    image: 'https://source.unsplash.com/random?wallpapers',
+    image: '/img/tienda.jpeg',
     imageLabel: 'Ubicados',
   },
   {
     title: 'Tipo de Comida',
-    date: 'Nov Comida rapida',
+    date: 'Comida rapida',
     description:
       'Nuestra comida tiene un autentico sabor chile-venezolano.',
-    image: 'https://source.unsplash.com/random?wallpapers',
+    image: '/products/2023-07-03 at 14.25.14 (17).jpeg',
     imageLabel: 'Comida rapida',
   },
 ];

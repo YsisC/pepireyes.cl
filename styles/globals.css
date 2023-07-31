@@ -24,9 +24,11 @@
   border-radius: 30px;
 }
 .circular-btn-second {
-  border-radius: 15px;
-  background-color: white;
-  border: 2px solid #ffbc0d;
+  border-radius: 1px;
+  background-color: inherit;
+  font-size: large;
+  color: #ffbc0d;
+  border: 3px solid #ffbc0d;
 }
 
 .circular-btn:hover {

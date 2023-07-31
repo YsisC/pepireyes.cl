@@ -1,21 +1,25 @@
 import React from "react";
 import styles from "./FeatureProducts.module.css";
 import { Button, CardMedia, Typography } from "@mui/material";
+import { motion } from 'framer-motion';
+import { fadeIn, staggerChildren } from "../../utils/motion";
 
 const FeatureProducts = () => {
   return (
     <section className={`paddings ${styles.wrapper}`}>
       <div className={styles.menu_header}>
         <Typography variant="h2" component="h2" color={"GrayText"}>
-          NUESTRO MENU
+          NUESTRO <span>  MENU </span>
         </Typography>
         <Button color="secondary" className="circular-btn-second">
-          Ver todo
+        VER TODO
         </Button>
       </div>
       <div className={styles.item_container}>
         {/* item 1  */}
-        <div className={`${styles.item} group`}>
+        <motion.div
+        variants={fadeIn("up", "tween", 0.4, 0.6)}
+         className={`${styles.item} group`}>
           {/* <!-- image --> */}
           <CardMedia
             component="img"
@@ -28,9 +32,11 @@ const FeatureProducts = () => {
           <div className={styles.item_gradient}></div>
           {/* <!-- Item text --> */}
           <h5>Hamburguesa</h5>
-        </div>
+        </motion.div>
          {/* item 2  */}
-        <div className={`${styles.item} group`}>
+        <motion.div 
+              variants={fadeIn("up", "tween", 0.5, 0.6)}
+        className={`${styles.item} group`}>
           {/* <!-- image --> */}
           <CardMedia
             component="img"
@@ -43,9 +49,11 @@ const FeatureProducts = () => {
           <div className={styles.item_gradient}></div>
           {/* <!-- Item text --> */}
           <h5>Parrillas</h5>
-        </div>
+        </motion.div>
          {/* item 3  */}
-        <div className={`${styles.item} group`}>
+        <motion.div 
+         variants={fadeIn("up", "tween", 0.7, 0.6)}
+        className={`${styles.item} group`}>
           {/* <!-- image --> */}
           <CardMedia
             component="img"
@@ -58,8 +66,11 @@ const FeatureProducts = () => {
           <div className={styles.item_gradient}></div>
           {/* <!-- Item text --> */}
           <h5>Pepitos</h5>
-        </div>
-        <div className={`${styles.item} group`}>
+        </motion.div>
+         {/* item 3  */}
+        <motion.div
+         variants={fadeIn("up", "tween", 0.8, 0.7)}
+        className={`${styles.item} group`}>
           {/* <!-- image --> */}
           <CardMedia
             component="img"
@@ -72,8 +83,9 @@ const FeatureProducts = () => {
           <div className={styles.item_gradient}></div>
           {/* <!-- Item text --> */}
           <h5>bebidas</h5>
+          </motion.div>
         </div>
-      </div>
+     
     </section>
   );
 };

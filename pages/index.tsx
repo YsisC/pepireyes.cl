@@ -8,6 +8,7 @@ import Banner from "../components/homepage/Banner";
 import { ProductSlideshow } from "../components/products";
 
 import FeatureProducts from "@/components/homepage/FeatureProducts";
+import ContacUs from "@/components/homepage/ContactUs";
 
 const HomePage: NextPage = () => {
   const featuredProduct = [
@@ -27,7 +28,8 @@ const HomePage: NextPage = () => {
       <ProductSlideshow images={featuredProduct} />
       <Banner />
       <FeatureProducts />
-      
+      <ContacUs />
+
     </ShopLayout>
   );
 };

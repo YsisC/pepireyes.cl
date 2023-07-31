@@ -20,17 +20,12 @@ export default function Sidebar(props: SidebarProps) {
 
   return (
     <Grid item xs={12} md={4}>
-      <Paper elevation={0} sx={{ p: 2, bgcolor: 'grey.200' }}>
-        <Typography variant="h6" gutterBottom>
-          {title}
-        </Typography>
-        <Typography>{description}</Typography>
-      </Paper>
+      
       <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>
         Eventos
       </Typography>
       {events.map((event) => (
-        <Link display="block" variant="body1" href={event.url} key={event.title}>
+        <Link display="block" sx={{color: 'inherit'}}href={event.url} key={event.title}>
           {event.title}
         </Link>
       ))}
