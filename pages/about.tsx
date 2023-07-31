@@ -7,11 +7,11 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 
 
-import MainFeaturedPost from './MainFeaturedPost';
+import MainFeaturedPost from '../components/about/MainFeaturedPost';
 import FeaturedPost from './FeaturedPost';
-import Main from './Main';
-import Sidebar from './Sidebar';
-import Footer from './Footer';
+import Main from '../components/about/Main';
+import Sidebar from '../components/about/Sidebar';
+
 import {post1, post2 } from '../utils/post';
 
 // import post3 from './blog-post.3.md';
@@ -41,7 +41,7 @@ const mainFeaturedPost = {
 const featuredPosts = [
   {
     title: 'Ubicacion',
-    date: 'Nov 12',
+    date: 'Pepireyes Estacion Central',
     description:
       'Estamos ubicados en Ecuador 4404, Estacion Central.',
     image: 'https://source.unsplash.com/random?wallpapers',
@@ -49,11 +49,11 @@ const featuredPosts = [
   },
   {
     title: 'Tipo de Comida',
-    date: 'Nov 11',
+    date: 'Nov Comida rapida',
     description:
       'Nuestra comida tiene un autentico sabor chile-venezolano.',
     image: 'https://source.unsplash.com/random?wallpapers',
-    imageLabel: 'Image Text',
+    imageLabel: 'Comida rapida',
   },
 ];
 
@@ -88,7 +88,7 @@ export default function About() {
 
    
         
-        <main>
+        <section className='paddings'>
           <MainFeaturedPost post={mainFeaturedPost} />
           <Grid container spacing={4}>
             {featuredPosts.map((post) => (
@@ -101,15 +101,12 @@ export default function About() {
               title={sidebar.title}
               description={sidebar.description}
               events={sidebar.events}
-              social={sidebar.social}
+              
             />
           </Grid>
-        </main>
+        </section>
    
-      <Footer
-        title="Pepireyes"
-        description="Derechos reservados"
-      />
+     
     </ShopLayout>
   );
 }

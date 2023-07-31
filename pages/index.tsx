@@ -1,43 +1,33 @@
 import type { NextPage } from "next";
 import { Typography, Grid } from "@mui/material";
-import useSWR, { SWRConfiguration } from "swr";
+// import useSWR, { SWRConfiguration } from "swr";
 
-// import { useProducts } from '../hooks';
-import { IProduct } from "../interfaces";
-import { ProductList } from "../components/products";
 import { ShopLayout } from "../components/layouts";
-import { FullScreenLoading } from "../components/ui";
+import Banner from "../components/homepage/Banner";
+
 import { ProductSlideshow } from "../components/products";
 
-import { seedDatabase } from "../database";
-// import { ItemCounter } from '../../components/ui/ItemCounter';
-
-// const { products, isLoading } = useProducts('/products');
+import FeatureProducts from "@/components/homepage/FeatureProducts";
 
 const HomePage: NextPage = () => {
-  const { data, isLoading } = useSWR<IProduct[]>("/products");
-  const products = data ?? [];
-  // const { data, error } = useSWR<IProduct[]>(`/api${ url }`, fetcher, config );
+  const featuredProduct = [
+    "2023-07-03 at 14.25.14 (15).jpeg",
+    "2023-07-03 at 14.25.14 (16).jpeg",
+    "2023-07-03 at 14.25.14 (17).jpeg",
+  ];
+
+  // console.log(featuredProduct)
+
   return (
     <ShopLayout
       title={"Pepireyes - Home"}
       pageDescription={"Encuentra los mejores productos de pepireyes aquí"}
     >
-      <Typography variant="h1" component="h1">
-        Hamburguesas
-      </Typography>
-      <Typography variant="h2" sx={{ mb: 1 }}>
-        Todos los productos
-      </Typography>
-      <Grid container>
-        <Grid item xs={12} sm={10} sx={{ mb: { sm: 1 } }}>
-          {/* <ProductSlideshow 
-            products={ products }
-          /> */}
-        </Grid>
-      </Grid>
-
-      {isLoading ? <FullScreenLoading /> : <ProductList products={products} />}
+  
+      <ProductSlideshow images={featuredProduct} />
+      <Banner />
+      <FeatureProducts />
+      
     </ShopLayout>
   );
 };

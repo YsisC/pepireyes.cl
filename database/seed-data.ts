@@ -64,8 +64,8 @@ export const initialData: SeedData = {
         {
             description: "Carne de primera, pechuga de pollo o a la planchay chuleta ahumada",
             images: [
-                '2023-07-03 at 14.25.14 (4).jpeg',
-                '2023-07-03 at 14.25.14 (17).jpeg',
+                '2023-07-03 at 14.25.14 (4).jpeg'
+               
             ],
             inStock: 7,
             price: 9000,
@@ -79,8 +79,8 @@ export const initialData: SeedData = {
         {
             description: "350gr de carne y pollo",
             images: [
-                '2023-07-03 at 14.25.14 (5).jpeg',
-                '2023-07-03 at 14.25.14 (6).jpeg',
+                '2023-07-03 at 14.25.14 (5).jpeg'
+              
             ],
             inStock: 5,
             price: 11000,
@@ -94,8 +94,8 @@ export const initialData: SeedData = {
         {
             description: "Pan de molde(4 rebanada), jamon ahumado, queso rallado, huevo,, tocineta, tomate, lechuga, pechuga de pollo, ketchup. mayonesa, mostaza racion de papas fritas",
             images: [
-                '2023-07-03 at 14.25.14 (9).jpeg',
-                '2023-07-03 at 14.25.14 (14).jpeg',
+                '2023-07-03 at 14.25.14 (9).jpeg'
+                
             ],
             inStock: 5,
             price: 8990,
@@ -109,8 +109,8 @@ export const initialData: SeedData = {
         {
             description: "Pan de molde(4 rebanada), jamon ahumado, queso rallado, huevo,, tocineta, tomate, lechuga, croqueta de carne molida, ketchup. mayonesa, mostaza racion de papas fritas",
             images: [
-                '2023-07-03 at 14.25.14 (9).jpeg',
-                '2023-07-03 at 14.25.14 (14).jpeg',
+                '2023-07-03 at 14.25.14 (9).jpeg'
+               
             ],
             inStock: 5,
             price: 9990,
@@ -124,8 +124,8 @@ export const initialData: SeedData = {
         {
             description: "Queso de mano y cochino frito",
             images: [
-                '2023-07-03 at 14.25.14 (13).jpeg',
-                '2023-07-03 at 14.25.14 (14).jpeg',
+                '2023-07-03 at 14.25.14 (13).jpeg'
+               
             ],
             inStock: 5,
             price: 12990,
@@ -139,8 +139,8 @@ export const initialData: SeedData = {
         {
             description: "Cachapa con queso",
             images: [
-                '2023-07-03 at 14.25.12.jpeg',
-                '2023-07-03 at 14.25.14 (17).jpeg',
+                '2023-07-03 at 14.25.12.jpeg'
+               
             ],
             inStock: 5,
             price: 9500,

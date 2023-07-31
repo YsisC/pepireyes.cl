@@ -13,21 +13,18 @@ export const ProductCard: FC<Props> = ({ product }) => {
     const [isHovered, setIsHovered] = useState(false);
     const [isImageLoaded, setIsImageLoaded] = useState(false);
 
-    const productImage = useMemo(() => {
-        return isHovered
-          ? `/products/${ product.images[1] }`
-          : `/products/${ product.images[0] }`;
+    const productImage =  `/products/${ product.images[0] }`;
 
-    }, [isHovered, product.images])
+  
 
     return (
       <Grid item 
             xs={6} 
-            sm={ 4 }
+            sm={ 3 }
             onMouseEnter={ () => setIsHovered(true) } 
             onMouseLeave={ () => setIsHovered(false) } 
       >
-          <Card>
+          <Card >
               <NextLink href={`/product/${ product.slug }`} passHref prefetch={ false }>
                 <Link>
 
@@ -45,7 +42,7 @@ export const ProductCard: FC<Props> = ({ product }) => {
 
                         <CardMedia 
                             component='img'
-                            className='fadeIn'
+                            className='fadeIn imageWrapper'
                             image={ productImage }
                             alt={ product.title }
                             onLoad={ () => setIsImageLoaded(true) }

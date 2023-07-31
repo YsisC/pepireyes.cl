@@ -12,13 +12,15 @@ export const roboto = Roboto({
 
 export const  theme  = createTheme({
   palette: {
-    mode: 'light',
+    mode: 'dark',
     primary: {
+      light:'#2B2B2B',
       main: '#1E1E1E' //BLACK,
       
     },
 
     secondary: {
+      light:'FFBF18',
       main: '#ffbc0d' //YELLOW
     },
     info: {
@@ -80,7 +82,7 @@ export const  theme  = createTheme({
           boxShadow: 'none',
           borderRadius: 10,
           ":hover": {
-            backgroundColor: '#ffbc0d',
+            backgroundColor: '#2B2B2B',
             transition: 'all 0.3s ease-in-out'
           }
         }

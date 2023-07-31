@@ -1,3 +1,4 @@
+"use client"
 import {  useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
@@ -13,10 +14,10 @@ import {CartContext } from '../../context'
 import Link from '../../src/Link'
 
 
-export const Navbar = () => {
+export const Navbar = ({...rest}) => {
     const { numberOfItems } = useContext(CartContext)
     const { asPath, push } = useRouter();
-   
+
 
     const [searchTerm, setSearchTerm] = useState('');
     const [isSearchVisible, setIsSearchVisible] = useState(false);
@@ -40,7 +41,8 @@ export const Navbar = () => {
       };
 
     return (
-        <AppBar color='primary'>
+
+        <AppBar >
             <Toolbar>
 
                 <Link href='/' display='flex' alignItems='center'>
@@ -58,18 +60,18 @@ export const Navbar = () => {
                 <Box sx={{ display: isSearchVisible ? 'none' : { xs: 'none', sm: 'block' } }}
                     className="fadeIn">
 
-                    <Link href='/category/menu'>
-                        <Button color={asPath === '/category/menu' ? 'secondary' : 'primary'}>Menu</Button>
+                    <Link href='/menu'>
+                        <Button sx={{bgcolor:'black'}} color='primary' className={asPath === '/category/menu' ? 'linkActive' : 'primary'}>Menu</Button>
                     </Link>
 
 
-                    <Link href='/cupon'>
-                        <Button color={asPath === '/cupon' ? 'secondary' : 'primary'}>Promociones</Button>
+                    <Link href='/promociones'>
+                        <Button sx={{bgcolor:'black'}} color='primary' className={asPath === '/cupon' ? 'linkActive' : 'primary'}>Promociones</Button>
                     </Link>
 
 
                     <Link href='/about'>
-                        <Button color={asPath === '/about' ? 'secondary' : 'primary'}>Sobre nosotros</Button>
+                        <Button sx={{bgcolor:'black'}} color='primary' className={asPath === '/about' ? 'linkActive' : 'primary'}>Sobre nosotros</Button>
                     </Link>
 
 
@@ -115,7 +117,7 @@ export const Navbar = () => {
 
                 {/* Pantalla pequeña */}
                 <IconButton
-                    sx={{ display: { xs: 'flex', sm: 'none' } }}
+                    sx={{ display: { xs: 'flex', sm: 'none' }, bgcolor:'black' } }
                     // onClick={toggleSideMenu}
                     >
                     <SearchOutlined />
@@ -133,11 +135,13 @@ export const Navbar = () => {
 
                 <Button
                 color="primary"
+                sx={{ bgcolor:'black'}}
                 //  onClick={toggleSideMenu}
                  >
                   <SegmentIcon/>
                 </Button>
             </Toolbar>
         </AppBar>
+      
     )
 }

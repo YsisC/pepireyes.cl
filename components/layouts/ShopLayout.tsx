@@ -1,19 +1,38 @@
 import { FC, ReactNode } from 'react';
 import Head from 'next/head';
-
 import { Navbar} from '../ui';
+import Footer from '../ui/Footer';
+import { motion, HTMLMotionProps } from 'framer-motion'
 
+type PageTransitionProps = HTMLMotionProps<'div'>
+type PageTransitionRef = React.ForwardedRef<HTMLDivElement>
 
 interface Props {
     title: string;
     pageDescription: string;
     imageFullUrl?: string;
     children: ReactNode;
+    page:PageTransitionProps;
+    ref?: PageTransitionRef;
+
 }
 
-export const ShopLayout:FC<Props> = ({ children, title, pageDescription, imageFullUrl }) => {
-  return (
-    <>
+export const ShopLayout:FC<Props> = ({ children, title, pageDescription, imageFullUrl,ref, ...rest}) => {
+    const onTheRight = { x: '100%' }
+	const inTheCenter = { x: 0 }
+	const onTheLeft = { x: '-100%' }
+
+    const transition = { duration: 0.6, ease: 'easeInOut' }
+ 
+    return (
+        <motion.div
+        ref={ref}
+        initial={onTheRight}
+        animate={inTheCenter}
+        exit={onTheLeft}
+        transition={transition}
+        {...rest}
+    >
         <Head>
             <title>{ title }</title>
             <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -48,9 +67,9 @@ export const ShopLayout:FC<Props> = ({ children, title, pageDescription, imageFu
         {/* <SideMenu /> */}
 
         <main style={{
-            margin: '80px auto',
-            maxWidth: '1440px',
-            padding: '0px 30px'
+           
+          paddingTop:'3.4rem'
+           
         }}>
             { children }
         </main>
@@ -58,9 +77,10 @@ export const ShopLayout:FC<Props> = ({ children, title, pageDescription, imageFu
         {/* Footer */}
         <footer>
             {/* TODO: mi custom footer */}
+            <Footer />
         </footer>
 
-    </>
+        </motion.div>
   )
 }
 
