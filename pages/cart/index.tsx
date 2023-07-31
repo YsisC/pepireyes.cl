@@ -32,6 +32,7 @@ const CartPage = () => {
 
   return (
     <ShopLayout title="Carrito - 3" pageDescription="Carrito de compras">
+        <section className="paddings" >
       <Typography variant="h1" component="h1">
         {" "}
         Carrito{" "}
@@ -55,6 +56,7 @@ const CartPage = () => {
           </Card>
         </Grid> 
       </Grid>
+      </section>
     </ShopLayout>
   );
 };

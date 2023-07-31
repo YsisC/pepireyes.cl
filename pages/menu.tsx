@@ -32,12 +32,12 @@ const Menu: NextPage = () => {
       title={"Menu - PR"}
       pageDescription={"Encuentra los mejores productos de pepireyes aquí"}
     >
-    <main className="paddings" >
+    <section className="paddings" >
     <Typography variant="h1" component="h1">
-        Hamburguesas
+        Menu
       </Typography>
       <Typography variant="h2" sx={{ mb: 2 , mt:1}}>
-        Todos los productos
+        Todas las categorias
       </Typography>
      
  
@@ -45,7 +45,7 @@ const Menu: NextPage = () => {
     
      
 
-    </main>
+    </section>
       
    
     </ShopLayout>

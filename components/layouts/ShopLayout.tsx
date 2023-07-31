@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { Navbar} from '../ui';
 import Footer from '../ui/Footer';
 import { motion, HTMLMotionProps } from 'framer-motion'
+import { Padding } from '@mui/icons-material';
 
 type PageTransitionProps = HTMLMotionProps<'div'>
 type PageTransitionRef = React.ForwardedRef<HTMLDivElement>
@@ -68,7 +69,9 @@ export const ShopLayout:FC<Props> = ({ children, title, pageDescription, imageFu
 
         <main style={{
            
-          paddingTop:'3.4rem'
+          paddingTop:'3.4rem',
+          paddingBottom:'1.5rem'
+          
            
         }}>
             { children }
