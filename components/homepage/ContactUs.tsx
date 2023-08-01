@@ -2,7 +2,8 @@ import React, { useRef , FormEventHandler } from 'react'
 import css from './ContactUs.module.css'
 import { motion } from 'framer-motion'
 import {  staggerChildren, textVariant } from '../../utils/motion'
-import { TextareaAutosize } from '@mui/base';
+
+
 import { EmailOutlined, WhatsApp, LocationCity } from '@mui/icons-material'
 import { Button,  Typography } from "@mui/material";
 import emailjs from '@emailjs/browser';
@@ -41,6 +42,22 @@ export default function ContacUs() {
                 <button type="submit" className='circular-btn-second'  > Send Message</button>
               </form>
               {/* Rest of the component */}
+              <motion.div 
+                    variants={textVariant(0.5)}
+                    className={css.rigthSideElement}>
+                        <div className={css.info}>
+                            <div> <EmailOutlined /> </div>
+                            <p>pepireyes.cl@gmail.com</p>
+                        </div>
+                        <div className={css.info}>
+                            <div> <WhatsApp /> </div>
+                            <p>+56-930739387</p>
+                        </div>
+                        <div className={css.info}>
+                            <div> <LocationCity /> </div>
+                            <p>Santiago de Chile</p>
+                        </div>
+                    </motion.div>
             </div>
           </div>
         </motion.section>
