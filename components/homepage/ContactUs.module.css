@@ -80,9 +80,7 @@
     flex-direction: column;
     gap: 2rem;
   }
-  .container h2 {
-    font-size: x-small;
-  }
+
 
   .informationdiv form {
     width: 100%;
