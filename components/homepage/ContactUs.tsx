@@ -36,10 +36,10 @@ export default function ContacUs() {
             <Typography variant="h2" component="h2" color={"GrayText"}>CONTAC<span>TANOS </span></Typography>
             <div className={css.informationdiv}>
               <form ref={form} onSubmit={sendEmail}>
-                <input type="text" placeholder="Your Name" name='user_name' required />
-                <input type="email" name='user_email' placeholder="Your Email Address" required />
-                <textarea placeholder="Your Message" name='message' rows={10} required />
-                <button type="submit" className='circular-btn-second'  > Send Message</button>
+                <input type="text" placeholder="Tu nombre" name='user_name' required />
+                <input type="email" name='user_email' placeholder="Tu correo electronico" required />
+                <textarea placeholder="Tu mensaje" name='message' rows={10} required />
+                <button type="submit" className='circular-btn-second'  > Enviar mensaje</button>
               </form>
               {/* Rest of the component */}
               <motion.div 
