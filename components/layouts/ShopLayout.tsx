@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react';
 import Head from 'next/head';
-import { Navbar } from '../ui';
+import { Navbar, SideMenu } from '../ui';
 import Footer from '../ui/Footer';
 import { motion, HTMLMotionProps } from 'framer-motion';
 
@@ -34,6 +34,8 @@ export const ShopLayout: FC<Props> = ({ children, title, pageDescription, imageF
       <nav>
         <Navbar />
       </nav>
+
+      <SideMenu />
 
       <main style={{
         paddingTop: '3.4rem',

@@ -9,7 +9,7 @@ import { ClearAllOutlined, SearchOutlined, ShoppingCartOutlined } from '@mui/ico
 import SegmentIcon from '@mui/icons-material/Segment';
 
 // import Typography from '@mui/material/Typography';
-import {CartContext } from '../../context'
+import {CartContext, UiContext,  } from '../../context'
 
 import Link from '../../src/Link'
 
@@ -17,7 +17,7 @@ import Link from '../../src/Link'
 export const Navbar = ({...rest}) => {
     const { numberOfItems } = useContext(CartContext)
     const { asPath, push } = useRouter();
-
+    const { toggleSideMenu } = useContext(UiContext);
 
     const [searchTerm, setSearchTerm] = useState('');
     const [isSearchVisible, setIsSearchVisible] = useState(false);
@@ -117,8 +117,8 @@ export const Navbar = ({...rest}) => {
 
                 {/* Pantalla pequeña */}
                 <IconButton
-                    sx={{ display: { xs: 'flex', sm: 'none' }, bgcolor:'black' } }
-                    // onClick={toggleSideMenu}
+                    sx={{ display: { xs: 'flex', sm: 'none' },  } }
+                    onClick={toggleSideMenu}
                     >
                     <SearchOutlined />
                 </IconButton>
@@ -136,7 +136,7 @@ export const Navbar = ({...rest}) => {
                 <Button
                 color="primary"
                 sx={{ bgcolor:'black'}}
-                //  onClick={toggleSideMenu}
+                 onClick={toggleSideMenu}
                  >
                   <SegmentIcon/>
                 </Button>

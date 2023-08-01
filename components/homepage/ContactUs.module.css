@@ -81,7 +81,9 @@
     gap: 2rem;
   }
 
-
+  .rigthSideElement {
+    width: 100%;
+  }
   .informationdiv form {
     width: 100%;
   }
