@@ -24,6 +24,10 @@
     padding: 1rem 0.5rem 1rem 0.5rem;
     font-size: smaller;
 }
+.img_banner{
+height: 18rem;
+/* width: 100%; */
+}
 
 @media (min-width: 640px) {
     .container {
@@ -37,14 +41,17 @@
         padding-left: 0px;
         padding-right: 0px;
     }
-
+    .img_banner{
+        height: 36rem;
+        width: 40rem;
+        }
     .bannerText { 
         position: absolute;
         padding: 1rem 2rem 1rem 2rem;
         height: 22rem;
         margin-top: 14rem;
         margin-left: 17rem;
-        width: 47rem;
+        width: 45rem;
     
     }
 }
@@ -55,6 +62,10 @@
         width: 49rem;
         height: 22rem;
     }
+    .img_banner{
+        height: 36rem;
+        width: 50rem;
+        }
 }
 @media (min-width: 1536px) {
     .bannerText { 

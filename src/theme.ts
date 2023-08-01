@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material/styles';
-import { red, black } from '@mui/material/colors';
+import { red } from '@mui/material/colors';
 import { Roboto } from 'next/font/google';
 
 

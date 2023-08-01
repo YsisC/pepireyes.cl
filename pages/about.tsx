@@ -8,7 +8,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 
 
 import MainFeaturedPost from '../components/about/MainFeaturedPost';
-import FeaturedPost from './FeaturedPost';
+import FeaturedPost from '../components/about/FeaturedPost';
 import Main from '../components/about/Main';
 import Sidebar from '../components/about/Sidebar';
 

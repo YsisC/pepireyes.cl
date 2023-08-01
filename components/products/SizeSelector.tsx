@@ -10,7 +10,7 @@ interface Props {
     onSelectedSize: (size: ISize) => void;
   }
 
-export const SizeSelector: FC<Props> = ({ selectedSize,  size, onSelectedSize}) => {
+export const SizeSelector: FC<Props> = ({   size, }) => {
   console.log(size)
   return (
     <Box>

@@ -62,6 +62,14 @@ const ProductPage: NextPage<Props> = ({ product }) => {
     router.push('/cart');
   }
 
+  const onSelectedSize = (size: ISize) => {
+    setTempCartProduct(currentProduct => ({
+      ...currentProduct,
+      size
+    }));
+  }
+
+
   return (
     <ShopLayout title={ product.title } pageDescription={ product.description }>
     
@@ -94,7 +102,8 @@ const ProductPage: NextPage<Props> = ({ product }) => {
           <SizeSelector
                 size={product.size}
                 // selectedSize={tempCartProduct.size}
-                // onSelectedSize={selectedSize}
+                onSelectedSize={onSelectedSize}
+               
               />
             </Box>
 

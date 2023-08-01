@@ -1,7 +1,8 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import { Container, Typography } from "@mui/material";
+import { CardMedia, Container, Typography } from "@mui/material";
 import styles from "./Banner.module.css";
+import Image from "next/image";
 
 export default function Banner() {
   return (
@@ -10,7 +11,7 @@ export default function Banner() {
           NUESTRA <span>  TRAYECTORIA </span>
         </Typography>
       <div className={styles.container}>
-        <img src="/img/tienda.jpeg" alt="Tienda"></img>
+        <CardMedia component={'img'} src="/img/tienda.jpeg"  className={styles.img_banner} alt="Tienda"></CardMedia>
         <div className={styles.bannerText}>
           <Typography variant="h3" component="h3" color={"GrayText"}>
             Pepireyes

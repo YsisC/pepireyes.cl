@@ -1,90 +1,51 @@
 import { FC, ReactNode } from 'react';
 import Head from 'next/head';
-import { Navbar} from '../ui';
+import { Navbar } from '../ui';
 import Footer from '../ui/Footer';
-import { motion, HTMLMotionProps } from 'framer-motion'
-import { Padding } from '@mui/icons-material';
+import { motion, HTMLMotionProps } from 'framer-motion';
 
-type PageTransitionProps = HTMLMotionProps<'div'>
-type PageTransitionRef = React.ForwardedRef<HTMLDivElement>
+type PageTransitionProps = HTMLMotionProps<'div'>;
 
 interface Props {
-    title: string;
-    pageDescription: string;
-    imageFullUrl?: string;
-    children: ReactNode;
-    page:PageTransitionProps;
-    ref?: PageTransitionRef;
-
+  title: string;
+  pageDescription: string;
+  imageFullUrl?: string;
+  children: ReactNode;
 }
 
-export const ShopLayout:FC<Props> = ({ children, title, pageDescription, imageFullUrl,ref, ...rest}) => {
-    const onTheRight = { x: '100%' }
-	const inTheCenter = { x: 0 }
-	const onTheLeft = { x: '-100%' }
+export const ShopLayout: FC<Props> = ({ children, title, pageDescription, imageFullUrl }) => {
+  const onTheRight = { x: '100%' }
+  const inTheCenter = { x: 0 }
+  const onTheLeft = { x: '-100%' }
 
-    const transition = { duration: 0.6, ease: 'easeInOut' }
- 
-    return (
-        <motion.div
-        ref={ref}
-        initial={onTheRight}
-        animate={inTheCenter}
-        exit={onTheLeft}
-        transition={transition}
-        {...rest}
+  const transition = { duration: 0.6, ease: 'easeInOut' }
+
+  return (
+    <motion.div
+      initial={onTheRight}
+      animate={inTheCenter}
+      exit={onTheLeft}
+      transition={transition}
     >
-        <Head>
-            <title>{ title }</title>
-            <link rel="icon" href="/favicon.ico" sizes="any" />
-            <link
-  rel="icon"
-  href="/icon?<generated>"
-  type="image/<generated>"
-  sizes="<generated>"
-/>
-<link
-  rel="apple-touch-icon"
-  href="/apple-icon?<generated>"
-  type="image/<generated>"
-  sizes="<generated>"
-/>
-            <meta name="description" content={ pageDescription } />
-            <meta name="og:title" content={ title } />
-            <meta name="og:description" content={ pageDescription } />
+      <Head>
+        {/* Rest of the code... */}
+      </Head>
 
-            {
-                imageFullUrl && (
-                    <meta name="og:image" content={ imageFullUrl } />
-                )
-            }
+      <nav>
+        <Navbar />
+      </nav>
 
-        </Head> 
+      <main style={{
+        paddingTop: '3.4rem',
+        paddingBottom: '1.5rem'
+      }}>
+        {children}
+      </main>
 
-        <nav>
-            <Navbar />
-        </nav>
+      <footer>
+        {/* Rest of the code... */}
+      </footer>
 
-        {/* <SideMenu /> */}
-
-        <main style={{
-           
-          paddingTop:'3.4rem',
-          paddingBottom:'1.5rem'
-          
-           
-        }}>
-            { children }
-        </main>
-
-        {/* Footer */}
-        <footer>
-            {/* TODO: mi custom footer */}
-            <Footer />
-        </footer>
-
-        </motion.div>
+    </motion.div>
   )
 }
-
-

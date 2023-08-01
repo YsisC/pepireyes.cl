@@ -27,8 +27,8 @@ export default function Main(props: MainProps) {
         {title}
       </Typography>
       <Divider />
-      {posts.map((post) => (
-      <Typography variant="h6" gutterBottom>
+      {posts.map((post, i) => (
+      <Typography variant="h6" key={i} gutterBottom>
   {post}
       </Typography>
       
