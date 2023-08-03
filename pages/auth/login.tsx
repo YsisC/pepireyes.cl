@@ -162,6 +162,8 @@ const LoginPage = forwardRef<HTMLFormElement, LoginPageProps>(
   }
 );
 
+// Asigna el nombre al componente
+LoginPage.displayName = "LoginPage";
 
 export const getServerSideProps: GetServerSideProps = async ({ req, query }) => {
   
