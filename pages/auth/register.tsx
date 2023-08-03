@@ -1,14 +1,15 @@
 import { useState, useContext } from "react";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
+
 import { getSession, signIn } from "next-auth/react";
 import Link from "@/src/Link";
+
+import { useForm } from "react-hook-form";
 import { Box, Button, Grid, TextField, Typography, Chip } from "@mui/material";
 import { ErrorOutline } from "@mui/icons-material";
-import { useForm } from "react-hook-form";
 
 import { AuthContext } from '../../context';
-
 import { AuthLayout } from "@/components/layouts";
 import { validations } from "../../utils";
 
@@ -22,6 +23,7 @@ const RegisterPage = () => {
 
   const router = useRouter();
   const { registerUser } = useContext(AuthContext);
+
   const {
     register,
     handleSubmit,
@@ -40,15 +42,14 @@ const RegisterPage = () => {
       setErrorMessage(message!);
       setTimeout(() => setShowError(false), 3000);
     }
-  // Todo: navegar a la pantalla que el usuario estaba
-  // const destination = router.query.p?.toString() || '/';
-  // router.replace(destination);
+
 
   await signIn('credentials', { email, password })
+
   };
 
   return (
-    <AuthLayout title="Registrar">
+    <AuthLayout title="Ingresar">
       <form onSubmit={handleSubmit(onRegisterForm)} noValidate>
         <Box sx={{ width: 350, padding: "10px 20px" }}>
           <Grid container spacing={2}>
