@@ -19,12 +19,10 @@ type FormData = {
   password: string;
 };
 
-interface LoginPageProps {
-  forwardedRef: ForwardedRef<HTMLFormElement>;
-}
 
-const LoginPage = forwardRef<HTMLFormElement, LoginPageProps>(
-  ({ forwardedRef }, ref) => {
+
+const LoginPage = () => {
+
   const router = useRouter();
   // const { loginUser } = useContext(AuthContext);
   const {
@@ -70,7 +68,7 @@ const LoginPage = forwardRef<HTMLFormElement, LoginPageProps>(
 
   return (
     <AuthLayout title="Ingresar">
-      <form ref={forwardedRef} onSubmit={handleSubmit(onLoginUser)} noValidate>
+      <form  onSubmit={handleSubmit(onLoginUser)} noValidate>
         <Box sx={{ width: 350, padding: "10px 20px" }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -159,8 +157,8 @@ const LoginPage = forwardRef<HTMLFormElement, LoginPageProps>(
       </form>
       </AuthLayout>
     );
+  
   }
-);
 
 // Asigna el nombre al componente
 LoginPage.displayName = "LoginPage";
