@@ -1,8 +1,11 @@
-import { FC, useEffect, useReducer, ReactNode } from 'react';
+import React, { FC, useEffect, useReducer } from 'react';
 import Cookie from 'js-cookie';
+import axios from 'axios';
 
 import { CartContext, cartReducer } from "./";
 import { ICartProduct } from "@/interfaces/cart";
+import { pepireyesApi } from '@/api';
+import { IOrder } from '@/interfaces/order';
 
 
 
@@ -27,8 +30,9 @@ export interface  ShippingAddress {
     commune  : string;
     phone    : string;
 };
+
 interface CartProviderProps {
-    children: ReactNode;
+    children: React.ReactNode;
 }
 
 const CART_INITIAL_STATE: CartState = {
@@ -135,13 +139,63 @@ useEffect(() => {
         dispatch({ type: '[Cart] - Update Address', payload: address });
     }
 
+    const createOrder = async():Promise<{ hasError: boolean; message: string; }> => {
+
+        if ( !state.shippingAddress ) {
+            throw new Error('No hay dirección de entrega');
+        }
+
+        const body: IOrder = {
+            orderItems: state.cart.map( p => ({
+                ...p,
+                size: p.size!
+            })),
+            shippingAddress: state.shippingAddress,
+            numberOfItems: state.numberOfItems,
+            subTotal: state.subTotal,
+            tax: state.tax,
+            total: state.total,
+            isPaid: false
+        }
+
+
+        try {
+            
+            const { data } = await pepireyesApi.post<IOrder>('/orders', body);
+
+            dispatch({ type: '[Cart] - Order complete' });
+
+            return {
+                hasError: false,
+                message: data._id!
+            }
+
+
+        } catch (error) {
+            if ( axios.isAxiosError(error) ) {
+                return {
+                    hasError: true,
+                    message: error.response?.data.message
+                }
+            }
+            return {
+                hasError: true,
+                message : 'Error no controlado, hable con el administrador'
+            }
+        }
+
+    }
+
     return (
         <CartContext.Provider value={{
             ...state,
             addProductToCart,
             updateCartQuantity,
             removeCartProduct,
-            updateAddress
+            updateAddress,
+ // Orders
+ createOrder,
+
         }}>
             {children}
         </CartContext.Provider>

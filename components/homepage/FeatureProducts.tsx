@@ -11,7 +11,7 @@ const FeatureProducts = () => {
         <Typography variant="h2" component="h2" color={"GrayText"}>
           NUESTRO <span>  MENU </span>
         </Typography>
-        <Button color="secondary" className="circular-btn-second">
+        <Button  href="/menu" color="secondary" className="circular-btn-second">
         VER TODO
         </Button>
       </div>

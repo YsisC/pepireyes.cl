@@ -6,8 +6,9 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 import { AuthContext, authReducer } from './';
 
-import { tesloApi } from '../../api';
+
 import { IUser } from '../../interfaces';
+import { pepireyesApi } from '@/api';
 
 export interface AuthState {
     isLoggedIn: boolean;
@@ -38,33 +39,14 @@ export const AuthProvider:FC<Props> = ({ children }) => {
     
     }, [ status, data ])
         
-        // useEffect(() => {
-        //     checkToken();
-        // }, [])
-   
-        //  }, [status, data])
  
- const checkToken = async() => {
 
-    if ( !Cookies.get('token') ) {
-        return;
-    }
-
-    try {
-        const { data } = await tesloApi.get('/user/validate-token');
-        const { token, user } = data;
-        Cookies.set('token', token );
-        dispatch({ type: '[Auth] - Login', payload: user });
-    } catch (error) {
-        Cookies.remove('token');
-    }
-}
 
 
     const loginUser = async( email: string, password: string ): Promise<boolean> => {
 
         try {
-            const { data } = await tesloApi.post('/user/login', { email, password });
+            const { data } = await pepireyesApi.post('/user/login', { email, password });
             const { token, user } = data;
             Cookies.set('token', token );
             dispatch({ type: '[Auth] - Login', payload: user });
@@ -78,7 +60,7 @@ export const AuthProvider:FC<Props> = ({ children }) => {
 
     const registerUser = async( name: string, email: string, password: string ): Promise<{hasError: boolean; message?: string}> => {
         try {
-            const { data } = await tesloApi.post('/user/register', { name, email, password });
+            const { data } = await pepireyesApi.post('/user/register', { name, email, password });
             const { token, user } = data;
             Cookies.set('token', token );
             dispatch({ type: '[Auth] - Login', payload: user });
