@@ -13,15 +13,17 @@ import {
   ListItemText,
   ListSubheader,
 } from "@mui/material";
+import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import {
+
   AccountCircleOutlined,
   AdminPanelSettings,
   CategoryOutlined,
   ConfirmationNumberOutlined,
-  EscalatorWarningOutlined,
   FemaleOutlined,
   LoginOutlined,
-  MaleOutlined,
   SearchOutlined,
   VpnKeyOutlined,
 } from "@mui/icons-material";
@@ -103,7 +105,7 @@ export const SideMenu = () => {
             onClick={() => navigateTo("/menu")}
           >
             <ListItemIcon>
-              <MaleOutlined />
+              <RestaurantMenuIcon />
             </ListItemIcon>
             <ListItemText primary={"Menu"} />
           </ListItem>
@@ -111,23 +113,23 @@ export const SideMenu = () => {
           <ListItem
             button
             sx={{ display: { xs: "", sm: "none" } }}
-            onClick={() => navigateTo("/category/women")}
+            onClick={() => navigateTo("/promociones")}
           >
             <ListItemIcon>
-              <FemaleOutlined />
+              < CardGiftcardIcon />
             </ListItemIcon>
-            <ListItemText primary={"Mujeres"} />
+            <ListItemText primary={"Promociones"} />
           </ListItem>
 
           <ListItem
             button
             sx={{ display: { xs: "", sm: "none" } }}
-            onClick={() => navigateTo("/category/kid")}
+            onClick={() => navigateTo("/about")}
           >
             <ListItemIcon>
-              <EscalatorWarningOutlined />
+              < BookmarkIcon/>
             </ListItemIcon>
-            <ListItemText primary={"Niños"} />
+            <ListItemText primary={"Sobre nosotros"} />
           </ListItem>
           { isLoggedIn ? (
             <ListItem 
