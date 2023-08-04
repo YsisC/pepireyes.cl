@@ -39,9 +39,9 @@ export default function Footer<FooterProps>() {
 
     <Grid item xs={12} sm={4}>
             <figure>
-              <a href="#">
+              <Link> 
                 <Image src={icon} width={210} alt="Pepireyes follow us" />
-              </a>
+                </Link>
             </figure>
             </Grid>
 
@@ -54,7 +54,7 @@ export default function Footer<FooterProps>() {
               Tienda de comida rapida
             </p>
             <p>
-              Lorems indfsksfd akjfknkgn dsmfisej
+              Menu
             </p>
             </Grid>
           <Grid item xs={12} sm={4}>

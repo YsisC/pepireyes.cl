@@ -78,9 +78,10 @@ const SummaryPage = () => {
                         
                         <Typography>{ firstName } { lastName }</Typography>
                         <Typography>{ address }{ address2 ? `, ${address2}` : ''  } </Typography>
+                        <Typography>{ commune }</Typography>
                         <Typography>{ city }, { zip }</Typography>
                         {/* <Typography>{ countries.find( c => c.code === country )?.name }</Typography> */}
-                        <Typography>{ commune }</Typography>
+                    
                         <Typography>{ phone }</Typography>
 
                         <Divider sx={{ my:1 }} />

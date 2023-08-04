@@ -4,8 +4,9 @@ import { motion } from 'framer-motion'
 import {  staggerChildren, textVariant } from '../../utils/motion'
 
 
+import Link from '@/src/Link'
 import { EmailOutlined, WhatsApp, LocationCity } from '@mui/icons-material'
-import { Button,  Typography } from "@mui/material";
+import { Button,   Typography } from "@mui/material";
 import emailjs from '@emailjs/browser';
 
 export default function ContacUs() {
@@ -31,7 +32,7 @@ export default function ContacUs() {
           viewport={{ once: false, amount: 0.25 }}
           className={`paddings ${css.wrapper} `}
         >
-          <a className="anchor" id='contactme'></a>
+       
           <div className={` ${css.container}`}>
             <Typography variant="h2" component="h2" color={"GrayText"}>CONTAC<span>TANOS </span></Typography>
             <div className={css.informationdiv}>
@@ -39,7 +40,7 @@ export default function ContacUs() {
                 <input type="text" placeholder="Tu nombre" name='user_name' required />
                 <input type="email" name='user_email' placeholder="Tu correo electronico" required />
                 <textarea placeholder="Tu mensaje" name='message' rows={10} required />
-                <button type="submit" className='circular-btn-second'  > Enviar mensaje</button>
+                <Button type="submit" className='circular-btn-second'  > Enviar mensaje</Button>
               </form>
               {/* Rest of the component */}
               <motion.div 
