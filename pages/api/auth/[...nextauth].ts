@@ -1,17 +1,15 @@
 
-import NextAuth, { NextAuthOptions, RequestInternal } from "next-auth";
+import NextAuth, { NextAuthOptions, RequestInternal, Session } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
-import { Session } from "next-auth";
+
 
 
 import { dbUsers } from "../../../database";
+import { ISession, IUser } from "@/interfaces";
 
-interface CustomSession extends Session {
-  accessToken?: string;
-  
-}
+
 // https://next-auth.js.org/configuration/options
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -51,9 +49,11 @@ export const authOptions: NextAuthOptions = {
   // Custom Pages
   pages: {
     signIn: "/auth/login",
+    signOut: '/auth/signout',
     newUser: '/auth/register',
     error: '/auth/error', // Error code passed in query string as ?error=
-  },
+    verifyRequest: '/auth/verify-request', // (used for check email message)
+},
   jwt: {},
   session: {
     maxAge: 2592000,
@@ -83,14 +83,17 @@ export const authOptions: NextAuthOptions = {
 
       return token;
     },
+    async signIn({ user, account, profile, email, credentials }) {
+      return true
+    },
 
     async session({ session, token, user }) {
       console.log({ session, token, user });
-      const customSession: CustomSession = session;
-      customSession.user = token.user as any;
-      customSession.accessToken = token?.accessToken as string | undefined;;
     
-      return customSession;
+      session.user = token.user as any;
+      session.accessToken = token?.accessToken as ISession["accessToken"]; // <-- Corregido
+    
+      return session;
     },
   },
 };

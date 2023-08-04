@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+
 import { Typography, Grid } from "@mui/material";
 // import useSWR, { SWRConfiguration } from "swr";
 
@@ -11,6 +12,7 @@ import FeatureProducts from "@/components/homepage/FeatureProducts";
 import ContacUs from "@/components/homepage/ContactUs";
 
 const HomePage: NextPage = () => {
+  
   const featuredProduct = [
     "2023-07-03 at 14.25.14 (15).jpeg",
     "2023-07-03 at 14.25.14 (16).jpeg",
