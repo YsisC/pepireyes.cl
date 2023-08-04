@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import React, { FC, ReactNode, useEffect, useRef } from 'react';
 import Head from 'next/head';
 import { Navbar, SideMenu } from '../ui';
 import Footer from '../ui/Footer';
@@ -19,14 +19,20 @@ export const ShopLayout: FC<Props> = ({ children, title, pageDescription, imageF
   const onTheLeft = { x: '-100%' }
 
   const transition = { duration: 0.6, ease: 'easeInOut' }
+  const sessionProviderRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    // After the component is mounted, forward the ref to the SessionProvider
+    const sessionProviderNode = sessionProviderRef.current;
+    if (sessionProviderNode) {
+      // Forwarding the ref to the SessionProvider
+      (sessionProviderNode as any)._reactInternalFiber.child.ref = sessionProviderRef;
+    }
+  }, []);
   return (
-    <motion.div
-      initial={onTheRight}
-      animate={inTheCenter}
-      exit={onTheLeft}
-      transition={transition}
-    >
+    <>
+    
+    
       <Head>
         {/* Rest of the code... */}
       </Head>
@@ -37,17 +43,22 @@ export const ShopLayout: FC<Props> = ({ children, title, pageDescription, imageF
 
       <SideMenu />
 
-      <main style={{
+      <motion.main
+      initial={onTheRight}
+      animate={inTheCenter}
+      exit={onTheLeft}
+      transition={transition} style={{
         paddingTop: '3.4rem',
         paddingBottom: '1.5rem'
       }}>
         {children}
-      </main>
+        </motion.main>
 
       <footer>
         {/* Rest of the code... */}
       </footer>
 
-    </motion.div>
+   
+    </>
   )
 }

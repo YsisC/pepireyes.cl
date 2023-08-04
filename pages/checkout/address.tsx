@@ -164,16 +164,7 @@ const AddressPage = () => {
                             error={ !!errors.commune }
                             helperText={ errors.commune?.message }
                         />
-                            {/* {
-                                countries.map( country => (
-                                    <MenuItem 
-                                        key={ country.code }
-                                        value={ country.code }
-                                    >{ country.name }</MenuItem>
-                                ))
-                            }
-                        </TextField> */}
-                    {/* </FormControl> */}
+                           
                 </Grid>
                 <Grid item xs={12} sm={ 6 }>
                     <TextField
