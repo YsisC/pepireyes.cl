@@ -10,6 +10,7 @@ import { dbUsers } from "../../../database";
 
 interface CustomSession extends Session {
   accessToken?: string;
+  
 }
 // https://next-auth.js.org/configuration/options
 export const authOptions: NextAuthOptions = {
@@ -86,9 +87,9 @@ export const authOptions: NextAuthOptions = {
     async session({ session, token, user }) {
       console.log({ session, token, user });
       const customSession: CustomSession = session;
-      customSession.accessToken = token?.accessToken as string | undefined;;
       customSession.user = token.user as any;
-
+      customSession.accessToken = token?.accessToken as string | undefined;;
+    
       return customSession;
     },
   },
