@@ -60,7 +60,7 @@ export const Navbar = ({...rest}) => {
                 <Box sx={{ display: isSearchVisible ? 'none' : { xs: 'none', sm: 'block' } }}
                     className="fadeIn">
 
-                    <Link href='/menu'>
+                    <Link href='/menu' >
                         <Button sx={{bgcolor:'black'}} color='primary' className={asPath === '/category/menu' ? 'linkActive' : 'primary'}>Menu</Button>
                     </Link>
 
@@ -136,9 +136,10 @@ export const Navbar = ({...rest}) => {
                 <Button
                 color="primary"
                 sx={{ bgcolor:'black'}}
+                startIcon={<SegmentIcon/>}
                  onClick={toggleSideMenu}
                  >
-                  <SegmentIcon/>
+                  
                 </Button>
             </Toolbar>
         </AppBar>

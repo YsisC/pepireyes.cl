@@ -13,49 +13,40 @@ import { CartProvider, UiProvider, AuthProvider } from "../context";
 import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 
-// Client-side cache, shared for the whole session of the user in the browser.
-const clientSideEmotionCache = createEmotionCache();
 
 export interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
 
-export default function MyApp(props: MyAppProps) {
-  const { Component, 
-    emotionCache = clientSideEmotionCache,
-     pageProps: { session, ...pageProps },
-     } = props;
+export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const pageKey = router.asPath;
   return (
-    <SessionProvider session={session}>
-    <AnimatePresence initial={false} mode="popLayout">
-      <SWRConfig
+    <SessionProvider>
+   <SWRConfig 
         value={{
-          fetcher,
+          fetcher: (resource, init) => fetch(resource, init).then(res => res.json())
         }}
       >
+
+    <AnimatePresence mode="wait" initial={false}>
+     
         <AuthProvider>
           <CartProvider>
-            <UiProvider>
-              <CacheProvider value={emotionCache}>
-                <Head>
-                  <meta
-                    name="viewport"
-                    content="initial-scale=1, width=device-width"
-                  />
-                </Head>
+            <UiProvider>                
                 <ThemeProvider theme={theme}>
                   {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                   <CssBaseline />
                   <Component key={pageKey} {...pageProps} />
                 </ThemeProvider>
-              </CacheProvider>
+          
             </UiProvider>
           </CartProvider>
         </AuthProvider>
-      </SWRConfig>
+    
     </AnimatePresence>
+ 
+    </SWRConfig>
     </SessionProvider>
   );
 }

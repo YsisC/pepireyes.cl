@@ -1,14 +1,15 @@
-import { FC, useReducer, useEffect, ReactNode, } from 'react';
+import { FC, useReducer, useEffect, ReactNode } from 'react';
 import { useRouter } from 'next/router';
-import { signOut, useSession } from "next-auth/react";
+import { useSession, signOut } from 'next-auth/react';
+
 
 import Cookies from 'js-cookie';
 import axios from 'axios';
+
 import { AuthContext, authReducer } from './';
 
-
+import { pepireyesApi } from '../../api';
 import { IUser } from '../../interfaces';
-import { pepireyesApi } from '@/api';
 
 export interface AuthState {
     isLoggedIn: boolean;
