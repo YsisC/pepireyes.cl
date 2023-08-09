@@ -1,14 +1,13 @@
-import { SessionProvider } from "next-auth/react"
+import { Session } from "next-auth";
+import { SessionProvider } from "next-auth/react";
 import "@/styles/globals.css";
-import Head from "next/head";
 import { AppProps } from "next/app";
 import { SWRConfig } from "swr";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import { theme } from "../src/theme";
-import createEmotionCache from "../src/createEmotionCache";
-import { fetcher } from "../hooks";
 import { CartProvider, UiProvider, AuthProvider } from "../context";
 import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
@@ -18,11 +17,11 @@ export interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+export default function MyApp({ Component, pageProps }: AppProps<{ session: Session }>) {
   const router = useRouter();
   const pageKey = router.asPath;
   return (
-    <SessionProvider>
+    <SessionProvider session={pageProps.session}>
    <SWRConfig 
         value={{
           fetcher: (resource, init) => fetch(resource, init).then(res => res.json())

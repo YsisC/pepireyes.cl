@@ -1,4 +1,4 @@
-'use client';
+
 import { useContext, useEffect, useState, useLayoutEffect } from 'react';
 import Link from '../../src/Link';
 import { useRouter } from 'next/router';
@@ -11,6 +11,10 @@ import { ShopLayout } from '../../components/layouts/ShopLayout';
 import { CartList, OrderSummary } from '../../components/cart';
 import { FullScreenLoading } from '@/components/ui';
 // import { countries } from '../../utils';
+
+import { getSession } from 'next-auth/react';
+import { GetServerSideProps, NextPageContext } from 'next';
+import { getServerSession } from 'next-auth';
 
 
 const SummaryPage = () => {
@@ -126,5 +130,23 @@ const SummaryPage = () => {
     </ShopLayout>
   )
 }
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+    const session = await getServerSession(req, res);
+  
+    if (!session) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/auth/login",
+        },
+      };
+    }
+  
+    return {
+      props: {},
+    };
+  };
+  
 
 export default SummaryPage;
