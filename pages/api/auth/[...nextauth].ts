@@ -1,9 +1,7 @@
 
 import NextAuth, { NextAuthOptions, RequestInternal, Session } from "next-auth";
-import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
-
 
 
 import { dbUsers } from "../../../database";
@@ -42,17 +40,16 @@ export const authOptions: NextAuthOptions = {
    
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID ?? "", // Optional chaining and nullish coalescing
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
     }),
     
   ],
+  secret: process.env.NEXTAUTH_SECRET,
   // Custom Pages
   pages: {
     signIn: "/auth/login",
     signOut: '/auth/signout',
     newUser: '/auth/register',
-    error: '/auth/error', // Error code passed in query string as ?error=
-    verifyRequest: '/auth/verify-request', // (used for check email message)
 },
   jwt: {},
   session: {
