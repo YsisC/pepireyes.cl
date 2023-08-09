@@ -29,8 +29,9 @@ const createOrder = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     const { orderItems, total } = req.body as IOrder;
 
     // Vericar que tengamos un usuario
-    const session = await getSession({ req })
+    const session:any = await getSession({ req })
     if ( !session ) {
+        console.log("No esta registrado", session)
         return res.status(401).json({message: 'Debe de estar autenticado para hacer esto'});
     }
 
