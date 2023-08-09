@@ -12,9 +12,9 @@ import { CartList, OrderSummary } from '../../components/cart';
 import { FullScreenLoading } from '@/components/ui';
 // import { countries } from '../../utils';
 
-import { getSession } from 'next-auth/react';
-import { GetServerSideProps, NextPageContext } from 'next';
-import { getServerSession } from 'next-auth';
+
+import { GetServerSideProps, } from 'next';
+import { getSession  } from 'next-auth/react';
 
 
 const SummaryPage = () => {
@@ -131,22 +131,23 @@ const SummaryPage = () => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-    const session = await getServerSession(req, res);
-  
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    
+    const session = await getSession(context);
+
     if (!session) {
-      return {
-        redirect: {
-          permanent: false,
-          destination: "/auth/login",
-        },
-      };
+        return {
+            redirect: {
+                permanent: false,
+                destination: "/auth/login",
+            },
+        };
     }
-  
+
     return {
-      props: {},
+        props: {},
     };
-  };
+};
   
 
 export default SummaryPage;
