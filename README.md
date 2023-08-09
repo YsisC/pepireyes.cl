@@ -31,21 +31,5 @@ Criterios de aceptación
 
 
 
-## 4. Configurar las variables de entorno
-Renombrar el archivo __.env.template__ a __.env__
 
-```
-docker-compose up -d
-```
-
-* MongoDB URL Local:
-```
-MONGO_URL=mongodb://localhost:27017/pepireyes
-```
-
-* Reconstruir los módulos de node y levantar Next
-```
-npm install
-npm run dev
-```
 
