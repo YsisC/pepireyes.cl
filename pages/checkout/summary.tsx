@@ -1,5 +1,5 @@
 'use client';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, useLayoutEffect } from 'react';
 import Link from '../../src/Link';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
@@ -9,6 +9,7 @@ import {  Box, Button, Card, CardContent, Divider, Grid, Typography, Chip } from
 import { CartContext } from '../../context';
 import { ShopLayout } from '../../components/layouts/ShopLayout';
 import { CartList, OrderSummary } from '../../components/cart';
+import { FullScreenLoading } from '@/components/ui';
 // import { countries } from '../../utils';
 
 
@@ -42,11 +43,10 @@ const SummaryPage = () => {
 
     }
 
-
-
-    if ( !shippingAddress ) {
-        return <></>;
-    }
+ 
+        if (!shippingAddress) {
+            return <FullScreenLoading />; 
+        }
 
     const { firstName, lastName, address, address2 = '', city, commune, phone, zip } = shippingAddress;
 

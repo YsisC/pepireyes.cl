@@ -1,5 +1,4 @@
-'use client'
-import { useState, useEffect, forwardRef, ForwardedRef } from "react";
+import { useState, useEffect, } from "react";
 import Link from "@/src/Link";
 import { GetServerSideProps } from "next";
 import { getSession, signIn, getProviders } from "next-auth/react";
@@ -7,7 +6,6 @@ import { getSession, signIn, getProviders } from "next-auth/react";
 import { Box, Button, Grid, TextField, Typography, Chip , Divider} from "@mui/material";
 import { ErrorOutline } from "@mui/icons-material";
 import { useForm } from "react-hook-form";
-
 
 import { AuthLayout } from "../../components/layouts";
 import { validations } from "../../utils";
@@ -25,6 +23,7 @@ const LoginPage = () => {
 
   const router = useRouter();
   // const { loginUser } = useContext(AuthContext);
+
   const {
     register,
     handleSubmit,
@@ -129,7 +128,7 @@ const LoginPage = () => {
             </Grid>
             <Grid item xs={12} display='flex' flexDirection='column' justifyContent='end'>
                             <Divider sx={{ width: '100%', mb: 2 }} />
-                            {/* {
+                             {
                                 Object.values( providers ).map(( provider: any ) => {
                                     
                                     if ( provider.id === 'credentials' ) return (<div key="credentials"></div>);
@@ -148,8 +147,8 @@ const LoginPage = () => {
                                         </Button>
                                     )
 
-                                })
-                            } */}
+                                }) 
+                            } 
 
                         </Grid>
           </Grid>
@@ -160,8 +159,7 @@ const LoginPage = () => {
   
   }
 
-// Asigna el nombre al componente
-LoginPage.displayName = "LoginPage";
+
 
 export const getServerSideProps: GetServerSideProps = async ({ req, query }) => {
   

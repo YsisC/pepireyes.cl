@@ -27,11 +27,12 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
 const createOrder = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     
     const { orderItems, total } = req.body as IOrder;
+    console.log(orderItems)
 
     // Vericar que tengamos un usuario
-    const session:any = await getSession({ req })
+    const session: any = await getSession({ req });
+    console.log("esta es la session", session)
     if ( !session ) {
-        console.log("No esta registrado", session)
         return res.status(401).json({message: 'Debe de estar autenticado para hacer esto'});
     }
 
