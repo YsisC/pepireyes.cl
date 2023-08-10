@@ -10,6 +10,7 @@ import { ProductSlideshow } from "../components/products";
 
 import FeatureProducts from "@/components/homepage/FeatureProducts";
 import ContacUs from "@/components/homepage/ContactUs";
+import { useSession } from "next-auth/react";
 
 const HomePage: NextPage = () => {
   
@@ -18,8 +19,9 @@ const HomePage: NextPage = () => {
     "2023-07-03 at 14.25.14 (16).jpeg",
     "2023-07-03 at 14.25.14 (17).jpeg",
   ];
+  const { data: session } = useSession();
 
-  // console.log(featuredProduct)
+  console.log(session)
 
   return (
     <ShopLayout

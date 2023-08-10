@@ -18,14 +18,10 @@ export default NextAuth({
         email: { label: 'Correo:', type: 'email', placeholder: 'correo@google.com'  },
         password: { label: 'Contraseña:', type: 'password', placeholder: 'Contraseña'  },
       },
-      async authorize(credentials: Record<"email" | "password", string> | undefined, req: Pick<RequestInternal, "body" | "query" | "headers" | "method">)  {
-        console.log({ credentials });
-        // return { name: 'Juan', correo: 'juan@google.com', role: 'admin' };
+      async authorize(credentials) {
+        console.log({credentials})
 
-        return await dbUsers.checkUserEmailPassword(
-          credentials!.email,
-          credentials!.password
-        ) as any;
+        return await dbUsers.checkUserEmailPassword( credentials!.email, credentials!.password );
       },
       
     }),

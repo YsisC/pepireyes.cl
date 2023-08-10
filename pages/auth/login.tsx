@@ -44,24 +44,9 @@ const LoginPage = () => {
     
     setShowError(false);
 
-  //   const isValidLogin = await loginUser(email, password);
 
-  //   if (!isValidLogin) {
-  //     setShowError(true);
-  //     setTimeout(() => setShowError(false), 3000);
-  //     return;
-  //   }
+ await signIn('credentials', {email, password });
 
-  //  // Todo: navegar a la pantalla que el usuario estaba
-  //  const destination = router.query.p?.toString() || '/';
-  //  router.replace(destination);
-
-  const isValidLogin = await signIn('credentials', {email, password });
-  if (!isValidLogin) {
-        setShowError(true);
-        setTimeout(() => setShowError(false), 3000);
-        return;
-      }
 
   };
 
