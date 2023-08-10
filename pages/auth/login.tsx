@@ -1,3 +1,4 @@
+"use client";
 import { useState, useEffect, } from "react";
 import Link from "@/src/Link";
 import { GetServerSideProps } from "next";

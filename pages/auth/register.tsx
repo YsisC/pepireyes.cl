@@ -1,3 +1,4 @@
+"use client";
 import { useState, useContext } from "react";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
