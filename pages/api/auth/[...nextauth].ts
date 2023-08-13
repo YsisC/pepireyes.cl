@@ -27,16 +27,18 @@ export const authOptions: NextAuthOptions = {
           placeholder: "Contraseña",
         },
       },
-      async authorize(credentials: Record<"email" | "password", string> | undefined, req: Pick<RequestInternal, "body" | "query" | "headers" | "method">)  {
+      async authorize(credentials)  {
         console.log({ credentials });
         // return { name: 'Juan', correo: 'juan@google.com', role: 'admin' };
-        if (!credentials?.email || !credentials.password) {
-           return null;
-        }
-        return await dbUsers.checkUserEmailPassword(
+        const user = await dbUsers.checkUserEmailPassword(
           credentials!.email,
           credentials!.password
-        ) as any;
+        );
+        if (user) {
+          return user;
+        } else {
+          return null;
+        }
       },
     }),
    
@@ -84,14 +86,16 @@ export const authOptions: NextAuthOptions = {
     },
  
 
-    async session({ session, token, user }) {
-      console.log({ session, token, user });
+    async session({ session, token,user }) {
     
+      console.log({ session, token, user });
+  
       session.user = token.user as any;
+  
       session.accessToken = token?.accessToken as ISession["accessToken"]; // <-- Corregido
     
       return session;
-    },
+    }
   },
 };
 

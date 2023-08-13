@@ -1,39 +1,38 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getSession } from 'next-auth/react';
-import { db } from '../../../database';
-import { IOrder } from '../../../interfaces';
-import { Product, Order } from '../../../models';
-
+import { getSession } from 'next-auth/react'
+import { db } from '../../../database'
+import { IOrder, IUser } from '../../../interfaces'
+import { Order, Product } from '../../../models';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../auth/[...nextauth]';
 
 type Data = 
-| { message: string }
-| IOrder;
+  | { message: string }
+  | IOrder
 
 export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
-    
 
-    switch( req.method ) {
-        case 'POST':
-            return createOrder( req, res );
-
-        default:
-            return res.status(400).json({ message: 'Bad request' })
-
-    }
-
-    
+  switch (req.method) {
+    case 'POST':
+      return createOrder(req, res)
+  
+    default:
+      return res.status(400).json({ message: 'Bad request' })
+  }
 }
 
 const createOrder = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     
     const { orderItems, total } = req.body as IOrder;
-    console.log(orderItems)
 
     // Vericar que tengamos un usuario
-    const session: any = await getSession({ req });
-    console.log("esta es la session", session)
-    if ( !session ) {
-        return res.status(401).json({message: 'Debe de estar autenticado para hacer esto'});
+   
+    const session = await getServerSession(req, res, authOptions)
+
+    if (!session?.user) {
+      return res
+        .status(401)
+        .json({ message: 'Debe de estar autenticado para hacer esto' })
     }
 
     // Crear un arreglo con los productos que la persona quiere
@@ -61,8 +60,10 @@ const createOrder = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
             throw new Error('El total no cuadra con el monto');
         }
 
-        // Todo bien hasta este punto
-        const userId = session.user._id;
+        // Todo bien hasta este punt
+      
+           const user = session?.user as IUser;
+           const userId = user._id;
         const newOrder = new Order({ ...req.body, isPaid: false, user: userId });
         await newOrder.save();
         await db.disconnect();

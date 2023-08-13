@@ -20,6 +20,7 @@ type CartActionType =
 
      | { type: '[Cart] - Order complete' }
 
+
 export const cartReducer = (state: CartState, action: CartActionType): CartState => {
 
     switch (action.type) {
@@ -67,7 +68,7 @@ export const cartReducer = (state: CartState, action: CartActionType): CartState
             }
 
             case '[Cart] - Order complete':
-         return {
+                return {
             ...state,
             cart: [],
             numberOfItems: 0,
@@ -75,8 +76,8 @@ export const cartReducer = (state: CartState, action: CartActionType): CartState
             tax: 0,
             total: 0
          }
-        default:
-            return state;
-    }
 
+        default:
+             return state;
+   }
 }

@@ -18,7 +18,7 @@ import { getSession  } from 'next-auth/react';
 
 
 const SummaryPage = () => {
-
+ 
     const router = useRouter();
     const { shippingAddress, numberOfItems, createOrder } = useContext( CartContext );
 

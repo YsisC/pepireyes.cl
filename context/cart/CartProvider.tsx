@@ -78,7 +78,9 @@ useEffect(() => {
 }, []);
 
     useEffect(() => {
+        if (state.cart.length > 0) {
         Cookie.set('cart', JSON.stringify(state.cart))
+    }
     }, [state.cart])
 
     useEffect(() => {
@@ -193,8 +195,8 @@ useEffect(() => {
             updateCartQuantity,
             removeCartProduct,
             updateAddress,
- // Orders
- createOrder,
+        // Orders
+         createOrder,
 
         }}>
             {children}

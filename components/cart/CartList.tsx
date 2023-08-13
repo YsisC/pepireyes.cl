@@ -5,15 +5,15 @@ import Link from '../../src/Link';
 
 import { ItemCounter } from '../ui';
 import { CartContext } from '@/context/cart';
-import { ICartProduct } from '@/interfaces';
-
-
+import { ICartProduct, IOrderItem } from '@/interfaces';
 
 
 interface Props {
   editable?: boolean;
+  products?: IOrderItem[];
 }
-export const CartList: FC<Props> = ({ editable = false }) => {
+
+export const CartList: FC<Props> = ({ editable = false , products }) => {
   const { cart, updateCartQuantity, removeCartProduct } = useContext(CartContext)
 
   const onNewCartQuantityValue = (product: ICartProduct, newQuantityValue: number) => {
@@ -27,7 +27,7 @@ export const CartList: FC<Props> = ({ editable = false }) => {
         cart.map(product => (
           <Grid container spacing={2} key={product.slug}>
             <Grid item xs={3}>
-              <Link href="/product/slug">
+              <Link href={`/product/${ product.slug }`} > 
                 <CardActionArea>
                   <CardMedia
                     image={`/products/${product.image}`}
