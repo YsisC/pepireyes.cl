@@ -23,6 +23,8 @@ const OrderPage: NextPage<Props> = ({ order }) => {
 
   return (
     <ShopLayout title='Resumen de la orden' pageDescription={'Resumen de la orden'}>
+          <section className="paddings" >
+
         <Typography variant='h1' component='h1'>Orden: { order._id }</Typography>
 
         {
@@ -88,7 +90,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
                                 order.isPaid
                                 ? (
                                     <Chip 
-                                        sx={{ my: 2 }}
+                                    sx={{ my: 2 }}
                                         label="Orden ya fue pagada"
                                         variant='outlined'
                                         color="success"
@@ -108,6 +110,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
         </Grid>
 
 
+                                    </section>
     </ShopLayout>
   )
 }

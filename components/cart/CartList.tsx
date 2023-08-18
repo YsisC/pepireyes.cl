@@ -1,7 +1,7 @@
 import { FC, useContext } from 'react'
 
 import { Typography, CardActionArea, Grid, CardMedia, Box, Button } from '@mui/material';
-import Link from '../../src/Link';
+import Link from '../../themeMUI/Link';
 
 import { ItemCounter } from '../ui';
 import { CartContext } from '@/context/cart';

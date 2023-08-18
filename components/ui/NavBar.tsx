@@ -11,7 +11,7 @@ import SegmentIcon from '@mui/icons-material/Segment';
 // import Typography from '@mui/material/Typography';
 import {CartContext, UiContext,  } from '../../context'
 
-import Link from '../../src/Link'
+import Link from '../../themeMUI/Link'
 
 
 export const Navbar = ({...rest}) => {

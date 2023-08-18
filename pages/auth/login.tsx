@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, } from "react";
-import Link from "@/src/Link";
+import Link from "@/themeMUI/Link";
 import { GetServerSideProps } from "next";
 import { getSession, signIn, getProviders, getCsrfToken } from "next-auth/react";
 

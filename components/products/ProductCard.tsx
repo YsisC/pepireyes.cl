@@ -1,5 +1,5 @@
 import { FC, useMemo, useState } from 'react';
-import Link from '../../src/Link';
+import Link from '../../themeMUI/Link';
 import { Grid, Card, CardActionArea, CardMedia, Box, Typography,  Chip } from '@mui/material'
 
 import { IProduct } from '../../interfaces'

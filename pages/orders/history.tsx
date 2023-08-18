@@ -1,4 +1,4 @@
-import Link from '../../src/Link'
+import Link from '../../themeMUI/Link'
 import { GetServerSideProps, NextPage } from 'next'
 import { getSession } from 'next-auth/react';
 
@@ -36,7 +36,7 @@ const columns: GridColDef[] = [
         renderCell: (params:GridRenderCellParams<any, any, any, any>) => {
             return (
            
-                    <Link href={`/orders/${ params.row.orderId }`} underline='always'>
+                    <Link sx={{color:'inherit'}} href={`/orders/${ params.row.orderId }`} underline='always'>
                         Ver orden
                     </Link>
               
@@ -63,7 +63,9 @@ const HistoryPage: NextPage<Props> = ({ orders }) => {
 
   return (
     <ShopLayout title={'Historial de ordenes'} pageDescription={'Historial de ordenes del cliente'}>
-        <Typography variant='h1' component='h1'>Historial de ordenes</Typography>
+        <section className="paddings" >
+
+        <Typography sx={{marginBottom:'0.8rem'}} variant='h1' component='h1'>Historial de ordenes</Typography>
 
 
         <Grid container className='fadeIn'>
@@ -77,6 +79,7 @@ const HistoryPage: NextPage<Props> = ({ orders }) => {
 
             </Grid>
         </Grid>
+        </section>
 
     </ShopLayout>
   )

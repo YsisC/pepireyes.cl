@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getSession } from 'next-auth/react'
+import { getSession} from 'next-auth/react';
+import { getToken } from "next-auth/jwt";
 import { db } from '../../../database'
 import { IOrder, IUser } from '../../../interfaces'
 import { Order, Product } from '../../../models';
@@ -27,7 +28,10 @@ const createOrder = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
     // Vericar que tengamos un usuario
    
-    const session: any = await getSession({ req });
+    const session = await getToken({
+      req: req,
+      secret: process.env.NEXTAUTH_SECRET,
+    });
 
     if (!session?.user) {
       return res

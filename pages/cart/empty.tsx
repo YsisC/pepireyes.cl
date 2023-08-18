@@ -2,7 +2,7 @@ import { ShopLayout } from '@/components/layouts'
 import { FC } from 'react'
 import { Box, Typography } from '@mui/material';
 import { RemoveShoppingCartOutlined } from '@mui/icons-material';
-import Link from '../../src/Link';
+import Link from '../../themeMUI/Link';
 
  const EmptyPage = () => {
     return (

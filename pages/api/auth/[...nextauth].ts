@@ -30,7 +30,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
         },
       },
       async authorize(credentials: any) {
-        console.log({ credentials });
+        // console.log({ credentials });
         // return { name: 'Juan', correo: 'juan@google.com', role: 'admin' };
         const user = await dbUsers.checkUserEmailPassword(
           credentials!.email,
@@ -83,14 +83,23 @@ session: {
 },
 callbacks: {
   async signIn({ user, account, profile, email, credentials }) {
-    return true
+    const isAllowedToSignIn = true
+    if (isAllowedToSignIn) {
+      return true
+    } else {
+      // Return false to display a default error message
+      return false
+    }
   },
   async redirect({ url, baseUrl }) {
+    if (url.startsWith("/")) return `${baseUrl}${url}`
+    // Allows callback URLs on the same origin
+    else if (new URL(url).origin === baseUrl) return url
     return baseUrl
   },
 
   async jwt({ token, account, user, profile  }) {
-    
+    console.log("jwt",  profile)
     if (account) {
       token.accessToken = account.access_token;
       
@@ -114,7 +123,7 @@ callbacks: {
 
   async session({ session, token,user }) {
   
-    console.log({ session, token, user });
+    // console.log({ session, token, user });
 
     session.user = token.user as any;
   

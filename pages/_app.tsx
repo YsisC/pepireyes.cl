@@ -7,7 +7,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import { CacheProvider, EmotionCache } from "@emotion/react";
-import { theme } from "../src/theme";
+import { theme } from "../themeMUI/theme";
 import { CartProvider, UiProvider, AuthProvider } from "../context";
 import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";

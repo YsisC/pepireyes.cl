@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 
 import { getSession, signIn } from "next-auth/react";
-import Link from "@/src/Link";
+import Link from "@/themeMUI/Link";
 
 import { useForm } from "react-hook-form";
 import { Box, Button, Grid, TextField, Typography, Chip } from "@mui/material";

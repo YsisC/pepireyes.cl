@@ -1,6 +1,6 @@
 
 import { useContext, useEffect, useState, useLayoutEffect } from 'react';
-import Link from '../../src/Link';
+import Link from '../../themeMUI/Link';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
 

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import {  staggerChildren, textVariant } from '../../utils/motion'
 
 
-import Link from '@/src/Link'
+import Link from '@/themeMUI/Link'
 import { EmailOutlined, WhatsApp, LocationCity } from '@mui/icons-material'
 import { Button,   Typography } from "@mui/material";
 import emailjs from '@emailjs/browser';
