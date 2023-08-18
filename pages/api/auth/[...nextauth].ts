@@ -1,19 +1,21 @@
 
-import NextAuth, { NextAuthOptions, RequestInternal, Session } from "next-auth";
+import NextAuth from "next-auth";
+import type { NextApiRequest, NextApiResponse } from "next"
 import GoogleProvider from "next-auth/providers/google";
-import Credentials from "next-auth/providers/credentials";
+import CredentialsProvider from "next-auth/providers/credentials"
 
 
 import { dbUsers } from "../../../database";
 import { ISession, IUser } from "@/interfaces";
 
 
-// https://next-auth.js.org/configuration/options
-export const authOptions: NextAuthOptions = {
-  providers: [
+export default async function auth(req: NextApiRequest, res: NextApiResponse) {
+  const providers = [
+
     // ...add more providers here
 
-    Credentials({
+    CredentialsProvider({
+      id: "credentials",
       name: "Custom Login",
       credentials: {
         email: {
@@ -27,7 +29,7 @@ export const authOptions: NextAuthOptions = {
           placeholder: "Contraseña",
         },
       },
-      async authorize(credentials)  {
+      async authorize(credentials: any) {
         console.log({ credentials });
         // return { name: 'Juan', correo: 'juan@google.com', role: 'admin' };
         const user = await dbUsers.checkUserEmailPassword(
@@ -45,58 +47,86 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID ?? "", // Optional chaining and nullish coalescing
       clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
+      checks: ["state"],
+      profile(profile) {
+        return {
+          _id: profile.sub,
+          email: profile.email,
+          name: null,
+          password: null,
+          emailVerified: null,
+        };
+      },
     }),
     
-  ],
-  secret: process.env.NEXTAUTH_SECRET,
-  // Custom Pages
+  ]
+  
+
+
+
+
+  return await NextAuth(req, res, {
+    providers,
+    secret: process.env.NEXTAUTH_SECRET,
+      // Custom Pages
   pages: {
     signIn: "/auth/login",
     signOut: '/auth/signout',
     newUser: '/auth/register',
 },
-  jwt: {},
-  session: {
-    maxAge: 2592000,
-    strategy: "jwt",
-    updateAge: 86400,
+
+jwt: {},
+session: {
+  maxAge: 2592000,
+  strategy: "jwt",
+  updateAge: 86400,
+},
+callbacks: {
+  async signIn({ user, account, profile, email, credentials }) {
+    return true
   },
- 
-  callbacks: {
-    async jwt({ token, account, user }) {
+  async redirect({ url, baseUrl }) {
+    return baseUrl
+  },
+
+  async jwt({ token, account, user, profile  }) {
+    
+    if (account) {
+      token.accessToken = account.access_token;
       
-      if (account) {
-        token.accessToken = account.access_token;
+      switch (account.type) {
+        case "oauth":
+          token.user = await dbUsers.oAUthToDbUser(
+            user?.email || "",
+            user?.name || ""
+          );
+          break;
 
-        switch (account.type) {
-          case "oauth":
-            token.user = await dbUsers.oAUthToDbUser(
-              user?.email || "",
-              user?.name || ""
-            );
-            break;
-
-          case "credentials":
-            token.user = user;
-            break;
-        }
+        case "credentials":
+          token.user = user;
+          break;
       }
+    }
 
-      return token;
-    },
+    return token;
+  },
+
+
+  async session({ session, token,user }) {
+  
+    console.log({ session, token, user });
+
+    session.user = token.user as any;
+  
+    session.accessToken = token?.accessToken as ISession["accessToken"]; // <-- Corregido
+  
+    return session;
+  }
+},
+  })
  
 
-    async session({ session, token,user }) {
-    
-      console.log({ session, token, user });
+ 
   
-      session.user = token.user as any;
-  
-      session.accessToken = token?.accessToken as ISession["accessToken"]; // <-- Corregido
-    
-      return session;
-    }
-  },
 };
 
-export default NextAuth(authOptions);

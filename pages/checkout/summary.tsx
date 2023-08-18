@@ -15,6 +15,8 @@ import { FullScreenLoading } from '@/components/ui';
 
 import { GetServerSideProps, } from 'next';
 import { getSession  } from 'next-auth/react';
+import { getToken } from 'next-auth/jwt';
+import { User } from '@/models';
 
 
 const SummaryPage = () => {
@@ -132,22 +134,26 @@ const SummaryPage = () => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    
-    const session = await getSession(context);
+    const session = await getToken({ req: context.req });
+    if (session) {
+        console.log("sumary",session)
+        
+      const getUserName = session.name
 
-    if (!session) {
-        return {
-            redirect: {
-                permanent: false,
-                destination: "/auth/login",
-            },
-        };
+      if (getUserName) {
+       
+          return {
+            props: { user: { email: session.email, name:  getUserName } },
+          };
+       
+        
+      } else {
+        return { redirect: { destination: "/auth/login", permanent: false } };
+      }
+    } else {
+      return { redirect: { destination: "/auth/login", permanent: false } };
     }
-
-    return {
-        props: {},
-    };
-};
+  };
   
 
 export default SummaryPage;

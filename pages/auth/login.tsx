@@ -2,7 +2,7 @@
 import { useState, useEffect, } from "react";
 import Link from "@/src/Link";
 import { GetServerSideProps } from "next";
-import { getSession, signIn, getProviders } from "next-auth/react";
+import { getSession, signIn, getProviders, getCsrfToken } from "next-auth/react";
 
 import { Box, Button, Grid, TextField, Typography, Chip , Divider} from "@mui/material";
 import { ErrorOutline } from "@mui/icons-material";
@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { AuthLayout } from "../../components/layouts";
 import { validations } from "../../utils";
 import { useRouter } from "next/router";
+import { getToken } from "next-auth/jwt";
 
 
 type FormData = {
@@ -129,7 +130,7 @@ const LoginPage = () => {
                                             sx={{ mb: 1 }}
                                             onClick={ () => signIn( provider.id ) }
                                         >
-                                            { provider.name }
+                                         Ingresar con  { provider.name }
                                         </Button>
                                     )
 
@@ -147,24 +148,20 @@ const LoginPage = () => {
 
 
 
-export const getServerSideProps: GetServerSideProps = async ({ req, query }) => {
+  export const getServerSideProps: GetServerSideProps = async (context) => {
+    const session = await getToken({ req: context.req });
   
-  const session = await getSession({req});
-
-  const {  p = '/'} = query;
-  
-  if (session) {
-    return {
-      redirect: {
-        destination: p.toString(),
-        permanent: false
-      }
+    if (session) {
+      return {
+        redirect: { destination: "/", permanent: false },
+      };
+    } else {
+      return {
+        props: {
+          providers: await getProviders(),
+          csrfToken: await getCsrfToken(context),
+        },
+      };
     }
-  }
-  return {
-    props: {
-      session 
-    }
-  }
-}
+  };
 export default LoginPage;

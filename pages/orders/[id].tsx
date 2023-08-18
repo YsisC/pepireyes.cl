@@ -67,7 +67,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
                         <Typography>{ shippingAddress.firstName } { shippingAddress.lastName }</Typography>
                         <Typography>{ shippingAddress.address } { shippingAddress.address2 ? `, ${ shippingAddress.address2 }`: '' }</Typography>
                         <Typography>{ shippingAddress.city }, { shippingAddress.zip }</Typography>
-                        <Typography>{ shippingAddress.country }</Typography>
+                        <Typography>{ shippingAddress.commune }</Typography>
                         <Typography>{ shippingAddress.phone }</Typography>
 
                         <Divider sx={{ my:1 }} />

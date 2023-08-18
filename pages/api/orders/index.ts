@@ -4,7 +4,7 @@ import { db } from '../../../database'
 import { IOrder, IUser } from '../../../interfaces'
 import { Order, Product } from '../../../models';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '../auth/[...nextauth]';
+
 
 type Data = 
   | { message: string }
@@ -27,7 +27,7 @@ const createOrder = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
     // Vericar que tengamos un usuario
    
-    const session = await getServerSession(req, res, authOptions)
+    const session: any = await getSession({ req });
 
     if (!session?.user) {
       return res
