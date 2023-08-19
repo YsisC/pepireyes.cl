@@ -39,6 +39,13 @@
   color: white;
 }
 
+ h2{
+  font-size: xx-large;
+  text-transform: uppercase;
+ }
+h2 span{
+   color:  #ffbc0d;
+ }
 
 .summary-card {
   border: 1px solid rgba(0, 0, 0, 0.1);

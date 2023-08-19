@@ -33,8 +33,8 @@ const Menu: NextPage = () => {
       pageDescription={"Encuentra los mejores productos de pepireyes aquí"}
     >
     <section className="paddings" >
-    <Typography variant="h1" component="h1">
-        Menu
+    <Typography variant="h2" component="h2">
+       Home / <span> Menu </span>
       </Typography>
       <Typography variant="h2" sx={{ mb: 2 , mt:1}}>
         Todas las categorias

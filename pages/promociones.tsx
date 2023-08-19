@@ -1,3 +1,4 @@
+import Promociones from "@/components/ui/Promociones";
 import { ShopLayout } from "../components/layouts";
 import type { NextPage } from "next";
 
@@ -7,9 +8,7 @@ const promociones: NextPage = () => {
       title={"Promociones-PR"}
       pageDescription={"Encuentra los mejores productos de pepireyes aquí"}
     >
-      <div>
-        <h2>Promociones</h2>
-      </div>
+  <Promociones />
     </ShopLayout>
   );
 };

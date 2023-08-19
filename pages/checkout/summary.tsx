@@ -22,7 +22,7 @@ import { User } from '@/models';
 const SummaryPage = () => {
  
     const router = useRouter();
-    const { shippingAddress, numberOfItems, createOrder } = useContext( CartContext );
+    const { shippingAddress, numberOfItems, createOrder, cart } = useContext( CartContext );
 
     const [isPosting, setIsPosting] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
@@ -44,8 +44,9 @@ const SummaryPage = () => {
             setErrorMessage( message );
             return;
         }
-
+       
         router.replace(`/orders/${ message }`);
+        cart.length=0;
 
     }
 

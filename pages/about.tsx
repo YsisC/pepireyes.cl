@@ -13,6 +13,7 @@ import Main from '../components/about/Main';
 import Sidebar from '../components/about/Sidebar';
 
 import {post1, post2 } from '../utils/post';
+import { Typography } from '@mui/material';
 
 // import post3 from './blog-post.3.md';
 
@@ -89,6 +90,9 @@ export default function About() {
    
         
         <section className='paddings'>
+        <Typography variant="h2" component="h2" sx={{marginBottom: '1rem'}}>
+       Home / <span>Sobre Nosotros </span> 
+      </Typography>
           <MainFeaturedPost post={mainFeaturedPost} />
           <Grid container spacing={4}>
             {featuredPosts.map((post) => (

@@ -14,9 +14,9 @@ import {CartContext, UiContext,  } from '../../context'
 import Link from '../../themeMUI/Link'
 
 
-export const Navbar = ({...rest}) => {
-    const { numberOfItems } = useContext(CartContext)
+export const Navbar = () => {
     const { asPath, push } = useRouter();
+    const { numberOfItems } = useContext(CartContext)
     const { toggleSideMenu } = useContext(UiContext);
 
     const [searchTerm, setSearchTerm] = useState('');
