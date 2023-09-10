@@ -33,7 +33,8 @@ const CartPage = () => {
   return (
     <ShopLayout title="Carrito - 3" pageDescription="Carrito de compras">
         <section className="paddings" >
-      <Typography variant="h1" component="h1">
+      <Typography variant="h1" sx={{
+        marginBottom:'1rem'}} component="h1">
         {" "}
         Carrito{" "}
       </Typography>

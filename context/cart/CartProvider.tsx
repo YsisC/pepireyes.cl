@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import { CartContext, cartReducer } from "./";
 import { ICartProduct } from "@/interfaces/cart";
-import { pepireyesApi } from '@/api';
+import { pepireyesApi } from '@/axiosApi';
 import { IOrder } from '@/interfaces/order';
 
 
