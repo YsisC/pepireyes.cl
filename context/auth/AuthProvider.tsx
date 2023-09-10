@@ -8,7 +8,7 @@ import axios from 'axios';
 
 import { AuthContext, authReducer } from './';
 
-import { pepireyesApi } from '../../api';
+import { pepireyesApi } from '../../axiosApi';
 import { IUser } from '../../interfaces';
 
 export interface AuthState {
