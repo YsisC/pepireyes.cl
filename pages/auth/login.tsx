@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, } from "react";
 import Link from "@/themeMUI/Link";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { getSession, signIn, getProviders, getCsrfToken } from "next-auth/react";
 
 import { Box, Button, Grid, TextField, Typography, Chip , Divider} from "@mui/material";
@@ -22,7 +22,7 @@ type FormData = {
 
 
 
-const LoginPage = () => {
+const LoginPage = ({ csrfToken }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 
   const router = useRouter();
   // const { loginUser } = useContext(AuthContext);
@@ -61,7 +61,7 @@ const LoginPage = () => {
 
   return (
     <AuthLayout title="Ingresar">
-      <form  onSubmit={handleSubmit(onLoginUser)} noValidate>
+      <form  onSubmit={handleSubmit(onLoginUser)} noValidate method="post" action="/api/auth/signin/email">
         <Box sx={{ width: 350, padding: "10px 20px" }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>

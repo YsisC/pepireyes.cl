@@ -1,8 +1,6 @@
-
 import NextAuth, { NextAuthOptions, RequestInternal, Session } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
-
 
 import { dbUsers } from "../../../database";
 import { ISession, IUser } from "@/interfaces";
@@ -51,47 +49,52 @@ export default NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
   // Custom Pages
   pages: {
-    signIn: "/auth/login",
-    signOut: '/auth/signout',
-    newUser: '/auth/register',
-},
+    signIn: '/auth/login',
+    newUser: '/auth/register'
+  },
+  
   jwt: {},
   session: {
     maxAge: 2592000,
     strategy: "jwt",
     updateAge: 86400,
   },
- 
+
   callbacks: {
     async jwt({ token, account, user }) {
       
       if (account) {
         token.accessToken = account.access_token;
 
-        switch (account.type) {
-          case "oauth":
-            token.user = await dbUsers.oAUthToDbUser(
-              user?.email || "",
-              user?.name || ""
-            );
-            break;
+        switch( account.type ) {
 
-          case "credentials":
-            token.user = user;
-            break;
+          case 'oauth': 
+            token.user = await dbUsers.oAUthToDbUser( user?.email || '', user?.name || '' );
+          break;
+
+          case 'credentials':
+            token.user = {
+              _id: user._id,
+              email: user.email,
+              name: user.name,
+              role: 'client'
+            };
+          break;
         }
+
       }
 
       return token;
     },
  
 
-    async session({ session, token,user }) {
+    async session({ session, token,user }:any) {
     
       console.log({ session, token, user });
-  
-      session.user = token.user as any;
-  
+       // If we want to access our extra user info from sessions we have to pass it the token here to get them in sync:
+      if (token) {
+      session.user = token.user;
+      }
       session.accessToken = token?.accessToken as ISession["accessToken"]; // <-- Corregido
     
       return session;

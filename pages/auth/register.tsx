@@ -2,8 +2,8 @@
 import { useState, useContext } from "react";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
-
-import { getSession, signIn } from "next-auth/react";
+import {AxiosError} from 'axios';
+import { getSession, signIn, useSession } from "next-auth/react";
 import Link from "@/themeMUI/Link";
 
 import { useForm } from "react-hook-form";
@@ -13,6 +13,7 @@ import { ErrorOutline } from "@mui/icons-material";
 import { AuthContext } from '../../context';
 import { AuthLayout } from "@/components/layouts";
 import { validations } from "../../utils";
+import { pepireyesApi } from "@/axiosApi";
 
 type FormData = {
   name: string;
@@ -23,13 +24,23 @@ type FormData = {
 const RegisterPage = () => {
 
   const router = useRouter();
+  const session = useSession();
   const { registerUser } = useContext(AuthContext);
-
+  if (session.status === "authenticated") {
+    router?.push("/");
+  }
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<FormData>({
+    defaultValues:{
+      name: "",
+      email:"",
+      password: "",
+    }
+   
+  });
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -43,28 +54,58 @@ const RegisterPage = () => {
       setErrorMessage(message!);
       setTimeout(() => setShowError(false), 3000);
     }
+    try {
+      const signupResponse = await pepireyesApi.post("/auth/signup",
+       {
+        email: email.toLocaleLowerCase(),
+        password,
+        name
+      });
+      console.log("se guarda",signupResponse.data);
+  
+    const res = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
 
+    if (res?.ok) return router.push("/");
+  
+} catch (error) {
+  console.log(error);
+  if (error instanceof AxiosError) {
+  const errorMessage = error.response?.data.message;
+  setErrorMessage(errorMessage);
+  }
+  }
+}
 
-  await signIn('credentials', { email, password })
-
-  };
 
   return (
     <AuthLayout title="Ingresar">
-      <form onSubmit={handleSubmit(onRegisterForm)} noValidate>
+      <form onSubmit={handleSubmit(onRegisterForm)} noValidate >
+      {showError && (
+        <Chip
+        label={errorMessage}
+        color="error"
+        icon={<ErrorOutline />}
+        className="fadeIn"
+        sx={{ display: showError ? "flex" : "none" }}
+      />
+      )}
         <Box sx={{ width: 350, padding: "10px 20px" }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <Typography variant="h1" component={"h1"}>
                 Crear usuario
               </Typography>
-              <Chip
-                label="Ya existe ese usuario"
-                color="error"
-                icon={<ErrorOutline />}
-                className="fadeIn"
-                sx={{ display: showError ? "flex" : "none" }}
-              />
+              <Chip 
+                                label="No reconocemos ese usuario / contraseña"
+                                color="error"
+                                icon={ <ErrorOutline /> }
+                                className="fadeIn"
+                                sx={{ display: showError ? 'flex': 'none' }}
+                            />
             </Grid>
 
             <Grid item xs={12}>
