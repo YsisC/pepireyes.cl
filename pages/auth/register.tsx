@@ -3,7 +3,7 @@ import { useState, useContext } from "react";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import {AxiosError} from 'axios';
-import { getSession, signIn } from "next-auth/react";
+import { getSession, signIn, useSession } from "next-auth/react";
 import Link from "@/themeMUI/Link";
 
 import { useForm } from "react-hook-form";
@@ -24,13 +24,23 @@ type FormData = {
 const RegisterPage = () => {
 
   const router = useRouter();
+  const session = useSession();
   const { registerUser } = useContext(AuthContext);
-
+  if (session.status === "authenticated") {
+    router?.push("/");
+  }
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<FormData>({
+    defaultValues:{
+      name: "",
+      email:"",
+      password: "",
+    }
+   
+  });
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -45,15 +55,16 @@ const RegisterPage = () => {
       setTimeout(() => setShowError(false), 3000);
     }
     try {
-      const signupResponse = await  pepireyesApi.post("/auth/signup", {
-        email,
+      const signupResponse = await pepireyesApi.post("/auth/signup",
+       {
+        email: email.toLocaleLowerCase(),
         password,
         name
       });
-      console.log("se guarda",signupResponse);
+      console.log("se guarda",signupResponse.data);
   
     const res = await signIn("credentials", {
-      email: signupResponse.data.email,
+      email,
       password,
       redirect: false,
     });
@@ -72,7 +83,7 @@ const RegisterPage = () => {
 
   return (
     <AuthLayout title="Ingresar">
-      <form onSubmit={handleSubmit(onRegisterForm)} noValidate method="post" action="/api/auth/register">
+      <form onSubmit={handleSubmit(onRegisterForm)} noValidate >
       {showError && (
         <Chip
         label={errorMessage}

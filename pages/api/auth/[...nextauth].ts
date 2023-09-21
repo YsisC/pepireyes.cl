@@ -1,7 +1,6 @@
 import NextAuth, { NextAuthOptions, RequestInternal, Session } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
-import clientPromise from 'lib/mongodb';
 
 import { dbUsers } from "../../../database";
 import { ISession, IUser } from "@/interfaces";
@@ -74,7 +73,12 @@ export default NextAuth({
           break;
 
           case 'credentials':
-            token.user = user;
+            token.user = {
+              _id: user._id,
+              email: user.email,
+              name: user.name,
+              role: 'client'
+            };
           break;
         }
 
@@ -84,12 +88,13 @@ export default NextAuth({
     },
  
 
-    async session({ session, token,user }) {
+    async session({ session, token,user }:any) {
     
       console.log({ session, token, user });
-  
-      session.user = token.user as any;
-  
+       // If we want to access our extra user info from sessions we have to pass it the token here to get them in sync:
+      if (token) {
+      session.user = token.user;
+      }
       session.accessToken = token?.accessToken as ISession["accessToken"]; // <-- Corregido
     
       return session;

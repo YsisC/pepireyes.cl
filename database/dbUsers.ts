@@ -48,27 +48,3 @@ export const oAUthToDbUser = async( oAuthEmail: string, oAuthName: string ) => {
 
 }
 
-// export const signup = async( fullname: string, email: string, password:string ) => {
-
-//   if (password < 6)
-//   return NextResponse.json(
-//     { message: "Password must be at least 6 characters" },
-//     { status: 400 }
-//   );
-//   await db.connect();
-//   const user = await User.findOne({ email });
-
-//   if ( user ) {
-//       await db.disconnect();
-//       const { _id, name, email, role } = user;
-//       return { _id, name, email, role };
-//   }
-
-//   const newUser = new User({ email: oAuthEmail, name: oAuthName, password: '@', role: 'client'  });
-//   await newUser.save();
-//   await db.disconnect();
-
-//   const { _id, name, email, role } = newUser;
-//   return { _id, name, email, role };
-
-// }
