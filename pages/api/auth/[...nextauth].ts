@@ -59,7 +59,7 @@ export default NextAuth({
     strategy: "jwt",
     updateAge: 86400,
   },
- 
+
   callbacks: {
     async jwt({ token, account, user }) {
       
