@@ -20,8 +20,8 @@ interface SeedUser {
     role: string;
 
 }
-type ValidSizes = 'Pequeño'|'Mediano'|'Gracde'|'';
-type ValidTypes = 'burguer'|'pepito'|'drink'|'appetezier'|'clubhouse'| 'cachapa';
+type ValidSizes = 'Pequeño'|'Mediano'|'Grande'|'';
+type ValidTypes = 'burguer'|'pepito'|'drink'|'appetezier'|'clubhouse'| 'cachapa'| 'combo';
 
 interface SeedData {
     users: SeedUser[]
@@ -72,6 +72,21 @@ export const initialData: SeedData = {
             
         },
         {
+            description: "Carne de primera, pechuga de pollo o a la plancha chuleta ahumada",
+            images: [
+                '2023-07-03 at 14.25.14 (4).jpeg'
+               
+            ],
+            inStock: 7,
+            price: 9900,
+            size: 'Mediano',
+            slug: "burguer_triple_combo",
+            type: 'combo',
+            tags: ['burguers'],
+            title: "Hamburguesa triple combo",
+            
+        },
+        {
             description: "350gr de carne y pollo",
             images: [
                 '2023-07-03 at 14.25.14 (5).jpeg'
@@ -81,7 +96,7 @@ export const initialData: SeedData = {
             price: 11000,
             size: 'Mediano',
             slug: "pepito_triple",
-            type: 'burguer',
+            type: 'pepito',
             tags: ['pepito'],
             title: "Pepito mixto",
            
@@ -99,6 +114,21 @@ export const initialData: SeedData = {
             type: 'clubhouse',
             tags: ['clubhouse'],
             title: "Clubhouse real de pollo",
+           
+        },
+        {
+            description: "Pan de molde(4 rebanada), jamon ahumado, queso rallado, huevo,, tocineta, tomate, lechuga, pechuga de pollo, ketchup. mayonesa, mostaza racion de papas fritas",
+            images: [
+                '2023-07-03 at 14.25.14 (9).jpeg'
+                
+            ],
+            inStock: 5,
+            price: 9990,
+            size: 'Mediano',
+            slug: "clubhouse_pollo_combo",
+            type: 'clubhouse',
+            tags: ['clubhouse'],
+            title: "Combo clubhouse de pollo X 2",
            
         },
         {
@@ -144,6 +174,51 @@ export const initialData: SeedData = {
             type: 'cachapa',
             tags: ['cachapa'],
             title: "Cachapa de queso",
+           
+        },
+        {
+            description: "Malta",
+            images: [
+                'malta de lata.jpg'
+               
+            ],
+            inStock: 5,
+            price: 5000,
+            size: 'Mediano',
+            slug: "malta",
+            type: 'drink',
+            tags: ['drink'],
+            title: "Malta",
+           
+        },
+        {
+            description: "Frescolita",
+            images: [
+                'frecolita.jpg'
+               
+            ],
+            inStock: 5,
+            price: 5000,
+            size: 'Mediano',
+            slug: "frescolita",
+            type: 'drink',
+            tags: ['drink'],
+            title: "Frescolita",
+           
+        },
+        {
+            description: "Jugos naturales",
+            images: [
+                '2023-07-03 at 14.25.14 (8).jpeg'
+               
+            ],
+            inStock: 5,
+            price: 2500,
+            size: 'Mediano',
+            slug: "jugos",
+            type: 'drink',
+            tags: ['drink'],
+            title: "Jugo Natural",
            
         },
         

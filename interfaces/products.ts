@@ -18,5 +18,5 @@ export interface IProduct {
 }
 
 export type ISize = 'Pequeño'|'Mediano'|'Grande';
-export type IType = 'burguer'|'pepito'|'drink'|'appetezier'|'clubhouse'|'cachapa';
+export type IType = 'burguer'|'pepito'|'drink'|'appetezier'|'clubhouse'|'cachapa'|'combo';
 

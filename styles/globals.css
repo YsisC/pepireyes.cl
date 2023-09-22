@@ -64,16 +64,33 @@ h2 span{
 .imageWrapper:hover {
   transform: scale(1.2); /* Escala de la imagen en el hover */
 }
-
+.anchor {
+  display: block;
+  position: relative;
+  top: -100px;
+  visibility: hidden;
+}
 footer{
   width: 100vw;
   background-color: black;
 }
-
+.nav {
+  display: flex;
+  gap:1rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: '1rem';
+}
 .linkActive{
   color: #ffbc0d;
   
 }
+.boxActive{
+  border-color: #ffbc0d;
+  color: #ffbc0d;
+
+}
+
 .group:hover{
   opacity: 0.7;
   --tw-scale-x: 1.1;

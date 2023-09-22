@@ -41,25 +41,20 @@ const Promociones = () => {
   };
 
   return (
-    <Grid container className={` ${styles.wrapper}`}>
-      <Grid item xs={ 12 } sm={ 5 } sx={{
-        padding:'1rem',
-        width: '100%', // Make the item take full width on small screens
-        maxHeight: '80vh', // Set maximum width for larger screens
-        overflowX: 'hidden',
-        overflowY: 'scroll',
-        "&::-webkit-scrollbar": {
-          width: 10
-        },
-        "&::-webkit-scrollbar-track": {
-          backgroundColor: "black"
-        },
-        "&::-webkit-scrollbar-thumb": {
-          backgroundColor: "orange",
-          borderRadius: 2
-        }
-      }}>
-        <Typography sx={{ marginBottom: '1rem' }} variant="h2" component={'h2'}>Home / <span > Promociones </span></Typography>
+   
+     <Grid container   className={`paddings ${styles.wrapper}`}>
+     <Grid item xs={12} sm={6} sx={{  width: 500  , overflowX: 'hidden', overflowY:'scroll',
+      "&::-webkit-scrollbar": {
+        width: 10
+      },
+      "&::-webkit-scrollbar-track": {
+        backgroundColor: "black"
+      },
+      "&::-webkit-scrollbar-thumb": {
+        backgroundColor: "orange",
+        borderRadius: 2
+      }}}>
+        <Typography variant="h2" component={'h2'} >Home / <span > Promociones </span></Typography>
         {featuredPromos.map((post) => (
           <FeaturedPromo key={post.title} post={post} handleImage={handleImageClick} />
         ))}
