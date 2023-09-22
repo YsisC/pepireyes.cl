@@ -27,10 +27,7 @@ export default function FeaturedPromo(props: FeaturedPostProps) {
     <Grid onClick={() => handleImage(post)} item sx={{width:'100%', 
     marginBottom: '1rem', marginRight: '1rem'
     }} >
-      <CardActionArea  component="a" href="#">
-        <Card sx={{ display: 'flex', border: '1px solid #ec9b3d;' }}>
-          <CardContent sx={{ flex: 1 }}>
-            <Typography component="h2"  sx={{ fontSize:'18px' }} variant="h5">
+     
       <CardActionArea component="a" href="#">
         <Card sx={{ display: 'flex' }}>
           <CardContent sx={{ flex: 1 , paddingLeft:{xs:'0rem', md:'16px'}}}>
