@@ -12,6 +12,7 @@ import { AuthLayout } from "../../components/layouts";
 import { validations } from "../../utils";
 import { useRouter } from "next/router";
 import { getToken } from "next-auth/jwt";
+import { getServerSession } from "next-auth";
 
 
 type FormData = {
@@ -33,14 +34,20 @@ const LoginPage = ({ csrfToken }: InferGetServerSidePropsType<typeof getServerSi
   } = useForm<FormData>();
   const [showError, setShowError] = useState(false);
 
+
   const [providers, setProviders] = useState<any>({});
 
   useEffect(() => {
-    getProviders().then( prov => {
-      console.log({prov});
-      setProviders(prov)
-    })
-  }, [])
+    // Get the list of providers from NextAuth
+    getProviders().then((providers) => {
+      setProviders(providers);
+    });
+  
+  }, []);
+
+  if (!providers) {
+    return <div>Loading...</div>;
+  }
 
   const onLoginUser = async ({ email, password }: FormData) => {
     
@@ -147,7 +154,7 @@ const LoginPage = ({ csrfToken }: InferGetServerSidePropsType<typeof getServerSi
   }
 
 
-
+  
   export const getServerSideProps: GetServerSideProps = async (context) => {
     const session = await getToken({ req: context.req });
   
@@ -159,9 +166,10 @@ const LoginPage = ({ csrfToken }: InferGetServerSidePropsType<typeof getServerSi
       return {
         props: {
           providers: await getProviders(),
-          csrfToken: await getCsrfToken(context),
+          csrfToken: await getCsrfToken(context) || null,
         },
       };
     }
   };
+
 export default LoginPage;

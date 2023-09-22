@@ -29,6 +29,16 @@ Criterios de aceptación
 2. Diseñar una interfaz que pueda mostrar por medio de tarjetas las categorias del menu.
 
 
+### Historia 2
+
+Yo como usuario quiero ingresar a la pagina de pepireyes
+
+Criterios de aceptación
+
+1. Crear una pagina responsive
+2. Diseñar una interfaz que pueda mostrar los errores de formato o si el usuario existe
+
+
 
 
 
