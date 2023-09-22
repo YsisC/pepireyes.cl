@@ -20,7 +20,7 @@ const productSchema = new Schema({
     type: {
         type: String,
         enum: {
-            values: ['burguer','pepito','drink','appetezier','clubhouse','cachapa'],
+            values: ['burguer','pepito','drink','appetezier','clubhouse','cachapa', 'combo'],
             message: '{VALUE} no es un tipo válido'
         }
     }

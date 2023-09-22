@@ -4,50 +4,32 @@ import { Typography, Grid } from "@mui/material";
 import { Container } from "@mui/material";
 
 import { useProducts } from "../hooks";
-import { IProduct } from "../interfaces";
-import { ProductList } from "../components/products";
+import { IProduct, IType } from "../interfaces";
+
 
 import { ShopLayout } from "../components/layouts";
-import Banner from "../components/homepage/Banner";
 
-import { ProductSlideshow } from "../components/products";
-import { FullScreenLoading } from "@/components/ui";
-import FeatureProducts from "@/components/homepage/FeatureProducts";
+import MenuSection from "@/components/ui/MenuSection";
 
 const Menu: NextPage = () => {
   const { products, isLoading } = useProducts("/products");
-  // const { data, isLoading } = useSWR<IProduct[]>("/products");
-  // const products = data ?? [];
-  // const featuredProduct = products.slice(0,5).map(product => product.images)
-  const featuredProduct = [
-    "2023-07-03 at 14.25.14 (15).jpeg",
-    "2023-07-03 at 14.25.14 (16).jpeg",
-    "2023-07-03 at 14.25.14 (17).jpeg",
-  ];
 
-  // console.log(featuredProduct)
 
   return (
     <ShopLayout
-      title={"Menu - PR"}
-      pageDescription={"Encuentra los mejores productos de pepireyes aquí"}
+      title="Menu - PR"
+      pageDescription="Encuentra los mejores productos de pepireyes aquí"
     >
-    <section className="paddings" >
-    <Typography variant="h2" component="h2">
-       Home / <span> Menu </span>
-      </Typography>
-      <Typography variant="h2" sx={{ mb: 2 , mt:1}}>
-        Todas las categorias
-      </Typography>
-     
- 
-        {isLoading ? <FullScreenLoading /> : <ProductList products={products} />}
-    
-     
+      <section className="paddings">
+        <Typography variant="h2" component="h2">
+          Home / <span> Menu </span>
+        </Typography>
 
-    </section>
+        <MenuSection products={products} isLoading={isLoading} />
+
       
-   
+      </section>
+ 
     </ShopLayout>
   );
 };

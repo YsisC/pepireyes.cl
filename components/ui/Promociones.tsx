@@ -33,7 +33,7 @@ const Promociones = () => {
         backgroundColor: "orange",
         borderRadius: 2
       }}}>
-        <Typography variant="h2" component={'h2'}>Home / <span > Promociones </span></Typography>
+        <Typography variant="h2" component={'h2'} >Home / <span > Promociones </span></Typography>
         {featuredPromos.map((post) => (
               <FeaturedPromo key={post.title} post={post} />
             ))}
