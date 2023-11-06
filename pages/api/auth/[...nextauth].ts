@@ -26,7 +26,7 @@ export default NextAuth({
         },
       },
       async authorize(credentials)  {
-        console.log({ credentials });
+       
         // return { name: 'Juan', correo: 'juan@google.com', role: 'admin' };
         const user = await dbUsers.checkUserEmailPassword(
           credentials!.email,

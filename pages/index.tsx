@@ -21,7 +21,7 @@ const HomePage: NextPage = () => {
   ];
   const { data: session } = useSession();
 
-  console.log(session)
+
 
   return (
     <ShopLayout
@@ -29,7 +29,10 @@ const HomePage: NextPage = () => {
       pageDescription={"Encuentra los mejores productos de pepireyes aquí"}
     >
   
+      <section className="container">
       <ProductSlideshow images={featuredProduct} />
+        
+        </section>
       <Banner />
       <FeatureProducts />
       <ContacUs />

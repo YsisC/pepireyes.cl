@@ -61,7 +61,7 @@ const RegisterPage = () => {
         password,
         name
       });
-      console.log("se guarda",signupResponse.data);
+      // console.log("se guarda",signupResponse.data);
   
     const res = await signIn("credentials", {
       email,
@@ -72,7 +72,7 @@ const RegisterPage = () => {
     if (res?.ok) return router.push("/");
   
 } catch (error) {
-  console.log(error);
+  // console.log(error);
   if (error instanceof AxiosError) {
   const errorMessage = error.response?.data.message;
   setErrorMessage(errorMessage);

@@ -25,9 +25,6 @@ interface Props {
 
 const ProductPage: NextPage<Props> = ({ product }) => {
 
-  console.log("CartContext", CartContext);
-  console.log("EL PRODUCTO DE LA PAGINA",product)
-
   const router = useRouter();
   const { addProductToCart } = useContext(CartContext)
 

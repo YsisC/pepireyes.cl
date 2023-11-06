@@ -16,8 +16,7 @@ import { useRouter } from "next/router";
 
 const CartPage = () => {
   const { isLoaded, cart } = useContext(CartContext);
-  console.log("buscando el cart", cart)
-  console.log("buscando el isloaded", isLoaded)
+ 
   const router = useRouter();
 
   useEffect(() => {
