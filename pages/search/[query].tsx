@@ -21,24 +21,26 @@ const SearchPage: NextPage<Props> = ({ products, foundProducts, query }) => {
 
   return (
     <ShopLayout title={'Pepireyes - Search'} pageDescription={'Encuentra los mejores platos '}>
-        <Typography variant='h1' component='h1'>Buscar menu</Typography>
-
-        {
+       <main className='paddings'>
+       <Typography variant="h2" component="h2">
+          Home / <span> Busqueda </span>
+        </Typography>
+      
+       {
             foundProducts 
-                ? <Typography variant='h2' sx={{ mb: 1 }} textTransform="capitalize">Término: { query }</Typography>
+                ? <Typography variant='h2'  sx={{ my: 1 ,   mb: 4 }} textTransform="capitalize">Término: { query }</Typography>
                 : (
                     <Box display='flex'>
-                        <Typography variant='h2' sx={{ mb: 1 }}>No encontramos ningún produto</Typography>
+                        <Typography variant='h2' sx={{ mb: 4 }}>No encontramos ningún produto</Typography>
                         <Typography variant='h2' sx={{ ml: 1 }} color="secondary" textTransform="capitalize">{ query }</Typography>
                     </Box>
                 )
         }
 
-        
-
-        
         <ProductList products={ products } />
-        
+        </main> 
+
+     
     </ShopLayout>
   )
 }
