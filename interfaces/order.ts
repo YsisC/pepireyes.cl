@@ -16,7 +16,7 @@ export interface IOrder {
     isPaid  : boolean;
     paidAt? : string;
 
-    transactionId?: string;
+    session_id?: string;
 }
 
 

@@ -40,7 +40,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
   });
 
   const onOrderCompleted = async () => {
-    let buy_order = "O" + order._id + 1;
+    let buy_order = "O" + order._id;
     let session_id = "S-" + Math.floor(Math.random() * 10000) + 1;
     let amount = order.total;
     let return_url = "http://localhost:3000/webpay/response";

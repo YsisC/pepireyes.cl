@@ -9,13 +9,13 @@ const WebpayPayPage = () => {
 
 console.log("url", {url})
 console.log("token", {token})
-  useEffect(() => {
+useEffect(() => {
     
-    const formElement = document.getElementById("myForm");
-    if (formElement ) {
-      formElement.submit();
-    }
-  }, []);
+  const formElement = document.getElementById("myForm");
+  if (formElement ) {
+    formElement.submit();
+  }
+}, []);
 
   return (
     <ShopLayout title="Webpay" pageDescription="Carrito de compras">
