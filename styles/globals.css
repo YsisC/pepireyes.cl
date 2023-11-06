@@ -1,12 +1,19 @@
-
 @keyframes fadeIn {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
-} 
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 
 @-webkit-keyframes fadeIn {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .fadeIn {
@@ -18,7 +25,6 @@
   -webkit-animation-name: fadeIn;
   animation-name: fadeIn;
 }
-
 
 .circular-btn {
   border-radius: 30px;
@@ -39,19 +45,19 @@
   color: white;
 }
 
- h2{
+h2 {
   font-size: xx-large;
   text-transform: uppercase;
- }
-h2 span{
-   color:  #ffbc0d;
- }
+}
+h2 span {
+  color: #ffbc0d;
+}
 
 .summary-card {
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
 }
-.rounded-circle{
+.rounded-circle {
   border-radius: 50%;
 }
 
@@ -70,28 +76,26 @@ h2 span{
   top: -100px;
   visibility: hidden;
 }
-footer{
+footer {
   width: 100vw;
   background-color: black;
 }
 .nav {
   display: flex;
-  gap:1rem;
+  gap: 1rem;
   align-items: center;
   justify-content: center;
-  margin-bottom: '1rem';
+  margin-bottom: "1rem";
 }
-.linkActive{
+.linkActive {
   color: #ffbc0d;
-  
 }
-.boxActive{
+.boxActive {
   border-color: #ffbc0d;
   color: #ffbc0d;
-
 }
 
-.group:hover{
+.group:hover {
   opacity: 0.7;
   --tw-scale-x: 1.1;
   --tw-scale-y: 1.1;
@@ -105,9 +109,7 @@ footer{
   border-bottom-width: 1px;
 }
 
-
-
-.group:hover{
+.group:hover {
   transform: scale(1.02);
 }
 
@@ -119,14 +121,54 @@ footer{
 }
 @media (min-width: 640px) {
   .paddings {
-  padding: 4rem;
+    padding: 4rem;
   }
 }
 
-
-@media (min-width:   768px){
+@media (min-width: 768px) {
   .paddings {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
+}
+.innerWidth {
+  width: 100%;
+}
+
+@media (min-width: 1536px) {
+  .innerWidth {
+    max-width: 1280px;
+    margin: auto;
+  }
+}
+
+.xPaddings {
+  padding-left: 1.5rem;
+  /* 24px */
+  padding-right: 1.5rem;
+  /* 24px */
+}
+
+@media (min-width: 640px) {
+  .xPaddings {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+.topPaddings {
+  padding-top: 3rem;
+}
+
+
+
+@media (min-width: 640px) {
+  .topPaddings {
+    padding-top: 4rem;
+  }
+}
+@media (min-width: 1280px) {
+  .topPaddings {
+  padding-top: 2rem;
+}
 }

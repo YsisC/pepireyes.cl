@@ -42,8 +42,8 @@ export const Navbar = () => {
 
     return (
 
-        <AppBar >
-            <Toolbar>
+        <AppBar  >
+            <Toolbar className='paddings'>
 
                 <Link href='/' display='flex' alignItems='center'>
          <Image
@@ -51,6 +51,7 @@ export const Navbar = () => {
       className="rounded-circle"
       src={icon}
       width={55}
+      height={60}
       alt="Pepireyes follow us"
     />
                 </Link>

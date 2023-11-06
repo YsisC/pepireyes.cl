@@ -29,7 +29,7 @@ const HomePage: NextPage = () => {
       pageDescription={"Encuentra los mejores productos de pepireyes aquí"}
     >
   
-      <section className="container">
+      <section className=" paddings">
       <ProductSlideshow images={featuredProduct} />
         
         </section>

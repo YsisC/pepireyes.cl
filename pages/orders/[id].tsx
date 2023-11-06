@@ -9,6 +9,7 @@ import {
   Grid,
   Typography,
   Chip,
+  Button,
 } from "@mui/material";
 import {
   CreditCardOffOutlined,
@@ -168,7 +169,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
                     />
                   ) : (
                     <>
-                      <button onClick={onOrderCompleted}>Pagar</button>
+                          <Button color="secondary" sx={{ fontSize:'1.4rem' }} className="circular-btn" onClick={onOrderCompleted}>Pagar</Button>
                       {/* <form action="{{webpay_peticion.url}}" name="form" method="POST">
           <input
             type="hidden"

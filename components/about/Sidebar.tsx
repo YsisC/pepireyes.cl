@@ -25,7 +25,7 @@ export default function Sidebar(props: SidebarProps) {
         Eventos
       </Typography>
       {events.map((event) => (
-        <Link display="block" sx={{color: 'inherit'}}href={event.url} key={event.title}>
+        <Link display="block" sx={{color: 'inherit'}} href={event.url} key={event.title}>
           {event.title}
         </Link>
       ))}

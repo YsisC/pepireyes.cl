@@ -10,7 +10,7 @@ export default function Banner() {
       <Typography variant="h2" component="h2" color={"GrayText"}>
           NUESTRA <span>  TRAYECTORIA </span>
         </Typography>
-      <div className={styles.container}>
+      <div className={`innerWidth  ${styles.container}`}>
         <CardMedia component={'img'} src="/img/tienda.jpeg"  className={styles.img_banner} alt="Tienda"></CardMedia>
         <div className={styles.bannerText}>
           <Typography variant="h3" component="h3" color={"GrayText"}>

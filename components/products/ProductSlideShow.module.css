@@ -4,5 +4,6 @@
     justify-content: center;
     background-size: contain;
     background-position: center;
+    object-fit: cover;
     height: 650px;
 }

@@ -14,11 +14,13 @@
     margin-top: 8rem/* 128px */;
     margin-bottom: 8rem/* 128px */;
     display: flex;
-    margin-right: auto;
+    margin: auto;
     flex-direction: column;
     padding: 0 1.5rem 0 1.5rem;
-    max-width: 80vw
+    max-width: 80vw;
 } 
+
+
 .bannerText {
     background-color: rgb(241, 236, 236);
     padding: 1rem 0.5rem 1rem 0.5rem;
@@ -31,12 +33,13 @@ height: 18rem;
 
 @media (min-width: 640px) {
     .container {
-        
-        max-width: 640px;
+       
+        max-width: 80vw;
     }
 }
 @media (min-width: 1024px) {
     .container {
+        margin: 1rem 10rem;
         flex-direction: row;
         padding-left: 0px;
         padding-right: 0px;

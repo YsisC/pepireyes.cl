@@ -27,25 +27,27 @@
   padding: 1rem;
   display: flex;
   border-radius: 10px;
-  box-shadow: 0px 21px 13px rgba(46, 43, 43, 0.4);
   flex-direction: column;
   flex: 1;
   gap: 1rem;
+ 
   width: 50%;
-  /* color: black; */
+  color: white;
   background-color: inherit;
 }
 .informationdiv form input {
   border-radius: 0.5rem;
-  /* background-color: rgb(233, 234, 235); */
+  background-color: rgb(42, 43, 44);
+  color: white;
   padding: 0.75rem;
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
 .informationdiv form textarea {
   border-radius: 0.5rem;
-  /* background-color: rgb(233, 234, 235); */
+  background-color: rgb(42, 43, 44);
   padding: 0.75rem;
+  color: white;
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
