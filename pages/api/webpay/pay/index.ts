@@ -1,10 +1,12 @@
 // import { paypalApi } from "@/axiosApi";
 import { paypalApi } from "@/axiosApi";
-import { IWebPayOrder, WebPayOrderCreateResponse } from "@/interfaces/webpay";
+import { IWebPayOrder, WebPayOrderConfirmResponse, WebPayOrderCreateResponse } from "@/interfaces/webpay";
 import axios from "axios";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-type Data = { message: string } | WebPayOrderCreateResponse;
+type Data = { message: string }
+ | WebPayOrderCreateResponse
+ | WebPayOrderConfirmResponse;
 
 export default function handler(
   req: NextApiRequest,
@@ -14,7 +16,7 @@ export default function handler(
     case "POST":
       return webpayPagar(req, res);
     case "PUT":
-      return webpayPagar(req, res);
+      return webpay_respuesta(req, res);
 
     default:
       return res.status(400).json({ message: "Bad request" });
@@ -45,7 +47,6 @@ const webpayPagar = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       }
     );
 
-    console.log("data api", response.data);
 
     // Send a successful response with the data from the external API
     return res.status(200).json(response.data);
@@ -61,9 +62,13 @@ const webpayPagar = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 };
 
 const webpay_respuesta = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
-  // const paypalBearerToken = await getPaypalBearerToken();
+ 
   const { token_ws } = req.query;
+  console.log(token_ws)
+  const urlToken = process.env.WEBPAY_URL + "/" + token_ws
+  console.log("toma el url token", urlToken)
   const data = {};
+  try {
   const response = await axios.put(
     process.env.WEBPAY_URL + "/" + token_ws,
     data,
@@ -73,5 +78,17 @@ const webpay_respuesta = async (req: NextApiRequest, res: NextApiResponse<Data>)
   );
 
   console.log("data api put", response.data);
+     // Send a successful response with the data from the external API
+     return res.status(200).json(response.data);
+} catch (error) {
+  if (axios.isAxiosError(error)) {
+    console.log(error.response?.data);
+    return res.status(500).json({ message: "Internal Server Error" });
+  } else {
+    console.log(error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+}
+
 
 }

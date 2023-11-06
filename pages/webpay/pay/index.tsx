@@ -6,8 +6,7 @@ const WebpayPayPage = () => {
   const url =  router.query.url;
   const token =  router.query.token;
   // Comprobación antes de acceder a token.length
-const tokenLength = token ? token.length : 0;
-const urlLength = url ? url.length : 0;
+
 console.log("url", {url})
 console.log("token", {token})
   useEffect(() => {

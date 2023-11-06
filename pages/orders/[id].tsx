@@ -43,7 +43,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
     let buy_order = "O" + order._id + 1;
     let session_id = "S-" + Math.floor(Math.random() * 10000) + 1;
     let amount = order.total;
-    let return_url = "http://localhost:3000/webpay/pay";
+    let return_url = "http://localhost:3000/webpay/response";
     let web;
     //  console.log(amount)
     const body: IWebPayOrder = {
@@ -63,16 +63,16 @@ const OrderPage: NextPage<Props> = ({ order }) => {
         const redirectUrl = `/webpay/pay?url=${data.url}&token=${data.token}`;
 
         router.push(redirectUrl)
-        const headers = {
-          "Content-Type": "application/json",
-          "Tbk-Api-Key-Id": process.env.WEBPAY_ID,
-          "Tbk-Api-Key-Secret": process.env.WEBPAY_SECRET,
-        };
-        const response = await axios.post(webpay_peticion.url, webpay_peticion.token ,{
-          headers: headers
-        } )
+      //   const headers = {
+      //     "Content-Type": "application/json",
+      //     "Tbk-Api-Key-Id": process.env.WEBPAY_ID,
+      //     "Tbk-Api-Key-Secret": process.env.WEBPAY_SECRET,
+      //   };
+      //   const response = await axios.post(webpay_peticion.url, webpay_peticion.token ,{
+      //     headers: headers
+      //   } )
       
-      console.log("respuesta del token",response)
+      // console.log("respuesta del token",response)
       }
 
       // router.reload();
