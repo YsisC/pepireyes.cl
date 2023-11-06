@@ -72,17 +72,17 @@ const webpay_respuesta = async (
   res: NextApiResponse<Data>
 ) => {
   const { token_ws } = req.body;
-  console.log("token", token_ws);
+
 
   const urlToken = process.env.WEBPAY_URL + "/" + token_ws;
-  console.log("toma el url token", urlToken);
+ 
   const body = {};
   try {
     const { data } = await axios.put(urlToken, body, {
       headers: headers,
     });
 
-    console.log("data api put", data);
+   
     if (data.status !== "AUTHORIZED") {
       return res.status(401).json({ message: "Orden no reconocida" });
     }
