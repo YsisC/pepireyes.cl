@@ -4,6 +4,7 @@ import TabButton from "./TabButton";
 import { IProduct, IType } from "@/interfaces";
 import { useProducts } from "@/hooks";
 import { ProductList } from "../products";
+import { Box } from "@mui/material";
 
 interface Props {
   products: IProduct[];
@@ -44,10 +45,10 @@ const MenuSection: FC<Props> = ({ products, isLoading }) => {
   const currentTabContent = TAB_DATA.find((t) => t.title === tab)?.content;
 
   return (
-    <article className="" id="menu">
+<>
       <nav className={"nav"}>
         <TabButton  selectTab={() => setTab("burguer")} active={tab === "burguer"}>
-         Hamburguesa
+         Hamburguesas
         </TabButton>
         <TabButton selectTab={() => setTab("pepito")} active={tab === "pepito"}>
           Pepito
@@ -58,15 +59,18 @@ const MenuSection: FC<Props> = ({ products, isLoading }) => {
         <TabButton selectTab={() => setTab("drink")} active={tab === "drink"}>
           Bebidas
         </TabButton>
+        <TabButton selectTab={() => setTab("papas")} active={tab === "combo"}>
+          Papas
+        </TabButton>
         <TabButton selectTab={() => setTab("drink")} active={tab === "combo"}>
           Combos
         </TabButton>
       </nav>
-      <div style={{marginTop: '1rem' }}>
+      <div style={{marginTop: '1.5rem' }}>
 
       {currentTabContent}
       </div>
-    </article>
+      </>
   );
 };
 

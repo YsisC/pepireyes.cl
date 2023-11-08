@@ -3,8 +3,8 @@ import { motion } from "framer-motion";
 import { Button } from '@mui/material';
 
 const variants = {
-  default: { width: 0 },
-  active: { width: "calc(100% - 0.75rem)" },
+  default: { width:0 },
+  active: { width: "calc(100% - 2.75rem)" },
 };
 interface Props {
     active: boolean;
@@ -14,13 +14,13 @@ interface Props {
 }
 
 const TabButton : FC<Props> = ({ active, selectTab, children }) => {
-  const buttonClasses = active ? 'boxActive' :  'primary';
+  const buttonClasses = active ? 'box boxActive' :  'box';
   const handleClick = () => {
     selectTab(children); // Pass the children (ID) to selectTab
   };
   
   return (
-    <Button className={` ${buttonClasses}`} sx={{bgcolor:'black', p: 2, border: '1px solid grey', textTransform:'uppercase', 
+    <Button className={` ${buttonClasses}`} sx={{bgcolor:'black', textTransform:'uppercase', 
     color:'inherit'}} onClick={handleClick} >
       <p >
         {children}

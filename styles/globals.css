@@ -82,17 +82,42 @@ footer {
 }
 .nav {
   display: flex;
-  gap: 1rem;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: "1rem";
+align-items: center;
+ justify-items: center;
+  margin-bottom: "2rem";
+  margin-top: "1rem";
+  overflow-x: scroll; 
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+ 
+}
+.nav::-webkit-scrollbar {
+  width: 0; /* Esto oculta la barra de desplazamiento en navegadores basados en WebKit (Google Chrome, Safari) */
 }
 .linkActive {
-  color: #ffbc0d;
+  color: #ffbc0d; 
+}
+.box {
+  border: none;
+  border-radius: 0;
+  min-width:2rem ;
+  padding: 0 4rem 0rem 4rem;
+  background-color: inherit;
+  border-bottom: 2px  solid white;
 }
 .boxActive {
+  padding: 0 4rem 0rem 4rem;
   border-color: #ffbc0d;
   color: #ffbc0d;
+}
+
+@media (min-width: 768px) {
+  .box {
+    padding: 0 3rem 0rem 3rem;
+  }
+  .boxActive {
+    padding: 0 0.4rem 0rem 0.4rem;
+  }
 }
 
 .group:hover {
