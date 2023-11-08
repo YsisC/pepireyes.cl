@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { NextPage, GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 
@@ -15,7 +15,7 @@ import { ItemCounter } from '../../components/ui/ItemCounter';
 
 import { dbProducts } from '../../database';
 import { ICartProduct, IProduct, ISize } from '../../interfaces';
-
+import { useOpenLocal } from '@/hooks/useOpenLocal';
 
 
 interface Props {
@@ -27,7 +27,7 @@ const ProductPage: NextPage<Props> = ({ product }) => {
 
   const router = useRouter();
   const { addProductToCart } = useContext(CartContext)
-
+  const { openLocal,  verificarEstadoDeTienda} = useOpenLocal();
   const [tempCartProduct, setTempCartProduct] = useState<ICartProduct>({
     _id: product._id,
     image: product.images[0],
@@ -38,6 +38,14 @@ const ProductPage: NextPage<Props> = ({ product }) => {
     type: product.type,
     quantity: 1,
   })
+
+  
+  useEffect(() => {
+ 
+ verificarEstadoDeTienda()
+ console.log("local abierto",openLocal)
+  }, [])
+  
 
   
 
@@ -106,22 +114,34 @@ const ProductPage: NextPage<Props> = ({ product }) => {
 
 
             {/* Agregar al carrito */}
+            
+            
+           
             {
+              openLocal ? (
               (product.inStock > 0)
                 ? (
                   <Button color="secondary" className='circular-btn'
                   onClick={onAddProduct}>
-                  {
-                    tempCartProduct.size
-                      ? 'Agregar al carrito'
-                      : 'Selecciona una talla'
-                  }
+                 
+                      Agregar al carrito
+                     
+                  
 
                 </Button>
               )
               :
               (
                 <Chip label="No hay disponibles" color="error" variant='outlined' />
+              )
+              ):(
+                <Chip
+                label="Tienda cerrada"
+                color="error"
+              
+                className="fadeIn"
+              />
+
               )
           }
             {/* Descripción */}
