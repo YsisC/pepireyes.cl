@@ -49,7 +49,7 @@ const openM = open
      </Typography>
      <CardMedia 
       component="img"
-      sx={{ width: 100,  height:100, padding:'0.5rem', borderRadius:'50%', display: { xs: 'none', sm: 'block' } }}
+      sx={{ width: 100,  height:100, padding:'0.5rem', borderRadius:'50%', display:  'block'  }}
       image='/products/logo.jpeg' 
       alt='logo' />
      <Typography id="modal-modal-horario" sx={{ mt: 2 }}>
