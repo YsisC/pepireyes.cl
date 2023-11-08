@@ -10,6 +10,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import styles from './Footer.module.css';
+import { List, ListItem, ListItemText } from "@mui/material";
 
 function Copyright() {
   return (
@@ -53,9 +54,17 @@ export default function Footer<FooterProps>() {
            <p>
               Tienda de comida rapida
             </p>
-            <p>
+           <Link sx={{ color: "white"}}href="/menu">
               Menu
-            </p>
+            </Link>
+           <p>
+            Horario:
+           </p>
+            <ul className={styles.list}>
+              <li>Lunes a Viernes: 15:00 a 00:00</li>
+              <li>Sabados a Domingos: 15:00 a 00:00</li>
+            </ul>
+         
             </Grid>
           <Grid item xs={12} sm={4}>
 

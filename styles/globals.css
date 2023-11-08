@@ -112,11 +112,14 @@ align-items: center;
 }
 
 @media (min-width: 768px) {
+  .nav {
+    overflow-x: none; 
+  }
   .box {
     padding: 0 3rem 0rem 3rem;
   }
   .boxActive {
-    padding: 0 0.4rem 0rem 0.4rem;
+    padding:  0 3rem 0rem 3rem;
   }
 }
 

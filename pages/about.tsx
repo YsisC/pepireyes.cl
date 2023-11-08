@@ -5,30 +5,9 @@ import Container from '@mui/material/Container';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
-
-
 import MainFeaturedPost from '../components/about/MainFeaturedPost';
 import FeaturedPost from '../components/about/FeaturedPost';
-import Main from '../components/about/Main';
-import Sidebar from '../components/about/Sidebar';
-
-import {post1, post2 } from '../utils/post';
 import { Typography } from '@mui/material';
-
-// import post3 from './blog-post.3.md';
-
-const sections = [
-  { title: 'Technology', url: '#' },
-  { title: 'Design', url: '#' },
-  { title: 'Culture', url: '#' },
-  { title: 'Business', url: '#' },
-  { title: 'Politics', url: '#' },
-  { title: 'Opinion', url: '#' },
-  { title: 'Science', url: '#' },
-  { title: 'Health', url: '#' },
-  { title: 'Style', url: '#' },
-  { title: 'Travel', url: '#' },
-];
 
 const mainFeaturedPost = {
   title: 'Los mejores pepitos de santiago',
@@ -38,14 +17,13 @@ const mainFeaturedPost = {
   imageText: 'main image description',
  
 };
-
 const featuredPosts = [
   {
     title: 'Ubicacion',
     date: 'Pepireyes Estacion Central',
     description:
       'Estamos ubicados en Ecuador 4404, Estacion Central.',
-    image: '/img/tienda.jpeg',
+    image: '/products/logo.jpeg',
     imageLabel: 'Ubicados',
   },
   {
@@ -58,7 +36,6 @@ const featuredPosts = [
   },
 ];
 
-const posts = [post1, post2];
 
 const sidebar = {
   title: 'About',
@@ -99,15 +76,7 @@ export default function About() {
               <FeaturedPost key={post.title} post={post} />
             ))}
           </Grid>
-          <Grid container spacing={5} sx={{ mt: 3 }}>
-            <Main title="Sobre nosotros" posts={posts} />
-            <Sidebar
-              title={sidebar.title}
-              description={sidebar.description}
-              events={sidebar.events}
-              
-            />
-          </Grid>
+       
         </section>
    
      

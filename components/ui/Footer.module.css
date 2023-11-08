@@ -21,3 +21,11 @@
 .red_social:hover {
     color: yellow;
 }
+.list{
+  list-style-type: none;
+
+}
+.list li{
+  margin-left: -2rem;
+  margin-bottom: 0.35rem;
+}

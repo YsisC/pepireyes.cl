@@ -10,7 +10,7 @@ import { ProductSlideshow } from "../components/products";
 
 import FeatureProducts from "@/components/homepage/FeatureProducts";
 import ContacUs from "@/components/homepage/ContactUs";
-import { useSession } from "next-auth/react";
+
 import {useState , useEffect} from 'react';
 import { useOpenLocal } from "@/hooks/useOpenLocal";
 import ModalOpenLocal from "@/components/homepage/ModalOpenLocal";
@@ -18,11 +18,11 @@ import ModalOpenLocal from "@/components/homepage/ModalOpenLocal";
 
 
 const HomePage: NextPage = () => {
-  const [openM, setOpenM] = useState(false);
+  const [open, setOpen] = useState(false);
   const { openLocal,  verificarEstadoDeTienda} = useOpenLocal();
 
-  const handleOpen = () => setOpenM(true);
-  const handleClose = () => setOpenM(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const featuredProduct = [
     "2023-07-03 at 14.25.14 (15).jpeg",
     "2023-07-03 at 14.25.14 (16).jpeg",
@@ -34,7 +34,7 @@ const HomePage: NextPage = () => {
  
     verificarEstadoDeTienda()
     console.log("local abierto",openLocal)
-    if(openLocal){
+    if(!openLocal){
       handleOpen()
     }
      }, [])
@@ -46,7 +46,7 @@ const HomePage: NextPage = () => {
       title={"Pepireyes - Home"}
       pageDescription={"Encuentra los mejores productos de pepireyes aquí"}
     >
-   <Button onClick={handleOpen}>Open modal</Button>
+  
       <section className=" paddings">
       <ProductSlideshow images={featuredProduct} />
         
@@ -55,7 +55,7 @@ const HomePage: NextPage = () => {
       <FeatureProducts />
       <ContacUs />
       <ModalOpenLocal
-      openM={openM}
+      open={open}
       handleOpen={handleOpen}
       handleClose={handleClose} />
     </ShopLayout>
