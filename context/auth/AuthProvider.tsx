@@ -61,9 +61,9 @@ export const AuthProvider:FC<Props> = ({ children }) => {
 
     const registerUser = async( name: string, email: string, password: string ): Promise<{hasError: boolean; message?: string}> => {
         try {
-            const { data } = await pepireyesApi.post('/user/register', { name, email, password });
-            const { token, user } = data;
-            Cookies.set('token', token );
+            const { data } = await pepireyesApi.post("/auth/signup", { name, email, password });
+            const {  user } = data;
+          
             dispatch({ type: '[Auth] - Login', payload: user });
             return {
                 hasError: false

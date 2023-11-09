@@ -8,10 +8,10 @@ import Banner from "../components/homepage/Banner";
 
 import { ProductSlideshow } from "../components/products";
 
+import { useState, useEffect } from "react";
 import FeatureProducts from "@/components/homepage/FeatureProducts";
 import ContacUs from "@/components/homepage/ContactUs";
-
-import { useState, useEffect } from "react";
+// import { useLoadScript } from "@react-google-maps/api";
 import { useOpenLocal } from "@/hooks/useOpenLocal";
 import ModalOpenLocal from "@/components/homepage/ModalOpenLocal";
 
