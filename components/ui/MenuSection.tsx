@@ -37,6 +37,10 @@ const MenuSection: FC<Props> = ({ products, isLoading }) => {
       content: <ProductList products={categoryProduct("drink")} />,
     },
     {
+      title: "papas",
+      content: <ProductList products={categoryProduct("papas")} />,
+    },
+    {
       title: "combo",
       content: <ProductList products={categoryProduct("combo")} />,
     },
@@ -59,16 +63,18 @@ const MenuSection: FC<Props> = ({ products, isLoading }) => {
         <TabButton selectTab={() => setTab("drink")} active={tab === "drink"}>
           Bebidas
         </TabButton>
-        <TabButton selectTab={() => setTab("papas")} active={tab === "combo"}>
+        <TabButton selectTab={() => setTab("papas")} active={tab === "papas"}>
           Papas
         </TabButton>
-        <TabButton selectTab={() => setTab("drink")} active={tab === "combo"}>
+        <TabButton selectTab={() => setTab("combo")} active={tab === "combo"}>
           Combos
         </TabButton>
       </nav>
       <div style={{marginTop: '1.5rem' }}>
 
       {currentTabContent}
+
+     
       </div>
       </>
   );

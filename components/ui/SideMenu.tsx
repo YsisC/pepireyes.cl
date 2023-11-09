@@ -13,15 +13,15 @@ import {
   ListItemText,
   ListSubheader,
 } from "@mui/material";
-import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
-import BookmarkIcon from '@mui/icons-material/Bookmark';
-import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
+import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
 import {
-
   AccountCircleOutlined,
   AdminPanelSettings,
   CategoryOutlined,
   ConfirmationNumberOutlined,
+  DashboardOutlined,
   FemaleOutlined,
   LoginOutlined,
   SearchOutlined,
@@ -53,8 +53,6 @@ export const SideMenu = () => {
     }
   };
 
-
-
   return (
     <Drawer
       open={isMenuOpen}
@@ -81,7 +79,7 @@ export const SideMenu = () => {
               }
             />
           </ListItem>
-          { isLoggedIn && (
+          {isLoggedIn && (
             <>
               <ListItem button>
                 <ListItemIcon>
@@ -90,9 +88,7 @@ export const SideMenu = () => {
                 <ListItemText primary={"Perfil"} />
               </ListItem>
 
-              <ListItem 
-              button 
-              onClick={() => navigateTo("/orders/history")}>
+              <ListItem button onClick={() => navigateTo("/orders/history")}>
                 <ListItemIcon>
                   <ConfirmationNumberOutlined />
                 </ListItemIcon>
@@ -118,7 +114,7 @@ export const SideMenu = () => {
             onClick={() => navigateTo("/promociones")}
           >
             <ListItemIcon>
-              < CardGiftcardIcon />
+              <CardGiftcardIcon />
             </ListItemIcon>
             <ListItemText primary={"Promociones"} />
           </ListItem>
@@ -129,14 +125,12 @@ export const SideMenu = () => {
             onClick={() => navigateTo("/about")}
           >
             <ListItemIcon>
-              < BookmarkIcon/>
+              <BookmarkIcon />
             </ListItemIcon>
             <ListItemText primary={"Sobre nosotros"} />
           </ListItem>
-          { isLoggedIn ? (
-            <ListItem 
-            button
-            onClick={logout}>
+          {isLoggedIn ? (
+            <ListItem button onClick={logout}>
               <ListItemIcon>
                 <LoginOutlined />
               </ListItemIcon>
@@ -144,9 +138,9 @@ export const SideMenu = () => {
             </ListItem>
           ) : (
             <ListItem
-             button
-             onClick={ () => navigateTo(`/auth/login?p=${ router.asPath }`) }
-             >
+              button
+              onClick={() => navigateTo(`/auth/login?p=${router.asPath}`)}
+            >
               <ListItemIcon>
                 <VpnKeyOutlined />
               </ListItemIcon>
@@ -155,11 +149,16 @@ export const SideMenu = () => {
           )}
 
           {/* Admin */}
-          { user?.role === "admin" && (
+          {user?.role === "admin" && (
             <>
               <Divider />
               <ListSubheader>Admin Panel</ListSubheader>
-
+              <ListItem button onClick={() => navigateTo("/admin/")}>
+                <ListItemIcon>
+                  <DashboardOutlined />
+                </ListItemIcon>
+                <ListItemText primary={"Dashboard"} />
+              </ListItem>
               <ListItem button>
                 <ListItemIcon>
                   <CategoryOutlined />

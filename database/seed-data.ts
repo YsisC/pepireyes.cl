@@ -21,7 +21,7 @@ interface SeedUser {
 
 }
 type ValidSizes = 'Pequeño'|'Mediano'|'Grande'|'';
-type ValidTypes = 'burguer'|'pepito'|'drink'|'appetezier'|'clubhouse'| 'cachapa'| 'combo';
+type ValidTypes = 'burguer'|'pepito'|'drink'|'appetezier'|'clubhouse'| 'cachapa'| 'combo' | 'papas';
 
 interface SeedData {
     users: SeedUser[]
@@ -57,7 +57,7 @@ export const initialData: SeedData = {
     ],
     products: [
         {
-            description: "Carne de primera, pechuga de pollo o a la planchay chuleta ahumada",
+            description: "Carne de primera, pechuga de pollo o a la plancha y chuleta ahumada",
             images: [
                 '2023-07-03 at 14.25.14 (4).jpeg'
                
@@ -102,12 +102,27 @@ export const initialData: SeedData = {
            
         },
         {
+            description: "650gr de papas firtas, 200gr de carne mechada, tocineta, queso cheddar.",
+            images: [
+                'WhatsApp Image 2023-11-07 at 16.29.54.jpeg'
+              
+            ],
+            inStock: 5,
+            price: 8990,
+            size: 'Mediano',
+            slug: "suprema_mechada",
+            type: 'papas',
+            tags: ['papas'],
+            title: "Suprema Mechada",
+           
+        },
+        {
             description: "Pan de molde(4 rebanada), jamon ahumado, queso rallado, huevo,, tocineta, tomate, lechuga, pechuga de pollo, ketchup. mayonesa, mostaza racion de papas fritas",
             images: [
                 '2023-07-03 at 14.25.14 (9).jpeg'
                 
             ],
-            inStock: 5,
+            inStock: 15,
             price: 8990,
             size: 'Mediano',
             slug: "clubhouse_pollo",
@@ -152,7 +167,7 @@ export const initialData: SeedData = {
                 '2023-07-03 at 14.25.14 (13).jpeg'
                
             ],
-            inStock: 5,
+            inStock: 15,
             price: 12990,
             size: 'Mediano',
             slug: "cachapa_cochino",
@@ -162,9 +177,24 @@ export const initialData: SeedData = {
            
         },
         {
-            description: "Cachapa con queso",
+            description: "Queso de mano con capsula de natilla, queso rallado, cheddar y choclo en grano.",
             images: [
                 '2023-07-03 at 14.25.12.jpeg'
+               
+            ],
+            inStock: 15,
+            price: 12990,
+            size: 'Mediano',
+            slug: "cachapa_volcan",
+            type: 'cachapa',
+            tags: ['cachapa'],
+            title: "Cachapa volcan desgranado",
+           
+        },
+        {
+            description: "Queso de mano",
+            images: [
+                'WhatsApp Image 2023-11-07 at 16.17.59.jpeg'
                
             ],
             inStock: 5,

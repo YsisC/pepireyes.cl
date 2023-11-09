@@ -10,6 +10,7 @@ import {
   Typography,
   Chip,
   Button,
+  CircularProgress,
 } from "@mui/material";
 import {
   CreditCardOffOutlined,
@@ -53,6 +54,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
       amount,
       return_url,
     };
+    setIsPaying(true);
     try {
       const { data } = await pepireyesApi.post("/webpay/pay", body);
       console.log("datafron", data);
@@ -64,19 +66,9 @@ const OrderPage: NextPage<Props> = ({ order }) => {
         const redirectUrl = `/webpay/pay?url=${data.url}&token=${data.token}`;
 
         router.push(redirectUrl)
-      //   const headers = {
-      //     "Content-Type": "application/json",
-      //     "Tbk-Api-Key-Id": process.env.WEBPAY_ID,
-      //     "Tbk-Api-Key-Secret": process.env.WEBPAY_SECRET,
-      //   };
-      //   const response = await axios.post(webpay_peticion.url, webpay_peticion.token ,{
-      //     headers: headers
-      //   } )
-      
-      // console.log("respuesta del token",response)
+  
       }
 
-      // router.reload();
     } catch (error) {
       setIsPaying(false);
       console.log("error desde el front ", error);
@@ -158,7 +150,14 @@ const OrderPage: NextPage<Props> = ({ order }) => {
                 <Box sx={{ mt: 3 }} display="flex" flexDirection="column">
                   {/* TODO */}
 
-                  {webpay_peticion && webpay_peticion.url}
+                  <Box display="flex"
+                                justifyContent="center"
+                                className='fadeIn'
+                                sx={{ display: isPaying ? 'flex': 'none' }}>
+                                <CircularProgress />
+                            </Box>
+                            <Box flexDirection='column' sx={{ display: isPaying ? 'none': 'flex', flex: 1 }} >
+                  
                   {order.isPaid ? (
                     <Chip
                       sx={{ my: 2 }}
@@ -170,15 +169,10 @@ const OrderPage: NextPage<Props> = ({ order }) => {
                   ) : (
                     <>
                           <Button color="secondary" sx={{ fontSize:'1.4rem' }} className="circular-btn" onClick={onOrderCompleted}>Pagar</Button>
-                      {/* <form action="{{webpay_peticion.url}}" name="form" method="POST">
-          <input
-            type="hidden"
-            name="token_ws"
-            value="{{webpay_peticion.token}}"
-          />
-        </form> */}
+      
                     </>
                   )}
+                                              </Box>
                 </Box>
               </CardContent>
             </Card>

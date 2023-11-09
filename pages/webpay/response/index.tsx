@@ -4,6 +4,9 @@ import { getToken } from "next-auth/jwt";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { ShopLayout } from "@/components/layouts";
+import Box from '@mui/material/Box';
+import { CircularProgress } from "@mui/material";
 
 const ResponsePage = () => {
     const [responseData, setResponseData] = useState(null);
@@ -50,10 +53,18 @@ const ResponsePage = () => {
   }, [ token_ws]);
 
   return (
-    <div>
-      <h1>TOKEN_WS = {token_ws}</h1>
+    <ShopLayout
+    title="Webpay"
+    pageDescription={"Esperando respuesta"}
+  >
+     <Box height={'75vh'} 
+     display={"flex"}
+      justifyContent={'center'}
+    alignItems={'center'}>
+     <CircularProgress  />
+     </Box>
       
-    </div>
+      </ShopLayout>
   );
 };
 

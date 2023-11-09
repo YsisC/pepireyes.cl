@@ -17,6 +17,10 @@ export interface IOrder {
     paidAt? : string;
 
     session_id?: string;
+
+    
+    createdAt?: string;
+    updatedAt?: string;
 }
 
 

@@ -11,15 +11,13 @@ import { ProductSlideshow } from "../components/products";
 import FeatureProducts from "@/components/homepage/FeatureProducts";
 import ContacUs from "@/components/homepage/ContactUs";
 
-import {useState , useEffect} from 'react';
+import { useState, useEffect } from "react";
 import { useOpenLocal } from "@/hooks/useOpenLocal";
 import ModalOpenLocal from "@/components/homepage/ModalOpenLocal";
 
-
-
 const HomePage: NextPage = () => {
   const [open, setOpen] = useState(false);
-  const { openLocal,  verificarEstadoDeTienda} = useOpenLocal();
+  const { openLocal, verificarEstadoDeTienda } = useOpenLocal();
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -29,35 +27,30 @@ const HomePage: NextPage = () => {
     "2023-07-03 at 14.25.14 (17).jpeg",
   ];
 
-  
   useEffect(() => {
- 
-    verificarEstadoDeTienda()
-    console.log("local abierto",openLocal)
-    if(!openLocal){
-      handleOpen()
-    }
-     }, [])
+    verificarEstadoDeTienda();
 
+    if (openLocal === false) {
+      setOpen(true);
+    }
+  }, []);
 
   return (
-
     <ShopLayout
       title={"Pepireyes - Home"}
       pageDescription={"Encuentra los mejores productos de pepireyes aquí"}
     >
-  
       <section className=" paddings">
-      <ProductSlideshow images={featuredProduct} />
-        
-        </section>
+        <ProductSlideshow images={featuredProduct} />
+      </section>
       <Banner />
       <FeatureProducts />
       <ContacUs />
       <ModalOpenLocal
-      open={open}
-      handleOpen={handleOpen}
-      handleClose={handleClose} />
+        open={open}
+        handleOpen={handleOpen}
+        handleClose={handleClose}
+      />
     </ShopLayout>
   );
 };
