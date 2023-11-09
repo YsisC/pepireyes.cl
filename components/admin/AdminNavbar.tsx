@@ -16,8 +16,8 @@ export const AdminNavbar = () => {
         <AppBar>
             <Toolbar>
                 <NextLink href='/' passHref>
-                    <Link display='flex' alignItems='center'>
-                        <Typography variant='h6'>Pepireyes |</Typography>
+                    <Link display='flex' alignItems='center'  sx={{ color: 'white'}}>
+                        <Typography sx={{ ml: 0.5 , } }variant='h6'>Pepireyes |</Typography>
                         <Typography sx={{ ml: 0.5 }}>Admin</Typography>
                     </Link>  
                 </NextLink>

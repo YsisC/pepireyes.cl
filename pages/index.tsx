@@ -30,7 +30,7 @@ const HomePage: NextPage = () => {
   useEffect(() => {
     verificarEstadoDeTienda();
 
-    if (openLocal === false) {
+    if (openLocal === true) {
       setOpen(true);
     }
   }, []);

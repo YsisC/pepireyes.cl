@@ -27,7 +27,8 @@ import { useState } from "react";
 import { IWebPayOrder } from "@/interfaces/webpay";
 import { useRouter } from "next/router";
 import axios from "axios";
-
+import styles from "../../styles/Order.module.css";
+import Image from "next/image";
 interface Props {
   order: IOrder;
 }
@@ -40,7 +41,13 @@ const OrderPage: NextPage<Props> = ({ order }) => {
     url: "",
     token: "",
   });
-
+  const status: number | undefined = order.status;
+  const statusClass = (index: number) => {
+    if (status === undefined) return;
+    if (index - status < 1) return styles.done;
+    if (index - status === 1) return styles.inProgress;
+    if (index - status > 1) return styles.undone;
+  };
   const onOrderCompleted = async () => {
     let buy_order = "O" + order._id;
     let session_id = "S-" + Math.floor(Math.random() * 10000) + 1;
@@ -59,16 +66,11 @@ const OrderPage: NextPage<Props> = ({ order }) => {
       const { data } = await pepireyesApi.post("/webpay/pay", body);
       console.log("datafron", data);
       setWebpayPeticion(data);
-      if (
-        webpay_peticion 
-     
-      ) {
+      if (webpay_peticion) {
         const redirectUrl = `/webpay/pay?url=${data.url}&token=${data.token}`;
 
-        router.push(redirectUrl)
-  
+        router.push(redirectUrl);
       }
-
     } catch (error) {
       setIsPaying(false);
       console.log("error desde el front ", error);
@@ -105,6 +107,76 @@ const OrderPage: NextPage<Props> = ({ order }) => {
         <Grid container className="fadeIn">
           <Grid item xs={12} sm={7}>
             <CartList products={order.orderItems} />
+            {order.isPaid && (
+     <div className={styles.row}>
+     <div className={statusClass(0)}>
+       <div className={styles.icon}>
+         <Image src="/img/paid.png" width={30} height={30} alt="" />
+       </div>
+       <span>Pagado</span>
+       <div className={styles.checkedIcon}>
+         <Image
+           className={styles.checkedIcon}
+           src="/img/checked.png"
+           width={20}
+           height={20}
+           alt=""
+         />
+       </div>
+     </div>
+     <div className={statusClass(1)}>
+       <div className={styles.icon}>
+         <Image src="/img/bake.png" width={30} height={30} alt="" />
+       </div>
+       <span>Preparado</span>
+       <div className={styles.checkedIcon}>
+         <Image
+           className={styles.checkedIcon}
+           src="/img/checked.png"
+           width={20}
+           height={20}
+           alt=""
+         />
+       </div>
+     </div>
+     <div className={statusClass(2)}>
+       <div className={styles.icon}>
+         <Image src="/img/bike.png" width={30} height={30} alt="" />
+       </div>
+       <span>En camino</span>
+       <div className={styles.checkedIcon}>
+         <Image
+           className={styles.checkedIcon}
+           src="/img/checked.png"
+           width={20}
+           height={20}
+           alt=""
+         />
+       </div>
+     </div>
+     <div className={statusClass(3)}>
+       <div className={styles.icon}>
+         <Image
+           src="/img/delivered.png"
+           width={30}
+           height={30}
+           alt=""
+         />
+       </div>
+       <span>Delivered</span>
+       <div className={styles.checkedIcon}>
+         <Image
+           className={styles.checkedIcon}
+           src="/img/checked.png"
+           width={20}
+           height={20}
+           alt=""
+         />
+       </div>
+     </div>
+   </div>
+            )}
+       
           </Grid>
           <Grid item xs={12} sm={5}>
             <Card className="summary-card">
@@ -150,29 +222,39 @@ const OrderPage: NextPage<Props> = ({ order }) => {
                 <Box sx={{ mt: 3 }} display="flex" flexDirection="column">
                   {/* TODO */}
 
-                  <Box display="flex"
-                                justifyContent="center"
-                                className='fadeIn'
-                                sx={{ display: isPaying ? 'flex': 'none' }}>
-                                <CircularProgress />
-                            </Box>
-                            <Box flexDirection='column' sx={{ display: isPaying ? 'none': 'flex', flex: 1 }} >
-                  
-                  {order.isPaid ? (
-                    <Chip
-                      sx={{ my: 2 }}
-                      label="Orden ya fue pagada"
-                      variant="outlined"
-                      color="success"
-                      icon={<CreditScoreOutlined />}
-                    />
-                  ) : (
-                    <>
-                          <Button color="secondary" sx={{ fontSize:'1.4rem' }} className="circular-btn" onClick={onOrderCompleted}>Pagar</Button>
-      
-                    </>
-                  )}
-                                              </Box>
+                  <Box
+                    display="flex"
+                    justifyContent="center"
+                    className="fadeIn"
+                    sx={{ display: isPaying ? "flex" : "none" }}
+                  >
+                    <CircularProgress />
+                  </Box>
+                  <Box
+                    flexDirection="column"
+                    sx={{ display: isPaying ? "none" : "flex", flex: 1 }}
+                  >
+                    {order.isPaid ? (
+                      <Chip
+                        sx={{ my: 2 }}
+                        label="Orden ya fue pagada"
+                        variant="outlined"
+                        color="success"
+                        icon={<CreditScoreOutlined />}
+                      />
+                    ) : (
+                      <>
+                        <Button
+                          color="secondary"
+                          sx={{ fontSize: "1.4rem" }}
+                          className="circular-btn"
+                          onClick={onOrderCompleted}
+                        >
+                          Pagar
+                        </Button>
+                      </>
+                    )}
+                  </Box>
                 </Box>
               </CardContent>
             </Card>

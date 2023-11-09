@@ -1,0 +1,77 @@
+
+
+  .icon{
+    background-color: antiquewhite;
+    border-radius: 50%;
+    padding: 0.45rem;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+  }
+  .row:last-child {
+    margin-top: 1.5rem;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .done {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+  }
+  
+  .inProgress {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: inProgress 1s ease infinite alternate;
+  }
+  
+  @keyframes inProgress {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .undone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0.3;
+   
+  }
+  
+  .undone .checkedIcon,
+  .inProgress .checkedIcon {
+    display: none;
+  
+  }
+  
+ 
+  
+
+  
+  @media screen and (max-width: 480px) {
+
+  
+    .row:last-child {
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .done,
+    .undone,
+    .inProgress {
+      margin-bottom: 20px;
+     
+    }
+  
+ 
+  }
