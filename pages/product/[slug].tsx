@@ -118,7 +118,7 @@ const ProductPage: NextPage<Props> = ({ product }) => {
             
            
             {
-              !openLocal ? (
+              openLocal ? (
               (product.inStock > 0)
                 ? (
                   <Button color="secondary" className='circular-btn'
