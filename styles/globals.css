@@ -88,8 +88,8 @@ footer {
   overflow-x: scroll;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding-left: 15.9rem;
-  width: 89vw;
+  padding-left: 22.9rem;
+  width: 92%;
 }
 .nav::-webkit-scrollbar {
   width: 0; /* Esto oculta la barra de desplazamiento en navegadores basados en WebKit (Google Chrome, Safari) */
@@ -101,23 +101,23 @@ footer {
   height: 100%;
   border: none;
   border-radius: 0;
-  min-width: 2rem;
-  padding: 0 3rem 0rem 3rem;
+ 
+  padding: 0 3.5rem 0rem 0;
   background-color: inherit;
   border-bottom: 2px solid white;
   color: white;
   text-transform: uppercase;
 }
 .boxActive {
-  padding: 0 3rem 0rem 3rem;
+  padding: 0 3.5rem 0rem 0;
   border-color: #ffbc0d;
   color: #ffbc0d;
 }
 
 @media (min-width: 720px) {
   .nav {
-    width: 85vw;
-    padding-left: 0;
+    width: 82vw;
+    padding-left: 6rem;
     overflow-x: scroll;
   }
 }

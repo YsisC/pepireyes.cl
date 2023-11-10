@@ -42,7 +42,7 @@ export const ProductCard: FC<Props> = ({ product }) => {
 
                         <CardMedia 
                             component='img'
-                            sx={{ height: '20rem', width:'20rem' }}
+                            sx={{ height: {xs:'17rem', md: '22rem'} }}
                             className='fadeIn imageWrapper'
                             image={ productImage }
                             alt={ product.title }
