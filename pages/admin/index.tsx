@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import useSWR from 'swr';
-import { AttachMoneyOutlined, CreditCardOffOutlined, CreditCardOutlined, DashboardOutlined, GroupOutlined, CategoryOutlined, CancelPresentationOutlined, ProductionQuantityLimitsOutlined, AccessTimeOutlined } from '@mui/icons-material';
+import { AttachMoneyOutlined, HourglassEmpty, CreditCardOffOutlined, CreditCardOutlined, DashboardOutlined, GroupOutlined, CategoryOutlined, CancelPresentationOutlined, ProductionQuantityLimitsOutlined, AccessTimeOutlined } from '@mui/icons-material';
 
 import { AdminLayout } from '../../components/layouts'
 import { Grid, Typography } from '@mui/material'
@@ -40,6 +40,7 @@ const DashboardPage = () => {
     const {
         numberOfOrders,
         paidOrders,
+        preparingOrders,
         numberOfClients,
         numberOfProducts,
         productsWithNoInventory,
@@ -68,10 +69,15 @@ const DashboardPage = () => {
                 subTitle="Ordenes pagadas"
                 icon={ <AttachMoneyOutlined color="success" sx={{ fontSize: 40 }} /> }
             />
+            <SummaryTile 
+                title={  preparingOrders }
+                subTitle="Ordenes pendientes por preparar"
+                icon={ <HourglassEmpty color="secondary" sx={{ fontSize: 40 }} /> }
+            />
 
             <SummaryTile 
                 title={ notPaidOrders }
-                subTitle="Ordenes pendientes"
+                subTitle="Ordenes pendientes de pago"
                 icon={ <CreditCardOffOutlined color="error" sx={{ fontSize: 40 }} /> }
             />
 

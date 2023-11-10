@@ -29,6 +29,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import styles from "../../styles/Order.module.css";
 import Image from "next/image";
+import { useStatusClass } from "@/hooks";
 interface Props {
   order: IOrder;
 }
@@ -41,13 +42,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
     url: "",
     token: "",
   });
-  const status: number | undefined = order.status;
-  const statusClass = (index: number) => {
-    if (status === undefined) return;
-    if (index - status < 1) return styles.done;
-    if (index - status === 1) return styles.inProgress;
-    if (index - status > 1) return styles.undone;
-  };
+  const { status, statusClass } = useStatusClass(order);
   const onOrderCompleted = async () => {
     let buy_order = "O" + order._id;
     let session_id = "S-" + Math.floor(Math.random() * 10000) + 1;

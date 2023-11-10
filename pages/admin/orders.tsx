@@ -13,6 +13,7 @@ import { AdminLayout } from "../../components/layouts";
 import { IOrder, IUser } from "../../interfaces";
 import { pepireyesApi } from "@/axiosApi";
 import { useRouter } from "next/router";
+import Link from '../../themeMUI/Link';
 
 const OrdersPage = () => {
   const { data, error } = useSWR<IOrder[]>("/api/admin/orders");
@@ -63,7 +64,7 @@ const router = useRouter()
       field: "isPaid",
       headerName: "Pagada",
       width: 150,
-      renderCell: ({ row }: GridRenderCellParams<any, any, any, any>) => {
+      renderCell: ({ row }: GridRenderCellParams<any, any>) => {
         return row.isPaid ? (
           <Chip variant="outlined" label="Pagada" color="success" />
         ) : (
@@ -84,12 +85,12 @@ const router = useRouter()
       renderCell: ({ row }: GridRenderCellParams<any, any, any, any>) => {
      
         return (
-            (row.action < 2 && row.isPaid) ? (
+            (row.action < 3 && row.isPaid) ? (
               <Button color="secondary" onClick={() => handleStatus(row.id)}>
                 Siguiente
               </Button>
             ) : (
-              (row.action === 2 && row.isPaid) ? (
+              (row.action === 3 && row.isPaid) ? (
                 <Chip variant="outlined" label="Orden lista" color="success" />
               ) : (
                 <Chip variant="outlined" label="Pendiente" color="error" />
@@ -100,6 +101,17 @@ const router = useRouter()
      
       },
     },
+    {
+      field: 'check',
+      headerName: 'Ver orden',
+      renderCell: ({ row }: GridRenderCellParams<any>) => {
+          return (
+              <Link color='secondary' href={ `/admin/orders/${ row.id }` } target="_blank" rel="noreferrer" >
+                  Ver orden
+              </Link>
+          )
+      }
+  },
   ];
 
   const rows = data!.map((order) => ({
@@ -109,6 +121,8 @@ const router = useRouter()
     isPaid: order.isPaid,
     status: order.status ? status[order.status]: 'Preparando',
     action: order.status,
+    check: order._id
+    
   }));
 
   return (
@@ -119,7 +133,7 @@ const router = useRouter()
     >
       <Grid container className="fadeIn">
         <Grid item xs={12} sx={{ height: 650, width: "100%" }}>
-          <DataGrid rows={rows} columns={columns} pageSizeOptions={[10]} />
+          <DataGrid rows={rows} columns={columns} pageSizeOptions={[10, 25, 50, 100]} />
         </Grid>
       </Grid>
     </AdminLayout>

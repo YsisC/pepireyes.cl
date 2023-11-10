@@ -3,6 +3,7 @@
 export interface DashboardSummaryResponse {
     numberOfOrders:          number;
     paidOrders:              number;
+    preparingOrders:         number;
     numberOfClients:         number;
     numberOfProducts:        number;
     productsWithNoInventory: number;

@@ -1,11 +1,12 @@
 import { useContext } from 'react';
-import NextLink from 'next/link';
+import Link from '../../themeMUI/Link'
 
 
-import { AppBar, Box, Button, Link, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material';
 
 
 import { UiContext } from '../../context';
+import SegmentIcon from '@mui/icons-material/Segment';
 
 export const AdminNavbar = () => {
 
@@ -15,17 +16,24 @@ export const AdminNavbar = () => {
     return (
         <AppBar>
             <Toolbar>
-                <NextLink href='/' passHref>
-                    <Link display='flex' alignItems='center'  sx={{ color: 'white'}}>
+               
+                    <Link href='/' display='flex' alignItems='center'  sx={{ color: 'white'}}>
                         <Typography sx={{ ml: 0.5 , } }variant='h6'>Pepireyes |</Typography>
                         <Typography sx={{ ml: 0.5 }}>Admin</Typography>
                     </Link>  
-                </NextLink>
+            
 
                 <Box flex={ 1 } />
 
-                <Button onClick={ toggleSideMenu }>
-                    Menú
+                <Button
+                color="primary"
+                sx={{ bgcolor:'black' , width: '2rem', height: '2rem'} }
+                startIcon={<SegmentIcon  />}
+    
+                
+                 onClick={toggleSideMenu}
+                 >
+                  
                 </Button>
 
             </Toolbar>

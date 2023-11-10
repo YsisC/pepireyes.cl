@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
 import Cookies from 'js-cookie';
 import { useForm } from "react-hook-form";
+import { useLoadScript } from "@react-google-maps/api";
 
 import { ShopLayout } from '../../components/layouts';
 // import { countries } from "../../utils";
@@ -66,7 +67,12 @@ const AddressPage = () => {
         updateAddress( data );
         router.push('/checkout/summary');
     }
-
+    const { isLoaded } = useLoadScript({
+        googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+        libraries: ["places"],
+      });
+    
+      if (!isLoaded) return <div>Loading...</div>;
   return (
     <ShopLayout title="Dirección" pageDescription="Confirmar dirección del destino">
             <section className="paddings" >

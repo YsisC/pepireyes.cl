@@ -5,6 +5,7 @@ import { Order, Product, User } from '../../../models';
 type Data = {
     numberOfOrders: number;
     paidOrders: number; // isPad true
+    preparingOrders: number,
     notPaidOrders: number;
     numberOfClients: number; // role: client
     numberOfProducts: number;
@@ -25,6 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const [
         numberOfOrders,
         paidOrders,
+        preparingOrders,
         numberOfClients,
         numberOfProducts,
         productsWithNoInventory,
@@ -32,6 +34,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     ] = await Promise.all([
         Order.count(),
         Order.find({ isPaid: true }).count(),
+        Order.find({ status: 0 }).count(),
         User.find({ role: 'client' }).count(),
         Product.count(),
         Product.find({ inStock: 0 }).count(),
@@ -44,6 +47,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     res.status(200).json({
         numberOfOrders,
         paidOrders,
+        preparingOrders,
         numberOfClients,
         numberOfProducts,
         productsWithNoInventory,
