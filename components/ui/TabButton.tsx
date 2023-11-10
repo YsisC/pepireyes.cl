@@ -20,7 +20,7 @@ const TabButton : FC<Props> = ({ active, selectTab, children }) => {
   };
   
   return (
-    <Button className={` ${buttonClasses}`} sx={{bgcolor:'black', textTransform:'uppercase', 
+    <Button className={` ${buttonClasses}`} sx={{bgcolor:'inherit', textTransform:'uppercase', 
     color:'inherit'}} onClick={handleClick} >
       <p >
         {children}

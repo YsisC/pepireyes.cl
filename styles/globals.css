@@ -82,13 +82,13 @@ footer {
 }
 .nav {
   display: flex;
-align-items: center;
- justify-items: center;
-  margin-bottom: "2rem";
+  align-items: flex-end;
+  justify-content: center;
   margin-top: "1rem";
   overflow-x: scroll; 
   scrollbar-width: none;
   -ms-overflow-style: none;
+
  
 }
 .nav::-webkit-scrollbar {
@@ -98,6 +98,7 @@ align-items: center;
   color: #ffbc0d; 
 }
 .box {
+  height: 100%;
   border: none;
   border-radius: 0;
   min-width:2rem ;
@@ -106,6 +107,7 @@ align-items: center;
   border-bottom: 2px  solid white;
 }
 .boxActive {
+ 
   padding: 0 4rem 0rem 4rem;
   border-color: #ffbc0d;
   color: #ffbc0d;
