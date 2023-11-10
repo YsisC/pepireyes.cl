@@ -30,6 +30,7 @@ import axios from "axios";
 import styles from "../../styles/Order.module.css";
 import Image from "next/image";
 import { useStatusClass } from "@/hooks";
+import OrderStatus from "@/components/admin/order/OrderStatus";
 interface Props {
   order: IOrder;
 }
@@ -102,76 +103,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
         <Grid container className="fadeIn">
           <Grid item xs={12} sm={7}>
             <CartList products={order.orderItems} />
-            {order.isPaid && (
-     <div className={styles.row}>
-     <div className={statusClass(0)}>
-       <div className={styles.icon}>
-         <Image src="/img/paid.png" width={30} height={30} alt="" />
-       </div>
-       <span>Pagado</span>
-       <div className={styles.checkedIcon}>
-         <Image
-           className={styles.checkedIcon}
-           src="/img/checked.png"
-           width={20}
-           height={20}
-           alt=""
-         />
-       </div>
-     </div>
-     <div className={statusClass(1)}>
-       <div className={styles.icon}>
-         <Image src="/img/bake.png" width={30} height={30} alt="" />
-       </div>
-       <span>Preparado</span>
-       <div className={styles.checkedIcon}>
-         <Image
-           className={styles.checkedIcon}
-           src="/img/checked.png"
-           width={20}
-           height={20}
-           alt=""
-         />
-       </div>
-     </div>
-     <div className={statusClass(2)}>
-       <div className={styles.icon}>
-         <Image src="/img/bike.png" width={30} height={30} alt="" />
-       </div>
-       <span>En camino</span>
-       <div className={styles.checkedIcon}>
-         <Image
-           className={styles.checkedIcon}
-           src="/img/checked.png"
-           width={20}
-           height={20}
-           alt=""
-         />
-       </div>
-     </div>
-     <div className={statusClass(3)}>
-       <div className={styles.icon}>
-         <Image
-           src="/img/delivered.png"
-           width={30}
-           height={30}
-           alt=""
-         />
-       </div>
-       <span>Delivered</span>
-       <div className={styles.checkedIcon}>
-         <Image
-           className={styles.checkedIcon}
-           src="/img/checked.png"
-           width={20}
-           height={20}
-           alt=""
-         />
-       </div>
-     </div>
-   </div>
-            )}
-       
+            {order.isPaid && <OrderStatus statusClass={statusClass} />}
           </Grid>
           <Grid item xs={12} sm={5}>
             <Card className="summary-card">

@@ -43,7 +43,7 @@ interface Props {
                   src={item.image2}
                   width={20}
                   height={20}
-                  alt=""
+                  alt={item.image2}
                 />
               </div>
             </div>

@@ -58,10 +58,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
       <Grid container className="fadeIn">
         <Grid item xs={12} sm={7}>
           <CartList products={order.orderItems} />
-          {order.isPaid && (
-       <OrderStatus 
-       statusClass={statusClass}/>
-          )}
+          {order.isPaid && <OrderStatus statusClass={statusClass} />}
         </Grid>
         <Grid item xs={12} sm={5}>
           <Card className="summary-card">
