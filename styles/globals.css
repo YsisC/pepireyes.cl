@@ -85,43 +85,51 @@ footer {
   align-items: flex-end;
   justify-content: center;
   margin-top: "1rem";
-  overflow-x: scroll; 
+  overflow-x: scroll;
   scrollbar-width: none;
   -ms-overflow-style: none;
-
- 
+  padding-left: 15.9rem;
+  width: 89vw;
 }
 .nav::-webkit-scrollbar {
   width: 0; /* Esto oculta la barra de desplazamiento en navegadores basados en WebKit (Google Chrome, Safari) */
 }
 .linkActive {
-  color: #ffbc0d; 
+  color: #ffbc0d;
 }
 .box {
   height: 100%;
   border: none;
   border-radius: 0;
-  min-width:2rem ;
-  padding: 0 4rem 0rem 4rem;
+  min-width: 2rem;
+  padding: 0 3rem 0rem 3rem;
   background-color: inherit;
-  border-bottom: 2px  solid white;
+  border-bottom: 2px solid white;
 }
 .boxActive {
- 
-  padding: 0 4rem 0rem 4rem;
+  padding: 0 3rem 0rem 3rem;
   border-color: #ffbc0d;
   color: #ffbc0d;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 720px) {
   .nav {
-    overflow-x: none; 
+    width: 85vw;
+    padding-left: 0;
+    overflow-x: scroll;
+  }
+}
+
+@media (min-width: 900px) {
+  .nav {
+    overflow-x: none;
+
   }
   .box {
     padding: 0 3rem 0rem 3rem;
   }
   .boxActive {
-    padding:  0 3rem 0rem 3rem;
+    padding: 0 3rem 0rem 3rem;
   }
 }
 
@@ -190,8 +198,6 @@ footer {
   padding-top: 3rem;
 }
 
-
-
 @media (min-width: 640px) {
   .topPaddings {
     padding-top: 4rem;
@@ -199,6 +205,6 @@ footer {
 }
 @media (min-width: 1280px) {
   .topPaddings {
-  padding-top: 2rem;
-}
+    padding-top: 2rem;
+  }
 }
