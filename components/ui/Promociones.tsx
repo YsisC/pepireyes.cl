@@ -93,7 +93,7 @@ const Promociones = () => {
         }}
       >
         <Typography variant="h2" component={"h2"}>
-          Home / <span> Promociones </span>
+         Inicio / <span> Promociones </span>
         </Typography>
         {featuredPromos.map((post) => (
           <FeaturedPromo

@@ -23,7 +23,7 @@ const SearchPage: NextPage<Props> = ({ products, foundProducts, query }) => {
     <ShopLayout title={'Pepireyes - Search'} pageDescription={'Encuentra los mejores platos '}>
        <main className='paddings'>
        <Typography variant="h2" component="h2">
-          Home / <span> Busqueda </span>
+          Inicio / <span> Busqueda </span>
         </Typography>
       
        {

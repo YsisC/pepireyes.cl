@@ -113,8 +113,93 @@ footer {
   border-color: #ffbc0d;
   color: #ffbc0d;
 }
+/* Google components */
+.container {
+  display: block;
+  height: 90vh;
+}
 
+.controls {
+  width: 100%;
+  padding: 1rem;
+  background: #14161a;
+  color: #fff;
+}
+
+.controls input {
+  border: none;
+}
+
+.map-container {
+  width: 100%;
+  height: 60vh;
+}
+
+.map {
+  width: 80%;
+  height: 90vh;
+}
+
+.highlight {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: white;
+}
+
+.combobox {
+  color: #080808; 
+}
+
+.combobox-input {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.full-box .mt-3 {
+  margin-top: 0 !important;
+}
+.map-input-box {
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0.5rem auto;
+  width: 25rem;
+  height: 3rem;
+  display: flex;
+}
+.map-input-box input {
+  border-radius: 1rem 0 0 1rem;
+  border-right: 0;
+}
+.map-input-box button {
+  border-radius: 0 1rem 1rem 0;
+  border-left: 0;
+}
+button.thumbnail {
+  padding: 0;
+}
+/*Fin de seccion google components  */
 @media (min-width: 720px) {
+  .map-container {
+    width: 100%;
+    height: 90vh;
+  }
+  .container {
+    display: flex;
+    height: 90vh;
+  }
+  
+.controls {
+  width: 20%;
+  padding: 1rem;
+  background: #14161a;
+  color: #fff;
+}
+  .combobox-input {
+    width: 100%;
+    padding: 0.5rem;
+  }
   .nav {
     width: 82vw;
     padding-left: 6rem;

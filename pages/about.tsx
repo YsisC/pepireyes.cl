@@ -12,8 +12,8 @@ import { Typography } from '@mui/material';
 const mainFeaturedPost = {
   title: 'Los mejores pepitos de santiago',
   description:
-    "Disdruta con nosotros de los mejores pepitos, hamburguesas, patacones, y mas con el estilo venezonalo. Te esperamos",
-  image: '/products/2023-07-03 at 14.25.14 (17).jpeg',
+    "Disfruta con nosotros de los mejores pepitos, hamburguesas, patacones, y mas al estilo venezonalo. Te esperamos",
+  image: '/products/2023-07-03 at 14.25.13.jpeg',
   imageText: 'main image description',
  
 };
@@ -37,22 +37,6 @@ const featuredPosts = [
 ];
 
 
-const sidebar = {
-  title: 'About',
-  description:
-    'Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.',
-  events: [
-    { title: 'Dia de la madre 2023', url: '#' },
-    { title: 'Dia del niño 2023', url: '#' },
-    { title: 'Dia del padre 2023', url: '#' },
-
-  ],
-  social: [
-    { name: 'GitHub', icon: GitHubIcon },
-    { name: 'Twitter', icon: TwitterIcon },
-    { name: 'Facebook', icon: FacebookIcon },
-  ],
-};
 
 
 
@@ -68,7 +52,7 @@ export default function About() {
         
         <section className='paddings'>
         <Typography variant="h2" component="h2" sx={{marginBottom: '1rem'}}>
-       Home / <span>Sobre Nosotros </span> 
+       Inicio / <span>Sobre Nosotros </span> 
       </Typography>
           <MainFeaturedPost post={mainFeaturedPost} />
           <Grid container spacing={4}>

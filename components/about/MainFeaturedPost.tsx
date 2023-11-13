@@ -9,9 +9,8 @@ import { CardMedia } from '@mui/material';
 interface MainFeaturedPostProps {
   post: {
     description: string;
-    image: string;
+    image: string ;
     imageText: string;
-    
     title: string;
   };
 }
@@ -21,17 +20,16 @@ export default function MainFeaturedPost(props: MainFeaturedPostProps) {
 
   return (
     <Paper
-      sx={{
-        position: 'relative',
-        backgroundColor: 'grey.800',
-        color: '#fff',
-        mb: 4,
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        backgroundImage: `url(${post.image})`,
-      }}
-    >
+    sx={{
+      position: 'relative',
+      color: '#fff',
+      mb: 4,
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center',
+      backgroundImage: `url('${post.image}')`
+    }}
+  >
       {/* Increase the priority of the hero background image */}
       {<CardMedia component = {"img"} style={{ display: 'none' }} src={post.image} alt={post.imageText} />}
       <Box

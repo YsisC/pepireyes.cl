@@ -37,7 +37,7 @@ const HomePage: NextPage = () => {
 
   return (
     <ShopLayout
-      title={"Pepireyes - Home"}
+      title={"Pepireyes "}
       pageDescription={"Encuentra los mejores productos de pepireyes aquí"}
     >
       <section className=" paddings">

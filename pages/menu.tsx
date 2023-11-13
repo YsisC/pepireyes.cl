@@ -22,7 +22,7 @@ const Menu: NextPage = () => {
     >
       <section className="paddings">
         <Typography variant="h2" component="h2">
-          Home / <span> Menu </span>
+          Inicio / <span> Menu </span>
         </Typography>
 
         <MenuSection products={products} isLoading={isLoading} />
