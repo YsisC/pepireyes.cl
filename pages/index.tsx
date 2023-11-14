@@ -26,14 +26,30 @@ const HomePage: NextPage = () => {
     "2023-07-03 at 14.25.14 (16).jpeg",
     "2023-07-03 at 14.25.14 (17).jpeg",
   ];
-
   useEffect(() => {
-    verificarEstadoDeTienda();
+    let isComponentMounted = true;
+    const isOpen = verificarEstadoDeTienda();
+    const checkAndSetOpenState = () => {
+       
+        console.log("is open", isOpen);
 
-    if (openLocal === true) {
-      setOpen(true);
-    }
-  }, []);
+        // Use the isComponentMounted flag to check if the component is still mounted
+        if (isComponentMounted && isOpen === false) {
+            setOpen(true);
+        }
+    };
+
+    // Use setTimeout to delay the execution by 2500 milliseconds (2.5 seconds)
+    const timeoutId = setTimeout(() => {
+        checkAndSetOpenState();
+    }, 3500);
+
+    // Cleanup function to set the isComponentMounted flag to false when the component is unmounted
+    return () => {
+        isComponentMounted = false;
+        clearTimeout(timeoutId);
+    };
+}, [verificarEstadoDeTienda, openLocal]);
 
   return (
     <ShopLayout

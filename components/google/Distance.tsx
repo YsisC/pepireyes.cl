@@ -1,16 +1,16 @@
 import { currency } from "@/utils";
-
+import {FC} from 'react'
 const commutesPerYear = 260 * 2;
 const litresPerKM = 10 / 100;
 const gasLitreCost = 1.5;
 const litreCostKM = litresPerKM * gasLitreCost;
 const secondsPerDay = 60 * 60 * 24;
 
-type DistanceProps = {
+type Props = {
   leg: google.maps.DirectionsLeg;
 };
 
-export const Distance =({ leg }: DistanceProps) => {
+export const Distance:FC<Props> =({ leg }) => {
   if (!leg.distance || !leg.duration) return null;
 
   const days = Math.floor(

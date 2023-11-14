@@ -1,3 +1,4 @@
+import {FC} from 'react'
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
@@ -12,12 +13,12 @@ import {
 import "@reach/combobox/styles.css";
 
 type LatLngLiteral = google.maps.LatLngLiteral;
-type PlacesProps = {
+type Props = {
   setOffice: (position: google.maps.LatLngLiteral) => void;
  
 };
 
-export const Places = ({ setOffice,  }: PlacesProps) => {
+export const Places:FC<Props> = ({ setOffice  }) => {
   const {
     ready,
     value,

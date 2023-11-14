@@ -1,5 +1,5 @@
 
-import { useState, useMemo, useCallback, useRef, useEffect } from "react";
+import { useState, useMemo, useCallback, useRef, useEffect , FC} from "react";
 import {
   LoadScript,
   GoogleMap,
@@ -23,7 +23,7 @@ type MapOptions = google.maps.MapOptions;
 
 const defaultLocation = { lat: -33.45, lng: -70.69 };
 
-export const Map = () => {
+export const Map:FC  = () => {
 
 
   const [office, setOffice] = useState<LatLngLiteral>();
