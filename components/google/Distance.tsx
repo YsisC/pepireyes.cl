@@ -27,14 +27,7 @@ console.log( "leg", leg.distance)
         <span className="highlight">{leg.duration.value}</span> each direction.
       </p>
 
-      <p>
-        That's <span className="highlight">{days} days</span> in your car each
-        year at a cost of{" "}
-        <span className="highlight">
-          ${new Intl.NumberFormat().format(cost)}
-        </span>
-        .
-      </p>
+
     </div>
   );
 }
