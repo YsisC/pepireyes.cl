@@ -43,18 +43,17 @@ export  function Map() {
 
   const onLoad = useCallback((map: any) => (mapRef.current = map), []);
   const generateLocation = (position: LatLngLiteral) => {
-   
-
+  
     setLocation({
       lat: position.lat,
       lng: position.lng,
     });
     return [location];
   };
-  // const onIdle = useMemo(() =>  generateLocation(center),[center]);
-  useEffect(() => {
-    generateLocation(center);
-  }, [center]);  
+  const onIdle = useMemo(() =>  generateLocation(center),[center]);
+  // useEffect(() => {
+  //   generateLocation(center);
+  // }, [center, location]);  
 
   const onLoadPlaces = (place:  google.maps.places.SearchBox) => {
     placeRef.current = place;
