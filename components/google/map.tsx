@@ -50,7 +50,7 @@ export  function Map() {
     });
     return [location];
   };
-  const onIdle = useMemo(() =>  generateLocation(center),[center]);
+  // const onIdle = useMemo(() =>  generateLocation(center),[center]);
   // useEffect(() => {
   //   generateLocation(center);
   // }, [center, location]);  
@@ -75,7 +75,7 @@ export  function Map() {
   };
   
   // };
-console.log("ofece",office)
+console.log("location",location)
 
 
 const onConfirm = () => {

@@ -17,7 +17,7 @@ export default function Distance({ leg }: DistanceProps) {
     (commutesPerYear * leg.duration.value) / secondsPerDay
   );
   const cost = currency.redond(leg.distance.value*1)
-
+console.log( "leg", leg.distance)
   return (
     <div>
       
