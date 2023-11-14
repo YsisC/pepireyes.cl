@@ -10,7 +10,7 @@ type DistanceProps = {
   leg: google.maps.DirectionsLeg;
 };
 
-export default function Distance({ leg }: DistanceProps) {
+export const Distance =({ leg }: DistanceProps) => {
   if (!leg.distance || !leg.duration) return null;
 
   const days = Math.floor(

@@ -17,7 +17,7 @@ type PlacesProps = {
   fetchDirections: (home: google.maps.LatLngLiteral) => void;
 };
 
-export default function Places({ setOffice, fetchDirections }: PlacesProps) {
+export const Places = ({ setOffice, fetchDirections }: PlacesProps) => {
   const {
     ready,
     value,

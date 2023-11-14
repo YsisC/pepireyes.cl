@@ -10,8 +10,8 @@ import {
   Circle,
   MarkerClusterer,
 } from "@react-google-maps/api";
-import Places from "./Places";
-import Distance from "./Distance";
+import {Places} from "./Places";
+import {Distance} from "./Distance";
 import { Clusterer } from "@react-google-maps/marker-clusterer";
 
 
@@ -25,7 +25,7 @@ type MapOptions = google.maps.MapOptions;
 const libs: Libraries = ['places'];
 const defaultLocation = { lat: -33.45, lng: -70.69 };
 
-const Map = () => {
+export const Map = () => {
 
   const [googleApiKey, setGoogleApiKey] = useState(process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY);
 
@@ -206,4 +206,3 @@ const farOptions = {
   fillColor: "#FF5252",
 };
 
-export default Map;
