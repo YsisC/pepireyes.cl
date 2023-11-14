@@ -80,7 +80,7 @@ footer {
   width: 100vw;
   background-color: black;
 }
-.nav {
+.nav-button {
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -88,10 +88,10 @@ footer {
   overflow-x: scroll;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding-left: 22.9rem;
-  width: 92%;
+  padding-left: 24.9rem;
+  width: 80vw;
 }
-.nav::-webkit-scrollbar {
+.nav-button::-webkit-scrollbar {
   width: 0; /* Esto oculta la barra de desplazamiento en navegadores basados en WebKit (Google Chrome, Safari) */
 }
 .linkActive {
@@ -102,14 +102,14 @@ footer {
   border: none;
   border-radius: 0;
  
-  padding: 0 3.5rem 0rem 0;
+  padding: 0 3.5rem 0rem 1rem;
   background-color: inherit;
   border-bottom: 2px solid white;
   color: white;
   text-transform: uppercase;
 }
 .boxActive {
-  padding: 0 3.5rem 0rem 0;
+  padding: 0 3.5rem 0rem 1rem;
   border-color: #ffbc0d;
   color: #ffbc0d;
 }
@@ -200,7 +200,7 @@ button.thumbnail {
     width: 100%;
     padding: 0.5rem;
   }
-  .nav {
+  .nav-button {
     width: 82vw;
     padding-left: 6rem;
     overflow-x: scroll;
@@ -208,7 +208,7 @@ button.thumbnail {
 }
 
 @media (min-width: 900px) {
-  .nav {
+  .nav-button {
     overflow-x: none;
 
   }

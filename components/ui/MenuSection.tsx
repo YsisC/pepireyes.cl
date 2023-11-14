@@ -50,7 +50,7 @@ const MenuSection: FC<Props> = ({ products, isLoading }) => {
 
   return (
 <>
-      <nav className={"nav"}>
+      <nav className={"nav-button"}>
         <TabButton  selectTab={() => setTab("burguer")} active={tab === "burguer"}>
          Hamburguesas
         </TabButton>
