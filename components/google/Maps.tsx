@@ -23,7 +23,7 @@ type MapOptions = google.maps.MapOptions;
 
 const defaultLocation = { lat: -33.45, lng: -70.69 };
 
-export const Map:FC  = () => {
+export const Maps:FC  = () => {
 
 
   const [office, setOffice] = useState<LatLngLiteral>();

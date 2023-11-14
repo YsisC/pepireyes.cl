@@ -20,7 +20,7 @@ import { ShopLayout } from "../../components/layouts";
 // import { countries } from "../../utils";
 import { CartContext } from "../../context";
 import { commune } from "@/utils";
-// import { Map } from "../../components/google/Map";
+import { Maps } from "../../components/google/Maps";
 
 type FormData = {
   firstName: string;
@@ -48,7 +48,7 @@ const getAddressFromCookies = (): FormData => {
 
 const AddressPage = () => {
   const router = useRouter();
-  const libs: Libraries = ["places"];
+  const [ libraries ] = useState(['places']) as Libraries[];
   const { updateAddress } = useContext(CartContext);
   const [googleApiKey, setGoogleApiKey] = useState(
     process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
@@ -75,18 +75,21 @@ const AddressPage = () => {
   useEffect(() => {
     reset(getAddressFromCookies());
   }, [reset]);
-
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: googleApiKey,
+    libraries
+  });
   const onSubmitAddress = (data: FormData) => {
     updateAddress(data);
     router.push("/checkout/summary");
   };
-
+  if (!isLoaded) return <div>Loading...</div>;
   return (
     <ShopLayout
       title="Dirección"
       pageDescription="Confirmar dirección del destino"
     >
-      <LoadScript libraries={libs} googleMapsApiKey={googleApiKey}>
+   <Maps />
         <section className="paddings">
           {/* <Map /> */}
           <form onSubmit={handleSubmit(onSubmitAddress)}>
@@ -207,7 +210,7 @@ const AddressPage = () => {
             </Box>
           </form>
         </section>
-      </LoadScript>
+      
     </ShopLayout>
   );
 };

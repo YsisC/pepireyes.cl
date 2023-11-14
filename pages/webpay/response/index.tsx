@@ -50,7 +50,7 @@ const ResponsePage = () => {
             console.error("Error al actualizar la transacción:", error);
           });
       }
-    }, [token_ws, actualizarTransaccion, router]);
+    }, [token_ws, router]);
 
   return (
     <ShopLayout
