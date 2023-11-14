@@ -20,7 +20,7 @@ import { ShopLayout } from "../../components/layouts";
 // import { countries } from "../../utils";
 import { CartContext } from "../../context";
 import { commune } from "@/utils";
-import { Map } from "../../components/google/Map";
+// import { Map } from "../../components/google/Map";
 
 type FormData = {
   firstName: string;
@@ -88,7 +88,7 @@ const AddressPage = () => {
     >
       <LoadScript libraries={libs} googleMapsApiKey={googleApiKey}>
         <section className="paddings">
-          <Map />
+          {/* <Map /> */}
           <form onSubmit={handleSubmit(onSubmitAddress)}>
             <Typography variant="h1" component="h1">
               Dirección
