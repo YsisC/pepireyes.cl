@@ -3,7 +3,7 @@ import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import {
   LoadScript,
   GoogleMap,
-
+  Libraries,
   StandaloneSearchBox,
   Marker,
   DirectionsRenderer,
@@ -13,7 +13,7 @@ import {
 import Places from "./Places";
 import Distance from "./Distance";
 import { Clusterer } from "@react-google-maps/marker-clusterer";
-import {  Libraries } from "@react-google-maps/api";
+
 
 import { pepireyesApi } from "@/axiosApi";
 import { Button } from "@mui/material";
@@ -22,7 +22,7 @@ import { toast } from 'react-toastify';
 type LatLngLiteral = google.maps.LatLngLiteral;
 type DirectionsResult = google.maps.DirectionsResult;
 type MapOptions = google.maps.MapOptions;
-const libs = ['places'] ;
+const libs: Libraries = ['places'];
 const defaultLocation = { lat: -33.45, lng: -70.69 };
 
 export  function Map() {
@@ -37,9 +37,9 @@ export  function Map() {
   const [center, setCenter] = useState(defaultLocation);
   const [location, setLocation] = useState(center);
 
-  const mapRef = useRef(null);
+  const mapRef = useRef<any>(null);
   const placeRef = useRef<any>(null);
-  const markerRef = useRef(null);
+  const markerRef = useRef<any>(null);
 
   const onLoad = useCallback((map: any) => (mapRef.current = map), []);
   const generateLocation = (position: LatLngLiteral) => {
@@ -51,12 +51,12 @@ export  function Map() {
     });
     return [location];
   };
-  const onIdle = useMemo(() =>  generateLocation(center),[center]);
+  // const onIdle = useMemo(() =>  generateLocation(center),[center]);
   useEffect(() => {
     generateLocation(center);
   }, [center]);  
 
-  const onLoadPlaces = (place:  google.maps.places.PlaceResult) => {
+  const onLoadPlaces = (place:  google.maps.places.SearchBox) => {
     placeRef.current = place;
   };
   const onPlacesChanged = () => {
@@ -71,7 +71,7 @@ export  function Map() {
   }
 };
 
-  const onMarkerLoad = (marker) => {
+  const onMarkerLoad = (marker:  google.maps.Marker) => {
     markerRef.current = marker;
   };
   
@@ -114,7 +114,7 @@ const onConfirm = () => {
 
    
       <div className="controls">
-        <h1>Commute?</h1>
+        <h1>Direccion: </h1>
 
     <StandaloneSearchBox
             onLoad={onLoadPlaces}
@@ -128,7 +128,7 @@ const onConfirm = () => {
             </div>
           </StandaloneSearchBox>
         {/* <button onClick={() => fetchDirections(office)}>Confirmar</button> */}
-        {!office && <p>Enter the address of your office.</p>}
+        {!location && <p>Ingresa tu direccion.</p>}
         {directions && <Distance leg={directions.routes[0].legs[0]} />}
       </div>
       <div className="map">
@@ -138,7 +138,7 @@ const onConfirm = () => {
           center={center}
           mapContainerClassName="map-container"
           onLoad={onLoad}
-          onIdle={onIdle}
+          // onIdle={onIdle}
         >
           {directions && (
             <DirectionsRenderer
@@ -160,16 +160,8 @@ const onConfirm = () => {
                 {(clusterer: Clusterer) =>
                 <>
              <Marker position={location} onLoad={onMarkerLoad}></Marker>
-                  {/* {houses?.map((house) => (
-                    <Marker
-                      key={house.lat}
-                      position={house}
-                      clusterer={clusterer}
-                      onClick={() => {
-                        fetchDirections(house);
-                      }}
-                    />
-                  ))} */}
+               
+              
                   </>
                 }
               </MarkerClusterer>

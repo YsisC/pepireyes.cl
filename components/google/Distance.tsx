@@ -1,3 +1,5 @@
+import { currency } from "@/utils";
+
 const commutesPerYear = 260 * 2;
 const litresPerKM = 10 / 100;
 const gasLitreCost = 1.5;
@@ -14,17 +16,15 @@ export default function Distance({ leg }: DistanceProps) {
   const days = Math.floor(
     (commutesPerYear * leg.duration.value) / secondsPerDay
   );
-  const cost = Math.floor(
-    (leg.distance.value / 1000) * litreCostKM * commutesPerYear
-  );
-console.log( "leg", leg.distance)
+  const cost = currency.redond(leg.distance.value*1)
+
   return (
     <div>
       
       <p>
-        This home is <span className="highlight">{leg.distance.text}</span> away
-        from your office. That would take{" "}
-        <span className="highlight">{leg.duration.value}</span> each direction.
+        El delivery es  <span className="highlight">{leg.distance.text}</span> de distancia desde el local
+        . Esto costara{" "}
+        <span className="highlight">{cost}</span> el envio.
       </p>
 
 
