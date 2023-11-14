@@ -19,7 +19,7 @@ import { ShopLayout } from "../../components/layouts";
 // import { countries } from "../../utils";
 import { CartContext } from "../../context";
 import { commune } from "@/utils";
-import { Map } from "../../components/google";
+import { Map } from "../../components/google/Map";
 
 type FormData = {
   firstName: string;
