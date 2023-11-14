@@ -14,10 +14,10 @@ import "@reach/combobox/styles.css";
 type LatLngLiteral = google.maps.LatLngLiteral;
 type PlacesProps = {
   setOffice: (position: google.maps.LatLngLiteral) => void;
-  fetchDirections: (home: google.maps.LatLngLiteral) => void;
+ 
 };
 
-export const Places = ({ setOffice, fetchDirections }: PlacesProps) => {
+export const Places = ({ setOffice,  }: PlacesProps) => {
   const {
     ready,
     value,

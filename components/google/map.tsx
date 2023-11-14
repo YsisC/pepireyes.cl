@@ -13,8 +13,6 @@ import {
 import {Places} from "./Places";
 import {Distance} from "./Distance";
 import { Clusterer } from "@react-google-maps/marker-clusterer";
-
-
 import { pepireyesApi } from "@/axiosApi";
 import { Button } from "@mui/material";
 import { toast } from 'react-toastify';
@@ -22,17 +20,14 @@ import { toast } from 'react-toastify';
 type LatLngLiteral = google.maps.LatLngLiteral;
 type DirectionsResult = google.maps.DirectionsResult;
 type MapOptions = google.maps.MapOptions;
-const libs: Libraries = ['places'];
+
 const defaultLocation = { lat: -33.45, lng: -70.69 };
 
 export const Map = () => {
 
-  const [googleApiKey, setGoogleApiKey] = useState(process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY);
 
   const [office, setOffice] = useState<LatLngLiteral>();
   const [directions, setDirections] = useState<DirectionsResult>();
-  // const mapRef = useRef<GoogleMap>();
-  // const [center, setCenter] = useState(defaultLocation);
 
   const [center, setCenter] = useState(defaultLocation);
   const [location, setLocation] = useState(center);
@@ -109,8 +104,7 @@ const onConfirm = () => {
 
   return (
     <div className="container">
-       <LoadScript libraries={libs} googleMapsApiKey={googleApiKey}>
-
+  
    
       <div className="controls">
         <h1>Direccion: </h1>
@@ -172,7 +166,7 @@ const onConfirm = () => {
          
         </GoogleMap>
       </div>
-      </LoadScript>
+     
     </div>
   );
 }
