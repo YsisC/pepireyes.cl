@@ -38,7 +38,7 @@ export  function Map() {
   const [location, setLocation] = useState(center);
 
   const mapRef = useRef(null);
-  const placeRef = useRef(null);
+  const placeRef = useRef<any>(null);
   const markerRef = useRef(null);
 
   const onLoad = useCallback((map: any) => (mapRef.current = map), []);
@@ -52,14 +52,16 @@ export  function Map() {
     return [location];
   };
   const onIdle = useMemo(() =>  generateLocation(center),[center]);
-      
+  useEffect(() => {
+    generateLocation(center);
+  }, [center]);  
 
-  const onLoadPlaces = (place) => {
+  const onLoadPlaces = (place:  google.maps.places.PlaceResult) => {
     placeRef.current = place;
   };
   const onPlacesChanged = () => {
- const places = placeRef.current.getPlaces();
-console.log(places)
+    const places = placeRef.current?.getPlaces(); // Use optional chaining here
+    console.log(places);
   if (places && places.length > 0) {
     const place = places[0].geometry.location;
     setCenter({ lat: place.lat(), lng: place.lng() });
@@ -78,16 +80,16 @@ console.log("ofece",office)
 
 
 const onConfirm = () => {
-  const places = placeRef.current.getPlaces() || [{}];
-  console.log(  location.lat)
-  console.log(  center.lat)
-  console.log(  places[0])
-   console.log("addres",  places[0].formatted_address)
-  console.log("name",    places[0].name,)
-  console.log("googleAddresInd",     places[0].id)
-  console.log("vicinity",    places[0].vicinity)
-  console.log("location", location)
-  console.log("default center", defaultLocation)
+  const places = placeRef.current?.getPlaces() || [{}];
+  // console.log(  location.lat)
+  // console.log(  center.lat)
+  // console.log(  places[0])
+  //  console.log("addres",  places[0].formatted_address)
+  // console.log("name",    places[0].name,)
+  // console.log("googleAddresInd",     places[0].id)
+  // console.log("vicinity",    places[0].vicinity)
+  // console.log("location", location)
+  // console.log("default center", defaultLocation)
   const service = new google.maps.DirectionsService();
   service.route(
     {
@@ -113,13 +115,7 @@ const onConfirm = () => {
    
       <div className="controls">
         <h1>Commute?</h1>
-        {/* <Places
-          setOffice={(position) => {
-            setOffice(position);
-            mapRef.current?.panTo(position);
-          }}
-        
-        /> */}
+
     <StandaloneSearchBox
             onLoad={onLoadPlaces}
             onPlacesChanged={onPlacesChanged}
