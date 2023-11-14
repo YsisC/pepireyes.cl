@@ -25,7 +25,7 @@ type MapOptions = google.maps.MapOptions;
 const libs: Libraries = ['places'];
 const defaultLocation = { lat: -33.45, lng: -70.69 };
 
-export default function Map() {
+const Map = () => {
 
   const [googleApiKey, setGoogleApiKey] = useState(process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY);
 
@@ -206,3 +206,4 @@ const farOptions = {
   fillColor: "#FF5252",
 };
 
+export default Map;
