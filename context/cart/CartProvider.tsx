@@ -9,7 +9,6 @@ import { IOrder } from "@/interfaces/order";
 
 export interface CartState {
   isLoaded: boolean;
-  cost: number;
   cart: ICartProduct[];
   numberOfItems: number;
   subTotal: number;
@@ -44,7 +43,6 @@ interface CartProviderProps {
 
 const CART_INITIAL_STATE: CartState = {
   isLoaded: false,
-  cost: 0,
   cart: [],
   numberOfItems: 0,
   subTotal: 0,
@@ -74,21 +72,21 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
       });
     }
   }, []);
-  // // Efecto
-  // useEffect(() => {
-  //   try {
-  //     const cookieCost = Cookie.get("cost") ? Number(Cookie.get("cost")!) : null;
-  //     dispatch({
-  //       type: "[Cost] - LoadCost from cookies | storage",
-  //       payload: cookieCost as number,
-  //     });
-  //   } catch (error) {
-  //     dispatch({
-  //       type: "[Cart] - LoadCart from cookies | storage",
-  //       payload: 0,
-  //     });
-  //   }
-  // }, []);
+  // Efecto
+  useEffect(() => {
+    try {
+      const cookieCost = Cookie.get("delivery") ? Number(Cookie.get("delivery")) : 0;
+      dispatch({
+        type: "[Cost] - LoadCost from cookies | storage",
+        payload: cookieCost,
+      });
+    } catch (error) {
+      dispatch({
+        type:"[Cost] - LoadCost from cookies | storage",
+        payload: 0,
+      });
+    }
+  }, []);
 
   useEffect(() => {
     if (Cookie.get("firstName")) {
@@ -116,6 +114,12 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
   useEffect(() => {
     if (state.cart.length > 0) {
       Cookie.set("cart", JSON.stringify(state.cart));
+    }
+  }, [state.cart]);
+
+  useEffect(() => {
+    if (state.delivery > 0) {
+      Cookie.set("delivery", String(state.delivery));
     }
   }, [state.cart]);
 
@@ -179,7 +183,6 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
   };
 
   const updateAddress = (address: ShippingAddress) => {
-    Cookie.set("firstName", address.firstName);
     Cookie.set("lastName", address.lastName);
     Cookie.set("address", address.address);
     Cookie.set("address2", address.address2 || "");
@@ -192,6 +195,10 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
 
     dispatch({ type: "[Cart] - Update Address", payload: address });
   };
+  const updateDelivey = (cost: number) => {
+   Cookie.set("cost",String(cost));
+    dispatch({ type: '[Cost] - Update Delivery', payload: cost });
+  }
   const saveLocation = (location: any, places: any) => {
     const customLocation: Location = {
       lat: location?.lat || 0,
@@ -267,6 +274,7 @@ console.log("commune", places[0].address_components[3].long_name);
         removeCartProduct,
         updateAddress,
         saveLocation,
+        updateDelivey,
         // Orders
         createOrder,
       }}

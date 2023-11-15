@@ -73,6 +73,7 @@ export const Maps: FC = () => {
     });
     return [locationCustomer];
   };
+  const { updateAddress, numberOfItems, location , updateDelivey} = useContext(CartContext);
 
   const onLoadPlaces = (place: google.maps.places.SearchBox) => {
     placeRef.current = place;
@@ -118,16 +119,24 @@ export const Maps: FC = () => {
       (result, status) => {
         if (status === "OK" && result) {
           setDirections(result);
+          const legData: google.maps.DirectionsLeg = result.routes[0].legs[0];
+          if (legData && legData.distance) {
+            const calculateDelivery = legData?.distance.value * 1;
+       
+            updateDelivey(calculateDelivery);
+          }
+       
         }
       }
     );
+   
+
     const notify = () => toast("Locacion seleccionada.");
     notify();
   };
   const router = useRouter();
 
-  const { updateAddress, numberOfItems, location } = useContext(CartContext);
-console.log("show location",location)
+
   const {
     register,
     handleSubmit,
@@ -166,6 +175,7 @@ console.log("show location",location)
 
   const onSubmitAddress = (data: FormData) => {
     updateAddress(data);
+
     router.push("/checkout/summary");
   };
   return (

@@ -18,6 +18,7 @@ interface ContextProps {
   removeCartProduct: (product: ICartProduct) => void;
   updateAddress: (address: ShippingAddress) => void;
   saveLocation: (location: Location, place: any) => void;
+  updateDelivey: (cost: number) => void;
   // Orders
   createOrder: () => Promise<{ hasError: boolean; message: string }>;
 }
