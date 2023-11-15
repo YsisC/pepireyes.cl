@@ -26,14 +26,16 @@ console.log("addres", addresShipping)
     Cookies.set("cost", cost.toString() );
   };
 
-useEffect(() => {
+  useEffect(() => {
+    try {
    
-      // Calculate cost based on distance and duration, replace this with your calculation logic
-      // const calculatedCost = parseFloat(leg.distance) + parseFloat(leg.duration);
       setCostShipping(Number(calculateDelivery));
       sendCostToCookies(Number(calculateDelivery));
- 
-    }, [leg.distance, leg.duration, calculateDelivery]);
+    } catch (error) {
+      // Handle calculation errors, e.g., log the error or provide a fallback value
+      console.error("Error calculating cost:", error);
+    }
+  }, [leg.distance, leg.duration, calculateDelivery]);
 
 
   return (

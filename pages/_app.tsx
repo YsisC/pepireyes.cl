@@ -5,7 +5,7 @@ import { AppProps } from "next/app";
 import { SWRConfig } from "swr";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-
+import "react-toastify/dist/ReactToastify.css";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import { theme } from "../themeMUI/theme";
 import { CartProvider, UiProvider, AuthProvider } from "../context";

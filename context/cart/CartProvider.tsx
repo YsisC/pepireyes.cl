@@ -98,8 +98,8 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
         address: Cookie.get("address") || "",
         address2: Cookie.get("address2") || "",
         location: {
-            lat: Cookie.get("lat") || "",
-            lng: Cookie.get("lng") || "",
+            lat: Number(Cookie.get("lat")) || 0,
+            lng:  Number(Cookie.get("lng")) || 0,
             // Add other properties as needed
           },
         city: Cookie.get("city") || "",

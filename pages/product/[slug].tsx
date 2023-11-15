@@ -109,7 +109,7 @@ const ProductPage: NextPage<Props> = ({ product }) => {
 
               {/* Agregar al carrito */}
 
-              {!openLocal ? (
+              {openLocal ? (
                 product.inStock > 0 ? (
                   <Button
                     color="secondary"

@@ -83,6 +83,9 @@ const webpay_respuesta = async (
     });
 
    
+    if (data.status == "FAILED") {
+      return res.status(401).json({ message: "Pago rechazado" });
+    }
     if (data.status !== "AUTHORIZED") {
       return res.status(401).json({ message: "Orden no reconocida" });
     }
