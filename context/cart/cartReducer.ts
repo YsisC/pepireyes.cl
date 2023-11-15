@@ -1,20 +1,24 @@
-import { CartState, ShippingAddress } from './';
+import { CartState, ShippingAddress, Location } from './';
 import { ICartProduct } from '../../interfaces';
 
 
 type CartActionType =
     | { type: '[Cart] - LoadCart from cookies | storage', payload: ICartProduct[] }
+    | { type: '[Cost] - LoadCost from cookies | storage', payload: number }
     | { type: '[Cart] - Update products in cart', payload: ICartProduct[] }
     | { type: '[Cart] - Change cart quantity', payload: ICartProduct }
     | { type: '[Cart] - Remove product in cart', payload: ICartProduct }
     | { type: '[Cart] - LoadAddress from Cookies', payload: ShippingAddress }
     | { type: '[Cart] - Update Address', payload: ShippingAddress }
+    | { type: '[Cart] - SHIPPING_ADDRESS_MAP_LOCATION',
+     payload: Location }
+    
     | { 
         type: '[Cart] - Update order summary',
          payload:{
             numberOfItems: number;
             subTotal: number;
-            tax: number;
+            delivery: number;
             total: number;
          } }
 
@@ -29,6 +33,13 @@ export const cartReducer = (state: CartState, action: CartActionType): CartState
                 ...state,
                 isLoaded: true,
                 cart: [...action.payload]
+            }
+
+        case '[Cost] - LoadCost from cookies | storage':
+            return {
+                ...state,
+             
+                cost: action.payload
             }
 
 
@@ -59,6 +70,11 @@ export const cartReducer = (state: CartState, action: CartActionType): CartState
                 ...state,
                 ...action.payload
             }
+        case '[Cart] - SHIPPING_ADDRESS_MAP_LOCATION':
+            return {
+                ...state,
+                location: action.payload
+            }
             
             case '[Cart] - Update Address':
             case '[Cart] - LoadAddress from Cookies':
@@ -73,7 +89,7 @@ export const cartReducer = (state: CartState, action: CartActionType): CartState
             cart: [],
             numberOfItems: 0,
             subTotal: 0,
-            tax: 0,
+            delivery: 0,
             total: 0
          }
 

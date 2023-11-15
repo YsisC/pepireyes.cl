@@ -18,7 +18,15 @@ const orderSchema = new Schema({
         lastName  : { type: String, required: true },
         address   : { type: String, required: true },
         address2  : { type: String },
-        zip       : { type: String, required: true },
+    
+        location: {
+            lat: { type: Number },
+            lng: { type: Number },
+            address: { type: String },
+            name: { type: String },
+            vicinity: { type: String },
+            googleAddressId: { type: String },
+          },
         city      : { type: String, required: true },
         commune   : { type: String, required: true },
         phone     : { type: String, required: true },
@@ -26,7 +34,7 @@ const orderSchema = new Schema({
 
     numberOfItems: { type: Number, required: true },
     subTotal     : { type: Number, required: true },
-    tax          : { type: Number, required: true },
+    delivery          : { type: Number, required: true },
     total        : { type: Number, required: true },
     status: {
         type: Number,

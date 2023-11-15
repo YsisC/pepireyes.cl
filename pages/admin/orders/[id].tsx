@@ -85,7 +85,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
                   : ""}
               </Typography>
               <Typography>
-                {shippingAddress.city}, {shippingAddress.zip}
+                {shippingAddress.city}, 
               </Typography>
 
               <Typography>{shippingAddress.phone}</Typography>
@@ -97,7 +97,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
                   numberOfItems: order.numberOfItems,
                   subTotal: order.subTotal,
                   total: order.total,
-                  tax: order.tax,
+                  delivery: order.delivery,
                 }}
               />
 

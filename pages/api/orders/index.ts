@@ -5,6 +5,7 @@ import { db } from "../../../database";
 import { IOrder, IUser } from "../../../interfaces";
 import { Order, Product } from "../../../models";
 import { getServerSession } from "next-auth";
+import Cookies from "js-cookie";
 
 type Data = { message: string } | IOrder;
 
@@ -22,7 +23,7 @@ export default function handler(
 }
 
 const createOrder = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
-  const { orderItems, total } = req.body as IOrder;
+  const { orderItems, total, delivery } = req.body as IOrder;
 
   // Vericar que tengamos un usuario
 
@@ -55,8 +56,9 @@ const createOrder = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       return currentPrice * current.quantity + prev;
     }, 0);
 
-    const taxRate = Number(process.env.NEXT_PUBLIC_TAX_RATE || 0);
-    const backendTotal = subTotal * (taxRate + 1);
+  
+    const backendTotal = subTotal + delivery;
+
 
     if (total !== backendTotal) {
       throw new Error("El total no cuadra con el monto");

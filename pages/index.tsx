@@ -32,6 +32,7 @@ const HomePage: NextPage = () => {
     const checkAndSetOpenState = () => {
        
         console.log("is open", isOpen);
+        console.log("openLocal", openLocal)
 
         // Use the isComponentMounted flag to check if the component is still mounted
         if (isComponentMounted && isOpen === false) {
@@ -42,6 +43,7 @@ const HomePage: NextPage = () => {
     // Use setTimeout to delay the execution by 2500 milliseconds (2.5 seconds)
     const timeoutId = setTimeout(() => {
         checkAndSetOpenState();
+        
     }, 3500);
 
     // Cleanup function to set the isComponentMounted flag to false when the component is unmounted
@@ -49,7 +51,7 @@ const HomePage: NextPage = () => {
         isComponentMounted = false;
         clearTimeout(timeoutId);
     };
-}, [verificarEstadoDeTienda, openLocal]);
+}, []);
 
   return (
     <ShopLayout

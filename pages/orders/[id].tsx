@@ -31,6 +31,7 @@ import styles from "../../styles/Order.module.css";
 import Image from "next/image";
 import { useStatusClass } from "@/hooks";
 import OrderStatus from "@/components/admin/order/OrderStatus";
+import Link from "../../themeMUI/Link";
 interface Props {
   order: IOrder;
 }
@@ -130,11 +131,12 @@ const OrderPage: NextPage<Props> = ({ order }) => {
                     : ""}
                 </Typography>
                 <Typography>
-                  {shippingAddress.city}, {shippingAddress.zip}
+                  {shippingAddress.city}
                 </Typography>
                 <Typography>{shippingAddress.commune}</Typography>
                 <Typography>{shippingAddress.phone}</Typography>
-
+                
+              
                 <Divider sx={{ my: 1 }} />
 
                 <OrderSummary
@@ -142,7 +144,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
                     numberOfItems: order.numberOfItems,
                     subTotal: order.subTotal,
                     total: order.total,
-                    tax: order.tax,
+                    delivery: order.delivery,
                   }}
                 />
 

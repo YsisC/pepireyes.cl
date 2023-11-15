@@ -8,15 +8,15 @@ interface Props {
         numberOfItems: number;
         subTotal: number;
         total: number;
-        tax: number;
+        delivery: number;
     }
 }
 
 export const OrderSummary: FC<Props> = ({ orderValues }) => {
 
-    const { numberOfItems, subTotal, total, tax } = useContext( CartContext );
+    const { numberOfItems, subTotal, total, delivery } = useContext( CartContext );
     
-    const summaryValues = orderValues ? orderValues : { numberOfItems, subTotal, total, tax };
+    const summaryValues = orderValues ? orderValues : { numberOfItems, subTotal, total, delivery };
   
  
     return (
@@ -37,10 +37,10 @@ export const OrderSummary: FC<Props> = ({ orderValues }) => {
             </Grid>
     
             <Grid item xs={6}>
-                <Typography>Impuestos ({ Number(process.env.NEXT_PUBLIC_TAX_RATE) * 100 }%)</Typography>
+                <Typography>Delivery </Typography>
             </Grid>
             <Grid item xs={6} display='flex' justifyContent='end'>
-                <Typography>{ currency.format(summaryValues.tax) }</Typography>
+                <Typography>{ currency.format(summaryValues.delivery) }</Typography>
             </Grid>
     
             <Grid item xs={6} sx={{ mt:2 }}>

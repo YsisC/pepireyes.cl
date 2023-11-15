@@ -9,7 +9,7 @@ export interface IOrder {
 
   numberOfItems: number;
   subTotal: number;
-  tax: number;
+delivery: number;
   total: number;
 
   isPaid: boolean;
@@ -30,13 +30,21 @@ export interface IOrderItem {
   image: string;
   price: number;
 }
-
+export interface Location {
+  lat: number;
+  lng: number;
+  address?: string;
+  name?: string;
+  city?: string;
+  commune?: string;
+  googleAddressId?: string;
+}
 export interface ShippingAddress {
   firstName: string;
   lastName: string;
   address: string;
   address2?: string;
-  zip: string;
+  location?: Location;
   city: string;
   commune: string;
   phone: string;

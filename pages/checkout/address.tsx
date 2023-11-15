@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { LoadScript,useLoadScript, Libraries } from "@react-google-maps/api";
+import { LoadScript, useLoadScript, Libraries } from "@react-google-maps/api";
 import {
   Box,
   Button,
@@ -15,19 +15,27 @@ import {
 import Cookies from "js-cookie";
 import { useForm } from "react-hook-form";
 
-
 import { ShopLayout } from "../../components/layouts";
 // import { countries } from "../../utils";
 import { CartContext } from "../../context";
 import { commune } from "@/utils";
 import { Maps } from "../../components/google/Maps";
+import { ShippingAddress } from "../../context/cart/CartProvider";
+type LocationData = {
+  lat: string | number;
+  lng: string | number;
+  address?: string;
+  name?: string;
+  vicinity?: string;
+  googleAddressId?: string;
 
+};
 type FormData = {
   firstName: string;
   lastName: string;
   address: string;
   address2?: string;
-  zip: string;
+  location: LocationData; // Include location property
   city: string;
   commune: string;
   phone: string;
@@ -39,7 +47,11 @@ const getAddressFromCookies = (): FormData => {
     lastName: Cookies.get("lastName") || "",
     address: Cookies.get("address") || "",
     address2: Cookies.get("address2") || "",
-    zip: Cookies.get("zip") || "",
+    location: {
+      lat: Cookies.get("lat") || 0,
+      lng: Cookies.get("lng") || 0,
+      // Add other properties as needed
+    },
     city: Cookies.get("city") || "",
     commune: Cookies.get("country") || "",
     phone: Cookies.get("phone") || "",
@@ -48,7 +60,7 @@ const getAddressFromCookies = (): FormData => {
 
 const AddressPage = () => {
   const router = useRouter();
-  const [ libraries ] = useState(['places']) as Libraries[];
+  const [libraries] = useState(["places"]) as Libraries[];
   const { updateAddress } = useContext(CartContext);
   const [googleApiKey, setGoogleApiKey] = useState(
     process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
@@ -65,7 +77,6 @@ const AddressPage = () => {
       lastName: "",
       address: "",
       address2: "",
-      zip: "",
       city: "",
       commune: commune[0].code,
       phone: "",
@@ -77,7 +88,7 @@ const AddressPage = () => {
   }, [reset]);
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: googleApiKey,
-    libraries
+    libraries,
   });
   const onSubmitAddress = (data: FormData) => {
     updateAddress(data);
@@ -89,160 +100,19 @@ const AddressPage = () => {
       title="Dirección"
       pageDescription="Confirmar dirección del destino"
     >
-   <Maps />
-        <section className="paddings">
-          {/* <Map /> */}
-          <form onSubmit={handleSubmit(onSubmitAddress)}>
-            <Typography variant="h1" component="h1">
-              Dirección
-            </Typography>
+      <section className="paddings">
+       
 
-            <Grid container spacing={2} sx={{ mt: 2 }}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  label="Nombre"
-                  variant="filled"
-                  fullWidth
-                  {...register("firstName", {
-                    required: "Este campo es requerido",
-                  })}
-                  error={!!errors.firstName}
-                  helperText={errors.firstName?.message}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  label="Apellido"
-                  variant="filled"
-                  fullWidth
-                  {...register("lastName", {
-                    required: "Este campo es requerido",
-                  })}
-                  error={!!errors.lastName}
-                  helperText={errors.lastName?.message}
-                />
-              </Grid>
-
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  label="Dirección"
-                  variant="filled"
-                  fullWidth
-                  {...register("address", {
-                    required: "Este campo es requerido",
-                  })}
-                  error={!!errors.address}
-                  helperText={errors.address?.message}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  label="Dirección 2 (opcional)"
-                  variant="filled"
-                  fullWidth
-                  {...register("address2")}
-                />
-              </Grid>
-
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  label="Código Postal"
-                  variant="filled"
-                  fullWidth
-                  {...register("zip", {
-                    required: "Este campo es requerido",
-                  })}
-                  error={!!errors.zip}
-                  helperText={errors.zip?.message}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  label="Ciudad"
-                  variant="filled"
-                  fullWidth
-                  {...register("city", {
-                    required: "Este campo es requerido",
-                  })}
-                  error={!!errors.city}
-                  helperText={errors.city?.message}
-                />
-              </Grid>
-
-              <Grid item xs={12} sm={6}>
-                {/* <FormControl fullWidth> */}
-                <TextField
-                  // select
-                  variant="filled"
-                  label="Comuna"
-                  fullWidth
-                  // defaultValue={ Cookies.get('country') || countries[0].code }
-                  {...register("commune", {
-                    required: "Este campo es requerido",
-                  })}
-                  error={!!errors.commune}
-                  helperText={errors.commune?.message}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  label="Teléfono"
-                  variant="filled"
-                  fullWidth
-                  {...register("phone", {
-                    required: "Este campo es requerido",
-                  })}
-                  error={!!errors.phone}
-                  helperText={errors.phone?.message}
-                />
-              </Grid>
-            </Grid>
-
-            <Box sx={{ mt: 5 }} display="flex" justifyContent="center">
-              <Button
-                type="submit"
-                color="secondary"
-                className="circular-btn"
-                size="large"
-              >
-                Revisar pedido
-              </Button>
-            </Box>
-          </form>
-        </section>
       
+          <Maps />
+       
+
+
+      </section>
     </ShopLayout>
   );
 };
 
-// You should use getServerSideProps when:
-// - Only if you need to pre-render a page whose data must be fetched at request time
-// export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
-//     const { token = '' } = req.cookies;
-//     let isValidToken = false;
-
-//     try {
-//         await jwt.isValidToken( token );
-//         isValidToken = true;
-//     } catch (error) {
-//         isValidToken = false;
-//     }
-
-//     if ( !isValidToken ) {
-//         return {
-//             redirect: {
-//                 destination: '/auth/login?p=/checkout/address',
-//                 permanent: false,
-//             }
-//         }
-//     }
-
-//     return {
-//         props: {
-
-//         }
-//     }
-// }
 
 export default AddressPage;

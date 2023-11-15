@@ -1,33 +1,77 @@
 import { currency } from "@/utils";
-import {FC} from 'react'
-const commutesPerYear = 260 * 2;
-const litresPerKM = 10 / 100;
-const gasLitreCost = 1.5;
-const litreCostKM = litresPerKM * gasLitreCost;
-const secondsPerDay = 60 * 60 * 24;
+import { FC, useEffect, useState, useContext } from 'react';
+import Cookies from "js-cookie";
+import { Card, CardContent, Chip, Divider, Typography } from "@mui/material";
+import { CartContext } from "@/context";
+import { Box } from "@mui/system";
+
+
 
 type Props = {
   leg: google.maps.DirectionsLeg;
 };
 
 export const Distance:FC<Props> =({ leg }) => {
+  const [costShipping, setCostShipping] = useState<number | null>(null);
+  const {  numberOfItems,  } = useContext(CartContext);
   if (!leg.distance || !leg.duration) return null;
 
-  const days = Math.floor(
-    (commutesPerYear * leg.duration.value) / secondsPerDay
-  );
-  const cost = currency.redond(leg.distance.value*1)
-console.log( "leg", leg.distance)
+  const addresShipping = Cookies.get("address") || "";
+  const cityShipping = Cookies.get("city") || "";
+  const communeShipping = Cookies.get("commune") || "";
+  const calculateDelivery = leg.distance.value*1
+  const deliveryFormat = currency.redond(calculateDelivery)
+console.log("addres", addresShipping)
+  const sendCostToCookies = (cost: number) => {
+    Cookies.set("cost", cost.toString() );
+  };
+
+useEffect(() => {
+   
+      // Calculate cost based on distance and duration, replace this with your calculation logic
+      // const calculatedCost = parseFloat(leg.distance) + parseFloat(leg.duration);
+      setCostShipping(Number(calculateDelivery));
+      sendCostToCookies(Number(calculateDelivery));
+ 
+  }, [leg]);
+
+
   return (
     <div>
-      
-      <p>
-        El delivery es  <span className="highlight">{leg.distance.text}</span> de distancia desde el local
-        . Esto costara{" "}
-        <span className="highlight">{cost}</span> el envio.
-      </p>
+<Chip
+color="success"
+variant="outlined"
+label={"Envio: "+ deliveryFormat}
+sx={{  mb: 2 }}
+ />
+ <Card className="summary-card">
+            <CardContent>
+              <Typography variant="h2">
+                Resumen ({numberOfItems}{" "}
+                {numberOfItems === 1 ? "producto" : "productos"})
+              </Typography>
+              <Divider sx={{ my: 1 }} />
 
+              <Box display="flex" justifyContent="space-between">
+                <Typography variant="subtitle1">
+                  Dirección de entrega
+                </Typography>
+              </Box>
 
+              <Typography>{addresShipping} </Typography>
+
+              <Typography>
+                  {cityShipping}
+                </Typography>
+                <Typography>{communeShipping}</Typography>
+
+              <Divider sx={{ my: 1 }} />
+
+              <Box display="flex" justifyContent="end"></Box>
+
+              <Box sx={{ mt: 3 }} display="flex" flexDirection="column"></Box>
+            </CardContent>
+          </Card>
     </div>
   );
 }
