@@ -35,7 +35,7 @@ console.log("addres", addresShipping)
       // Handle calculation errors, e.g., log the error or provide a fallback value
       console.error("Error calculating cost:", error);
     }
-  }, [leg.distance, leg.duration, calculateDelivery]);
+  }, []);
 
 
   return (
