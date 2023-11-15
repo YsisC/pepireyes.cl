@@ -1,5 +1,5 @@
-import { currency } from "@/utils";
 import { FC, useEffect, useState, useContext } from 'react';
+import { currency } from "@/utils";
 import Cookies from "js-cookie";
 import { Card, CardContent, Chip, Divider, Typography } from "@mui/material";
 import { CartContext } from "@/context";
@@ -33,7 +33,7 @@ useEffect(() => {
       setCostShipping(Number(calculateDelivery));
       sendCostToCookies(Number(calculateDelivery));
  
-  }, [leg]);
+    }, [leg.distance, leg.duration, calculateDelivery]);
 
 
   return (
