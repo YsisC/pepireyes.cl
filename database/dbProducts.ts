@@ -72,7 +72,6 @@ export const getAllProducts  = async ():Promise<IProduct[]> => {
         return product;
     });
 
-
     return JSON.parse( JSON.stringify( updatedProducts ) );
 }
 
