@@ -152,7 +152,15 @@ console.log(product)
             subTitle={` ${ product.title ? "Editando :"+ product.title :"" }`}
             icon={ <DriveFileRenameOutline /> }
         >
+            
+
+ 
+           
             <form onSubmit={ handleSubmit( onSubmit ) }>
+              
+
+                <Grid container spacing={2}>
+                <Grid item xs={12} sm={11}>
                 <Box display='flex' justifyContent='end' sx={{ mb: 1 }}>
                     <Button 
                         color="secondary"
@@ -164,8 +172,7 @@ console.log(product)
                         Guardar
                     </Button>
                 </Box>
-
-                <Grid container spacing={2}>
+                </Grid>
                     {/* Data */}
                     <Grid item xs={12} sm={ 6 }>
 
