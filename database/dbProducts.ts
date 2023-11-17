@@ -11,14 +11,15 @@ export const getProductBySlug = async (slug: string): Promise<IProduct | null> =
     await db.disconnect();
 
 
-    if (!product) {
+    if ( !product ) {
         return null;
     }
 
-    return JSON.parse(JSON.stringify(product));
+    product.images = product.images.map( image => {
+        return image.includes('http') ? image : `${ process.env.NEXTAUTH_URL}products/${ image }`
+    });
 
-
-
+    return JSON.parse( JSON.stringify( product ) );
 }
 
 interface ProductSlug {
@@ -46,7 +47,15 @@ export const getProductsByTerm = async ( term:string): Promise<IProduct[]> => {
 
     await db.disconnect();
 
-    return products;
+    const updatedProducts = products.map( product => {
+        product.images = product.images.map( image => {
+            return image.includes('http') ? image : `${ process.env.NEXTAUTH_URL}products/${ image }`
+        });
+
+        return product;
+    })
+    return updatedProducts;
+   
 }
 
 export const getAllProducts  = async ():Promise<IProduct[]> => {
@@ -56,6 +65,15 @@ export const getAllProducts  = async ():Promise<IProduct[]> => {
     .lean();
     await db.disconnect();
  
+    const updatedProducts = products.map( product => {
+        product.images = product.images.map( image => {
+            return image.includes('http') ? image : `${ process.env.NEXTAUTH_URL}products/${ image }`
+        });
+        return product;
+    });
 
-    return products;
+
+    return JSON.parse( JSON.stringify( updatedProducts ) );
 }
+
+

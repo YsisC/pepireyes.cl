@@ -13,7 +13,7 @@ export const ProductCard: FC<Props> = ({ product }) => {
     const [isHovered, setIsHovered] = useState(false);
     const [isImageLoaded, setIsImageLoaded] = useState(false);
 
-    const productImage =  `/products/${ product.images[0] }`;
+    const productImage =  `${ product.images[0] }`;
 
   
 

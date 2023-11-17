@@ -59,7 +59,7 @@ export const initialData: SeedData = {
         {
             description: "Carne de primera, pechuga de pollo o a la plancha y chuleta ahumada",
             images: [
-                '2023-07-03 at 14.25.14 (4).jpeg'
+                '202314.25.14 (4).jpeg'
                
             ],
             inStock: 7,
@@ -209,7 +209,7 @@ export const initialData: SeedData = {
         {
             description: "Malta",
             images: [
-                'malta de lata.jpg'
+                'maltadelata.jpg'
                
             ],
             inStock: 5,
@@ -234,6 +234,21 @@ export const initialData: SeedData = {
             type: 'drink',
             tags: ['drink'],
             title: "Frescolita",
+           
+        },
+        {
+            description: "Coca cola de lata",
+            images: [
+                'cocacola.jpg'
+               
+            ],
+            inStock: 5,
+            price: 5000,
+            size: 'Mediano',
+            slug: "cocacola",
+            type: 'drink',
+            tags: ['drink'],
+            title: "cocacola",
            
         },
         {

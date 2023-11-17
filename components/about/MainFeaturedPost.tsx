@@ -31,7 +31,8 @@ export default function MainFeaturedPost(props: MainFeaturedPostProps) {
     }}
   >
       {/* Increase the priority of the hero background image */}
-      {<CardMedia component = {"img"} style={{ display: 'none' }} src={post.image} alt={post.imageText} />}
+      {<CardMedia component = {"img"}
+       style={{ display: 'none' }} src={post.image} alt={post.imageText} />}
       <Box
         sx={{
           position: 'absolute',

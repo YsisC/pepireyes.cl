@@ -39,7 +39,10 @@ async function getProductBySlug(req: NextApiRequest, res: NextApiResponse<Data>)
             message: 'Producto no encontrado'
         })
     }
+    product.images = product.images.map( image => {
+        return image.includes('http') ? image : `${ process.env.NEXTAUTH_URL}/products/${ image }`
+    });
 
-    return res.json( product );
+    return JSON.parse( JSON.stringify( product ) );
 
 }

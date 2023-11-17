@@ -40,6 +40,7 @@ const ProductPage: NextPage<Props> = ({ product }) => {
   });
 
   useEffect(() => {
+    console.log("images", product.images)
     const updatedState = () => {
       const isOpen = verificarEstadoDeTienda();
       console.log(isOpen);

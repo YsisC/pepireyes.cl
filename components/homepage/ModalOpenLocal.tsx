@@ -35,10 +35,12 @@ interface Props {
   handleClose: () => void;
 }
 const ModalOpenLocal: FC<Props> = ({ open, handleOpen, handleClose }) => {
+  console.log(open)
   return (
     <div>
-      {typeof open === "boolean" && (
-        <Modal
+      {( open === false) && (
+       
+       <Modal
           open={open}
           onClose={handleClose}
           aria-labelledby="modal-modal-openLocal"

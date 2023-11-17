@@ -26,32 +26,21 @@ const HomePage: NextPage = () => {
     "2023-07-03 at 14.25.14 (16).jpeg",
     "2023-07-03 at 14.25.14 (17).jpeg",
   ];
+
   useEffect(() => {
-    let isComponentMounted = true;
-    const isOpen = verificarEstadoDeTienda();
-    const checkAndSetOpenState = () => {
-       
-        console.log("is open", isOpen);
-        console.log("openLocal", openLocal)
-
-        // Use the isComponentMounted flag to check if the component is still mounted
-        if (isComponentMounted && isOpen === false) {
-            setOpen(true);
-        }
+   
+    const updatedState = () => {
+      const isOpen = verificarEstadoDeTienda();
+      console.log(isOpen);
+  
     };
+    
+ 
 
-    // Use setTimeout to delay the execution by 2500 milliseconds (2.5 seconds)
-    const timeoutId = setTimeout(() => {
-        checkAndSetOpenState();
-        
-    }, 3500);
+    updatedState();
 
-    // Cleanup function to set the isComponentMounted flag to false when the component is unmounted
-    return () => {
-        isComponentMounted = false;
-        clearTimeout(timeoutId);
-    };
-}, []);
+
+}, [openLocal, verificarEstadoDeTienda,  ]);
 
   return (
     <ShopLayout
@@ -65,7 +54,7 @@ const HomePage: NextPage = () => {
       <FeatureProducts />
       <ContacUs />
       <ModalOpenLocal
-        open={open}
+        open={openLocal}
         handleOpen={handleOpen}
         handleClose={handleClose}
       />
