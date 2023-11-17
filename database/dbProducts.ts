@@ -16,7 +16,7 @@ export const getProductBySlug = async (slug: string): Promise<IProduct | null> =
     }
 
     product.images = product.images.map( image => {
-        return image.includes('http') ? image : `${ process.env.NEXTAUTH_URL}products/${ image }`
+        return image.includes('http') ? image : `${ process.env.HOSTNAME}/products/${ image }`
     });
 
     return JSON.parse( JSON.stringify( product ) );
@@ -49,7 +49,7 @@ export const getProductsByTerm = async ( term:string): Promise<IProduct[]> => {
 
     const updatedProducts = products.map( product => {
         product.images = product.images.map( image => {
-            return image.includes('http') ? image : `${ process.env.NEXTAUTH_URL}products/${ image }`
+            return image.includes('http') ? image : `${ process.env.HOSTNAME}products/${ image }`
         });
 
         return product;
@@ -67,7 +67,7 @@ export const getAllProducts  = async ():Promise<IProduct[]> => {
  
     const updatedProducts = products.map( product => {
         product.images = product.images.map( image => {
-            return image.includes('http') ? image : `${ process.env.NEXTAUTH_URL}products/${ image }`
+            return image.includes('http') ? image : `${ process.env.HOSTNAME}products/${ image }`
         });
         return product;
     });
