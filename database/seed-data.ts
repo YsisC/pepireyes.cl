@@ -74,7 +74,7 @@ export const initialData: SeedData = {
         {
             description: "Carne de primera, pechuga de pollo o a la plancha chuleta ahumada",
             images: [
-                '2023-07-03 at 14.25.14 (4).jpeg'
+                '202314.25.14 (4).jpeg'
                
             ],
             inStock: 7,
@@ -117,6 +117,21 @@ export const initialData: SeedData = {
            
         },
         {
+            description: "650gr de papas firtas, 200gr de carne mechada, tocineta, queso cheddar.",
+            images: [
+                'WhatsApp Image 2023-11-07 at 16.29.54.jpeg'
+              
+            ],
+            inStock: 5,
+            price: 11990,
+            size: 'Mediano',
+            slug: "combo_suprema_mechada",
+            type: 'combo',
+            tags: ['papas'],
+            title: "Combo de papas supremas mechada",
+           
+        },
+        {
             description: "1 kg de proteina comprendido entre lomo liso, cerdo, pollo, calamares, camarones, choritos, chorizo y salchichas y verduras salteadas.",
             images: [
                 'marytierra.jpeg'
@@ -124,7 +139,7 @@ export const initialData: SeedData = {
             ],
             inStock: 15,
             price: 30.000,
-            size: 'Mediano',
+            size: 'Grande',
             slug: "mar_y_tierra_real",
             type: 'parrilla',
             tags: [],
@@ -156,8 +171,8 @@ export const initialData: SeedData = {
             price: 9990,
             size: 'Mediano',
             slug: "clubhouse_pollo_combo",
-            type: 'clubhouse',
-            tags: ['clubhouse'],
+            type: 'combo',
+            tags: ['combo'],
             title: "Combo clubhouse de pollo X 2",
            
         },
@@ -194,7 +209,7 @@ export const initialData: SeedData = {
         {
             description: "Queso de mano con capsula de natilla, queso rallado, cheddar y choclo en grano.",
             images: [
-                '2023-07-03 at 14.25.12.jpeg'
+                'volcan.jpeg'
                
             ],
             inStock: 15,
@@ -209,7 +224,22 @@ export const initialData: SeedData = {
         {
             description: "Queso de mano",
             images: [
-                'WhatsApp Image 2023-11-07 at 16.17.59.jpeg'
+                'cachapaqueso.jpeg'
+               
+            ],
+            inStock: 5,
+            price: 20990,
+            size: 'Mediano',
+            slug: "combo_cachapa_queso",
+            type: 'combo',
+            tags: ['cachapa'],
+            title: "Combo de Cachapa con queso",
+           
+        },
+        {
+            description: "Queso de mano",
+            images: [
+                'cachapaqueso.jpeg'
                
             ],
             inStock: 5,
@@ -251,21 +281,7 @@ export const initialData: SeedData = {
             title: "Frescolita",
            
         },
-        {
-            description: "Coca cola de lata",
-            images: [
-                'cocacola.jpg'
-               
-            ],
-            inStock: 5,
-            price: 5000,
-            size: 'Mediano',
-            slug: "cocacola",
-            type: 'bebida',
-            tags: ['bebida'],
-            title: "cocacola",
-           
-        },
+   
         {
             description: "Jugos naturales",
             images: [
