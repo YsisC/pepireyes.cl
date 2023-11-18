@@ -9,8 +9,7 @@ const WebpayPayPage = () => {
   const token =  router.query.token;
   // Comprobación antes de acceder a token.length
 
-console.log("url", {url})
-console.log("token", {token})
+
 useEffect(() => {
     
   const formElement = document.getElementById("myForm") as HTMLFormElement | null;

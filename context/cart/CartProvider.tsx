@@ -14,12 +14,12 @@ export interface CartState {
   subTotal: number;
   delivery: number;
   total: number;
-location?: Location;
+  location?: Location;
   shippingAddress?: ShippingAddress;
 }
 export interface Location {
-  lat: number ;
-  lng: number ;
+  lat: number;
+  lng: number;
   address?: string;
   name?: string;
   city?: string;
@@ -31,11 +31,19 @@ export interface ShippingAddress {
   lastName: string;
   address: string;
   address2?: string;
-  location?: Location;
   city: string;
   commune: string;
   phone: string;
 }
+export interface FormData  {
+  firstName: string;
+  lastName: string;
+  address: string;
+  address2?: string;
+  city: string;
+  commune: string;
+  phone: string;
+};
 
 interface CartProviderProps {
   children: React.ReactNode;
@@ -49,7 +57,7 @@ const CART_INITIAL_STATE: CartState = {
   delivery: 0,
   total: 0,
   shippingAddress: undefined,
-  location: undefined
+  location: undefined,
 };
 
 export const CartProvider: FC<CartProviderProps> = ({ children }) => {
@@ -75,14 +83,16 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
   // Efecto
   useEffect(() => {
     try {
-      const cookieCost = Cookie.get("delivery") ? Number(Cookie.get("delivery")) : 0;
+      const cookieCost = Cookie.get("delivery")
+        ? Number(Cookie.get("delivery"))
+        : 0;
       dispatch({
         type: "[Cost] - LoadCost from cookies | storage",
         payload: cookieCost,
       });
     } catch (error) {
       dispatch({
-        type:"[Cost] - LoadCost from cookies | storage",
+        type: "[Cost] - LoadCost from cookies | storage",
         payload: 0,
       });
     }
@@ -95,11 +105,6 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
         lastName: Cookie.get("lastName") || "",
         address: Cookie.get("address") || "",
         address2: Cookie.get("address2") || "",
-        location: {
-            lat: Number(Cookie.get("lat")) || 0,
-            lng:  Number(Cookie.get("lng")) || 0,
-            // Add other properties as needed
-          },
         city: Cookie.get("city") || "",
         commune: Cookie.get("commune") || "",
         phone: Cookie.get("phone") || "",
@@ -132,12 +137,12 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
       (prev, current) => current.quantity * current.price + prev,
       0
     );
-    const delivery = Number(Cookie.get("cost"))| 0;
+    const delivery = Number(Cookie.get("cost")) | 0;
     const orderSummary = {
       numberOfItems,
       subTotal,
       delivery,
-      total: subTotal + delivery ,
+      total: subTotal + delivery,
     };
     dispatch({ type: "[Cart] - Update order summary", payload: orderSummary });
   }, [state.cart]);
@@ -181,14 +186,15 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
   const removeCartProduct = (product: ICartProduct) => {
     dispatch({ type: "[Cart] - Remove product in cart", payload: product });
   };
-
-  const updateAddress = (address: ShippingAddress) => {
+  const removeAllCartProduct = () => {
+    dispatch({ type: "[Cart] - Remove all product in cart", payload: [] });
+  };
+  
+  const updateAddress = ( address: ShippingAddress ) => {
+    Cookie.set('firstName',address.firstName);
     Cookie.set("lastName", address.lastName);
     Cookie.set("address", address.address);
     Cookie.set("address2", address.address2 || "");
-  // Set location properties individually
-  Cookie.set("lat", String(address.location?.lat || 0)); // Ensure it's a string
-  Cookie.set("lng", String(address.location?.lng || 0)); // 
     Cookie.set("city", address.city);
     Cookie.set("commune", address.commune);
     Cookie.set("phone", address.phone);
@@ -196,29 +202,30 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
     dispatch({ type: "[Cart] - Update Address", payload: address });
   };
   const updateDelivey = (cost: number) => {
-   Cookie.set("cost",String(cost));
-    dispatch({ type: '[Cost] - Update Delivery', payload: cost });
-  }
+    Cookie.set("cost", String(cost));
+    dispatch({ type: "[Cost] - Update Delivery", payload: cost });
+  };
   const saveLocation = (location: any, places: any) => {
     const customLocation: Location = {
       lat: location?.lat || 0,
       lng: location?.lng || 0,
-      address: places[0].name || '',
-      commune:  places[0].address_components[3].long_name|| '',
-      city: places[0].vicinity || '',
-      googleAddressId: places[0].id || '',
+      address: places[0].name || "",
+      commune: places[0].address_components[3].long_name || "",
+      city: places[0].vicinity || "",
+      googleAddressId: places[0].id || "",
     };
 
-  Cookie.set("lat", String(location?.lat || 0)); // Ensure it's a string
-  Cookie.set("lng", String(location?.lng || 0)); // 
- 
-  Cookie.set("address", places[0].name);
- Cookie.set( "city", places[0].vicinity);
- Cookie.set( "commune",  places[0].address_components[3].long_name);
-  Cookie.set("googleAddressId", places[0].id);
 
-console.log("commune", places[0].address_components[3].long_name);
-    dispatch({ type: "[Cart] - SHIPPING_ADDRESS_MAP_LOCATION", payload: customLocation });
+    Cookie.set("address", places[0].name);
+    Cookie.set("city", places[0].vicinity);
+    Cookie.set("commune", places[0].address_components[3].long_name);
+    Cookie.set("googleAddressId", places[0].id);
+
+   
+    dispatch({
+      type: "[Cart] - SHIPPING_ADDRESS_MAP_LOCATION",
+      payload: customLocation,
+    });
   };
 
   const createOrder = async (): Promise<{
@@ -272,6 +279,7 @@ console.log("commune", places[0].address_components[3].long_name);
         addProductToCart,
         updateCartQuantity,
         removeCartProduct,
+        removeAllCartProduct,
         updateAddress,
         saveLocation,
         updateDelivey,

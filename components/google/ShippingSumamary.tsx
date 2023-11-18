@@ -10,7 +10,7 @@ type Props = {
   leg: google.maps.DirectionsLeg;
 };
 
-export const Distance: FC<Props> = ({ leg }) => {
+export const ShippingSumamary: FC<Props> = ({ leg }) => {
 
   const { numberOfItems, delivery } = useContext(CartContext);
 

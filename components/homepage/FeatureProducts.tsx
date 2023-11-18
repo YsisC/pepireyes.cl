@@ -46,7 +46,7 @@ const FeatureProducts: FC = () => {
           className={`${styles.item} group`}
         >
           {/* <!-- image --> */}
-          <Link href={"/parrillas"} passHref>
+          <Link href={"/category/parrillas"} passHref>
          
           <CardMedia
          

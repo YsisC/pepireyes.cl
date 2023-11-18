@@ -44,7 +44,6 @@ export interface ShippingAddress {
   lastName: string;
   address: string;
   address2?: string;
-  location?: Location;
   city: string;
   commune: string;
   phone: string;

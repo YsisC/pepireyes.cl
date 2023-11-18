@@ -18,7 +18,7 @@ import {
   MarkerClusterer,
 } from "@react-google-maps/api";
 import Cookies from "js-cookie";
-import { Distance } from "./Distance";
+import { ShippingSumamary } from "./ShippingSumamary";
 import { Clusterer } from "@react-google-maps/marker-clusterer";
 import { pepireyesApi } from "@/axiosApi";
 import {
@@ -34,38 +34,90 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CartContext } from "@/context";
-
+import { Location } from "@/interfaces";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import { Location } from '../../context/cart/CartProvider';
+import { add } from "cypress/types/lodash";
+
 type LatLngLiteral = google.maps.LatLngLiteral;
 type DirectionsResult = google.maps.DirectionsResult;
 type MapOptions = google.maps.MapOptions;
 
+type Form = {
+  firstName: string;
+  lastName: string;
+  address2?: string;
+  phone: string;
+};
 type FormData = {
   firstName: string;
   lastName: string;
   address: string;
   address2?: string;
-
   city: string;
   commune: string;
   phone: string;
 };
+
+const getAddressFromCookies = (): FormData => {
+  return {
+    firstName: Cookies.get("firstName") || "",
+    lastName: Cookies.get("lastName") || "",
+    address: Cookies.get("address") || "",
+    address2: Cookies.get("address2") || "",
+    city: Cookies.get("city") || "",
+    commune: Cookies.get("commune") || "",
+    phone: Cookies.get("phone") || "",
+  };
+};
+
 const defaultLocation = { lat: -33.45, lng: -70.69 };
 
 export const Maps: FC = () => {
-  const [office, setOffice] = useState<LatLngLiteral>();
+
+  const router = useRouter();
   const [directions, setDirections] = useState<DirectionsResult>();
   const { saveLocation } = useContext(CartContext);
   const [center, setCenter] = useState(defaultLocation);
   const [locationCustomer, setLocationCustomer] = useState(center);
-
   const mapRef = useRef<any>(null);
   const placeRef = useRef<any>(null);
   const markerRef = useRef<any>(null);
 
+  const { updateAddress, numberOfItems, shippingAddress, location, updateDelivey } =
+    useContext(CartContext);
+
   const onLoad = useCallback((map: any) => (mapRef.current = map), []);
+
+  const addresShipping = Cookies.get("address") || "";
+  const cityShipping = Cookies.get("city") || "";
+  const communeShipping = Cookies.get("commune") || "";
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<Form>({
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      address2: "",
+      phone: "",
+    },
+  });
+
+  console.log("addres fom cook", addresShipping)
+  console.log("address", shippingAddress?.address)
+
+    useEffect(() => {
+        reset(getAddressFromCookies() );
+
+    }, [reset])
+
+
+
+
   const generateLocation = (position: LatLngLiteral) => {
     setLocationCustomer({
       lat: position.lat,
@@ -73,11 +125,11 @@ export const Maps: FC = () => {
     });
     return [locationCustomer];
   };
-  const { updateAddress, numberOfItems, location , updateDelivey} = useContext(CartContext);
 
   const onLoadPlaces = (place: google.maps.places.SearchBox) => {
     placeRef.current = place;
   };
+
   const onPlacesChanged = () => {
     const places = placeRef.current?.getPlaces(); // Use optional chaining here
     console.log(places);
@@ -94,8 +146,7 @@ export const Maps: FC = () => {
     markerRef.current = marker;
   };
 
-  // };
-  console.log("location customer", locationCustomer);
+
   const options = useMemo<MapOptions>(
     () => ({
       mapId: "3cabc2a4a2b5cedf",
@@ -104,6 +155,7 @@ export const Maps: FC = () => {
     }),
     []
   );
+console.log("location",location)
   const onConfirm = () => {
     const places = placeRef.current?.getPlaces() || [{}];
 
@@ -122,62 +174,36 @@ export const Maps: FC = () => {
           const legData: google.maps.DirectionsLeg = result.routes[0].legs[0];
           if (legData && legData.distance) {
             const calculateDelivery = legData?.distance.value * 1;
-       
+
             updateDelivey(calculateDelivery);
           }
-       
         }
       }
     );
-   
 
     const notify = () => toast("Locacion seleccionada.");
     notify();
   };
-  const router = useRouter();
 
+  const onSubmitAddress = (data: Form) => {
+    console.log("form data", data);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<FormData>({
-    defaultValues: {
-      firstName: "",
-      lastName: "",
-      address: "",
-      address2: "",
-      city: "",
-      commune: "",
-      phone: "",
-    },
-  });
-  const getAddressFromCookies = (): FormData => {
-    return {
-      firstName: Cookies.get("firstName") || "",
-      lastName: Cookies.get("lastName") || "",
-      address: Cookies.get("address") || "",
-      address2: Cookies.get("address2") || "",
-      city: Cookies.get("city") || "",
-      commune: Cookies.get("commune") || "",
-      phone: Cookies.get("phone") || "",
-    };
-  };
-
-  useEffect(() => {
-    reset(getAddressFromCookies());
-  }, [reset]);
-
-  const addresShipping = Cookies.get("address") || "";
-  const cityShipping = Cookies.get("city") || "";
-  const communeShipping = Cookies.get("commune") || "";
-
-  const onSubmitAddress = (data: FormData) => {
-    updateAddress(data);
+    const {firstName,address2, lastName,phone } = data;
+    const formData = {
+      firstName,
+      lastName,
+      address: location?.address || '', // provide a default empty string if undefined
+      address2: address2 || '', // provide a default empty string if undefined
+      city: location?.city || '', // provide a default empty string if undefined
+      commune: location?.commune || '',
+      phone
+    }
+    console.log("formulario", formData);
+    updateAddress(formData);
 
     router.push("/checkout/summary");
   };
+
   return (
     <div className="container">
       <ToastContainer />
@@ -212,7 +238,9 @@ export const Maps: FC = () => {
             </>
           </StandaloneSearchBox>
 
-          {directions && <Distance leg={directions.routes[0].legs[0]} />}
+          {directions && (
+            <ShippingSumamary leg={directions.routes[0].legs[0]} />
+          )}
         </Grid>
         <Typography variant="h2" component="h2">
           Datos personales:
@@ -254,8 +282,6 @@ export const Maps: FC = () => {
               helperText={errors.phone?.message}
             />
           </Grid>
-
-          
         </Grid>
 
         <Box sx={{ mt: 5 }} display="flex" justifyContent="center">
@@ -297,14 +323,29 @@ export const Maps: FC = () => {
             <MarkerClusterer>
               {(clusterer: Clusterer) => (
                 <>
-                  <Marker position={locationCustomer} onLoad={onMarkerLoad}></Marker>
+                  <Marker
+                    position={locationCustomer}
+                    onLoad={onMarkerLoad}
+                  ></Marker>
                 </>
               )}
             </MarkerClusterer>
 
-            <Circle center={locationCustomer} radius={1500} options={closeOptions} />
-            <Circle center={locationCustomer} radius={3000} options={middleOptions} />
-            <Circle center={locationCustomer} radius={55000} options={farOptions} />
+            <Circle
+              center={locationCustomer}
+              radius={1500}
+              options={closeOptions}
+            />
+            <Circle
+              center={locationCustomer}
+              radius={3000}
+              options={middleOptions}
+            />
+            <Circle
+              center={locationCustomer}
+              radius={55000}
+              options={farOptions}
+            />
           </>
         </GoogleMap>
       </div>

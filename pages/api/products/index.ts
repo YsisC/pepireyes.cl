@@ -26,15 +26,16 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
 
 const getProducts = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
-    const { category = 'all' } =req.query;
+    const { type = 'all' } =req.query;
 
     let condition = {};
 
-    if (category !== 'all' && SHOP_CONSTANTS.validTypes.includes(`${category}`)) {
-        condition ={ category }
+    if (type !== 'all' && SHOP_CONSTANTS.validTypes.includes(`${type}`)) {
+        condition ={ type }
     }
 
     await db.connect();
+    console.log("condicion api", condition)
     const products = await Product.find( condition )
         .select('title images price inStock slug type -_id')
         .lean();

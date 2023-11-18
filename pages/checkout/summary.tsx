@@ -18,26 +18,29 @@ import { CartContext } from "../../context";
 import { ShopLayout } from "../../components/layouts/ShopLayout";
 import { CartList, OrderSummary } from "../../components/cart";
 import { FullScreenLoading } from "@/components/ui";
-// import { countries } from '../../utils';
+
 
 import { GetServerSideProps } from "next";
-import { getSession } from "next-auth/react";
+
 import { getToken } from "next-auth/jwt";
-import { User } from "@/models";
+
 
 const SummaryPage = () => {
   const router = useRouter();
-  const { shippingAddress, numberOfItems, createOrder, cart } =
+  const { shippingAddress, numberOfItems, location, createOrder, cart } =
     useContext(CartContext);
 
   const [isPosting, setIsPosting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    if (!Cookies.get("firstName")) {
+    if (!shippingAddress?.firstName) {
+      console.log("se cumplio que no lee el firstname")
       router.push("/checkout/address");
     }
   }, [router]);
+  console.log("location",location)
+  console.log("shippinaddres", shippingAddress);
 
   const onCreateOrder = async () => {
     setIsPosting(true);
@@ -120,7 +123,7 @@ const SummaryPage = () => {
                 <Typography>{city}, </Typography>
 
                 <Typography>{phone}</Typography>
-             
+
                 <Divider sx={{ my: 1 }} />
 
                 <Box display="flex" justifyContent="end">

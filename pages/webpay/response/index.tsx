@@ -16,14 +16,14 @@ const ResponsePage = () => {
   const token_ws = Array.isArray(router.query.token_ws)
     ? router.query.token_ws[0] // Si es una matriz, toma el primer elemento
     : router.query.token_ws; // Si es una cadena, déjalo igual
-  console.log(token_ws);
+ 
   const actualizarTransaccion = async () => {
     // Cuerpo de la solicitud (si es necesario)
     const body = { token_ws }; // Puedes definir el cuerpo de la solicitud aquí
     try {
       // Realizar la solicitud PUT
       const response = await pepireyesApi.put("/webpay/pay", body);
-      console.log(response.data);
+     
 
       // Devolver la respuesta
       return response.data;
@@ -60,7 +60,7 @@ const ResponsePage = () => {
           // Manejar la respuesta exitosa de la solicitud PUT
           setResponseData(data);
           const urlOrder = data.buy_order.substring(1);
-          console.log("url", urlOrder);
+        
           router.push(`/orders/${urlOrder}`);
         })
         .catch((error) => {

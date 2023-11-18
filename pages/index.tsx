@@ -22,9 +22,9 @@ const HomePage: NextPage = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const featuredProduct = [
-    "2023-07-03 at 14.25.14 (15).jpeg",
-    "2023-07-03 at 14.25.14 (16).jpeg",
-    "2023-07-03 at 14.25.14 (17).jpeg",
+    "/products/2023-07-03 at 14.25.14 (15).jpeg",
+    "/products/2023-07-03 at 14.25.14 (16).jpeg",
+    "/products/2023-07-03 at 14.25.14 (17).jpeg",
   ];
 
   useEffect(() => {

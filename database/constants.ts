@@ -1,3 +1,3 @@
 export const SHOP_CONSTANTS = {
-    validTypes: ['burguer','pepito','drink','appetezier','clubhouse', 'cachapa', 'combo', 'papas'],
+    validTypes: ['parrilla','burguer','pepito','drink','appetezier','clubhouse', 'cachapa', 'combo', 'papas'],
 }

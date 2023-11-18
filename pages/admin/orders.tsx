@@ -15,7 +15,10 @@ import { pepireyesApi } from "@/axiosApi";
 import { useRouter } from "next/router";
 import Link from '../../themeMUI/Link';
 
+
 const OrdersPage = () => {
+
+
   const { data, error } = useSWR<IOrder[]>("/api/admin/orders");
   const [orders, setOrders] = useState<IOrder[]>([]);
   const status: string[] = ["Preparando", "En camino", "Delivery"];
@@ -114,9 +117,10 @@ const router = useRouter()
   },
   ];
 
-  const rows = data!.map((order) => ({
+  const rows = data!.map((order) => (
+    {
     id: order._id,
-    name: (order.user as IUser).name,
+    name: order.user ? (order.user as IUser).name: "sin nombre" ,
     total: order.total,
     isPaid: order.isPaid,
     status: order.status ? status[order.status]: 'Preparando',
@@ -124,7 +128,10 @@ const router = useRouter()
     check: order._id
     
   }));
-
+  const rowsa = data!.map((order) => {
+    console.log(order)
+  });
+console.log(rowsa)
   return (
     <AdminLayout
       title={"Ordenes"}

@@ -65,7 +65,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
       setWebpayPeticion(data);
       if (webpay_peticion) {
         const redirectUrl = `/webpay/pay?url=${data.url}&token=${data.token}`;
-
+        // removeAllCartProduct()
         router.push(redirectUrl);
       }
     } catch (error) {
