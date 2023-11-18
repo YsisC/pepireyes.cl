@@ -13,7 +13,7 @@ import { pepireyesApi } from '../../../axiosApi';
 import { Product } from '../../../models';
 
 
-const validTypes  = ['burguer','pepito','drink','appetezier','clubhouse', 'cachapa', 'combo' , 'papas']
+const validTypes  = ['parrilla','hamburguesa','pepito','bebida','appetezier','clubhouse', 'cachapa', 'combo' , 'papas']
 const validSizes = ['Pequeño','Mediano','Grande',]
 
 

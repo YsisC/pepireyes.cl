@@ -21,7 +21,7 @@ interface SeedUser {
 
 }
 type ValidSizes = 'Pequeño'|'Mediano'|'Grande'|'';
-type ValidTypes = 'burguer'|'pepito'|'drink'|'appetezier'|'clubhouse'| 'cachapa'| 'combo' | 'papas';
+type ValidTypes = 'parrilla'|'hamburguesa'|'pepito'|'bebida'|'appetezier'|'clubhouse'| 'cachapa'| 'combo' | 'papas';
 
 interface SeedData {
     users: SeedUser[]
@@ -66,7 +66,7 @@ export const initialData: SeedData = {
             price: 9000,
             size: 'Mediano',
             slug: "burguer_triple",
-            type: 'burguer',
+            type: 'hamburguesa',
             tags: ['burguers'],
             title: "Hamburguesa triple",
             
@@ -114,6 +114,21 @@ export const initialData: SeedData = {
             type: 'papas',
             tags: ['papas'],
             title: "Suprema Mechada",
+           
+        },
+        {
+            description: "1 kg de proteina comprendido entre lomo liso, cerdo, pollo, calamares, camarones, choritos, chorizo y salchichas y verduras salteadas.",
+            images: [
+                'marytierra.jpeg'
+              
+            ],
+            inStock: 15,
+            price: 30.000,
+            size: 'Mediano',
+            slug: "mar_y_tierra_real",
+            type: 'parrilla',
+            tags: [],
+            title: "Mar y tierra Real",
            
         },
         {
@@ -216,8 +231,8 @@ export const initialData: SeedData = {
             price: 5000,
             size: 'Mediano',
             slug: "malta",
-            type: 'drink',
-            tags: ['drink'],
+            type: 'bebida',
+            tags: ['bebida'],
             title: "Malta",
            
         },
@@ -231,8 +246,8 @@ export const initialData: SeedData = {
             price: 5000,
             size: 'Mediano',
             slug: "frescolita",
-            type: 'drink',
-            tags: ['drink'],
+            type: 'bebida',
+            tags: ['bebida'],
             title: "Frescolita",
            
         },
@@ -246,8 +261,8 @@ export const initialData: SeedData = {
             price: 5000,
             size: 'Mediano',
             slug: "cocacola",
-            type: 'drink',
-            tags: ['drink'],
+            type: 'bebida',
+            tags: ['bebida'],
             title: "cocacola",
            
         },
@@ -261,8 +276,8 @@ export const initialData: SeedData = {
             price: 2500,
             size: 'Mediano',
             slug: "jugos",
-            type: 'drink',
-            tags: ['drink'],
+            type: 'bebida',
+            tags: ['bebida'],
             title: "Jugo Natural",
            
         },

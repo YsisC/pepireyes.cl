@@ -12,7 +12,7 @@ interface Props {
 }
 
 const MenuSection: FC<Props> = ({ products, isLoading }) => {
-  const [tab, setTab] = useState("burguer");
+  const [tab, setTab] = useState('hamburguesa');
   const [isPending, startTransition] = useTransition();
 
   const categoryProduct = (category: IType) => {
@@ -21,8 +21,8 @@ const MenuSection: FC<Props> = ({ products, isLoading }) => {
 
   const TAB_DATA = [
     {
-      title: "burguer",
-      content: <ProductList products={categoryProduct("burguer")} />,
+      title: 'hamburguesa',
+      content: <ProductList products={categoryProduct('hamburguesa')} />,
     },
     {
       title: "pepito",
@@ -33,8 +33,8 @@ const MenuSection: FC<Props> = ({ products, isLoading }) => {
       content: <ProductList products={categoryProduct("cachapa")} />,
     },
     {
-      title: "drink",
-      content: <ProductList products={categoryProduct("drink")} />,
+      title: "bebida",
+      content: <ProductList products={categoryProduct("bebida")} />,
     },
     {
       title: "papas",
@@ -51,7 +51,7 @@ const MenuSection: FC<Props> = ({ products, isLoading }) => {
   return (
 <>
       <nav className={"nav-button"}>
-        <TabButton  selectTab={() => setTab("burguer")} active={tab === "burguer"}>
+        <TabButton  selectTab={() => setTab('hamburguesa')} active={tab === 'hamburguesa'}>
          Hamburguesas
         </TabButton>
         <TabButton selectTab={() => setTab("pepito")} active={tab === "pepito"}>
@@ -60,7 +60,7 @@ const MenuSection: FC<Props> = ({ products, isLoading }) => {
         <TabButton selectTab={() => setTab("cachapa")} active={tab === "cachapa"}>
           Cachapa
         </TabButton>
-        <TabButton selectTab={() => setTab("drink")} active={tab === "drink"}>
+        <TabButton selectTab={() => setTab("bebida")} active={tab === "bebida"}>
           Bebidas
         </TabButton>
         <TabButton selectTab={() => setTab("papas")} active={tab === "papas"}>
