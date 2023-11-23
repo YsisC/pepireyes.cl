@@ -20,17 +20,7 @@ import { ICartProduct, IProduct, IType } from "@/interfaces";
 
 
 
-type PromoProduct = {
-  _id: string;
-  description: string;
-  images: string[];
-  inStock: number;
-  price: number;
-  slug: string;
-  size: string;
-  title: string;
-  type: IType;
-};
+
 interface Props {
   products: IProduct[];
 }
@@ -63,7 +53,9 @@ const Promociones = ({products}:Props ) => {
   };
   const featuredPromos: IProduct[] = promoProduct("combo");
 
-  const [selectedPromo, setSelectedPromo] = useState<PromoProduct >(featuredPromos[0]);
+  const [selectedPromo, setSelectedPromo] = useState<PromoProduct | undefined>(
+    featuredPromos.length > 0 ? { ...featuredPromos[0] } : undefined
+  );
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
   const { addProductToCart } = useContext(CartContext);
@@ -77,17 +69,19 @@ const Promociones = ({products}:Props ) => {
     setSelectedPromo(promo);
   };
   const onAddProduct = async () => {
-
-      const tempCartProduct ={
-        _id: selectedPromo!._id,
-        image: selectedPromo!.images[0],
-        price: selectedPromo!.price,
-        size: selectedPromo!.size,
-        slug: selectedPromo!.slug,
-        title: selectedPromo!.title,
-        type: selectedPromo!.type,
-        quantity: 1,
-      };
+    if (!selectedPromo) {
+      return;
+    }
+    const tempCartProduct: ICartProduct = {
+      _id: selectedPromo._id || '',
+      image: selectedPromo.images[0] || '',
+      price: selectedPromo.price || 0,
+      size: selectedPromo.size || 'Mediano',
+      slug: selectedPromo.slug || '',
+      title: selectedPromo.title || '',
+      type: selectedPromo.type,
+      quantity: 1,
+    };
       console.log("EL PRODUCTO AGREGADO", tempCartProduct);
       if (!tempCartProduct) {
         return;

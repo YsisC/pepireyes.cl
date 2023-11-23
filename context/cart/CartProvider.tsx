@@ -97,7 +97,7 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
         payload: 0,
       });
     }
-  }, []);
+  }, [state.delivery]);
 
   useEffect(() => {
     if (Cookie.get("firstName")) {
@@ -230,6 +230,7 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
       type: "[Cart] - SHIPPING_ADDRESS_MAP_LOCATION",
       payload: customLocation,
     });
+    
   };
 
   const createOrder = async (): Promise<{
