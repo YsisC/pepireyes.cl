@@ -19,8 +19,6 @@ import { ICartProduct, IProduct, IType } from "@/interfaces";
 
 
 
-
-
 interface Props {
   products: IProduct[];
 }
@@ -53,7 +51,7 @@ const Promociones = ({products}:Props ) => {
   };
   const featuredPromos: IProduct[] = promoProduct("combo");
 
-  const [selectedPromo, setSelectedPromo] = useState<PromoProduct | undefined>(
+  const [selectedPromo, setSelectedPromo] = useState<IProduct | undefined>(
     featuredPromos.length > 0 ? { ...featuredPromos[0] } : undefined
   );
   const [open, setOpen] = useState(false);
@@ -61,11 +59,11 @@ const Promociones = ({products}:Props ) => {
   const { addProductToCart } = useContext(CartContext);
  
 
-  const handleImageModal = (promo: PromoProduct) => {
+  const handleImageModal = (promo: IProduct) => {
     setSelectedPromo(promo);
     setOpen(true);
   };
-  const handleImage = (promo: PromoProduct) => {
+  const handleImage = (promo: IProduct) => {
     setSelectedPromo(promo);
   };
   const onAddProduct = async () => {
