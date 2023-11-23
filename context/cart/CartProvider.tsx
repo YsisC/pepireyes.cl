@@ -90,6 +90,7 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
         type: "[Cost] - LoadCost from cookies | storage",
         payload: cookieCost,
       });
+      state.total = state.delivery + state.subTotal;
     } catch (error) {
       dispatch({
         type: "[Cost] - LoadCost from cookies | storage",
@@ -125,8 +126,9 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
   useEffect(() => {
     if (state.delivery > 0) {
       Cookie.set("delivery", String(state.delivery));
+      state.total = state.delivery + state.subTotal
     }
-  }, [state.cart]);
+  }, [state.total, state.delivery]);
 
   useEffect(() => {
     const numberOfItems = state.cart.reduce(
@@ -201,9 +203,11 @@ export const CartProvider: FC<CartProviderProps> = ({ children }) => {
 
     dispatch({ type: "[Cart] - Update Address", payload: address });
   };
-  const updateDelivey = (cost: number) => {
-    Cookie.set("cost", String(cost));
-    dispatch({ type: "[Cost] - Update Delivery", payload: cost });
+  const updateDelivey = (delivery: number) => {
+    Cookie.set("delivery", String(delivery));
+
+    dispatch({ type: "[Cost] - Update Delivery", payload: delivery });
+    state.total = state.delivery + state.subTotal;
   };
   const saveLocation = (location: any, places: any) => {
     const customLocation: Location = {

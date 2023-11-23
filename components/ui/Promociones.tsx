@@ -15,7 +15,7 @@ import styles from "./Promociones.module.css";
 import CloseIcon from "@mui/icons-material/Close";
 
 import { CartContext } from "@/context";
-import { ICartProduct, IType } from "@/interfaces";
+import { ICartProduct, IProduct, IType } from "@/interfaces";
 
 
 
@@ -32,7 +32,7 @@ type PromoProduct = {
   type: IType;
 };
 interface Props {
-  products: PromoProduct[];
+  products: IProduct[];
 }
 
 
@@ -55,15 +55,15 @@ const style = {
 
 const Promociones = ({products}:Props ) => {
 
-console.log(typeof products)
-console.log( products[0])
+// console.log(typeof products)
+// console.log( products[0])
   // const { products, isLoading } = useProducts("/products");
   const promoProduct = (category: string) => {
     return products.filter((product) => product.type === category);
   };
-  const featuredPromos = promoProduct("combo");
+  const featuredPromos: IProduct[] = promoProduct("combo");
 
-  const [selectedPromo, setSelectedPromo] = useState<PromoProduct | null>(null);
+  const [selectedPromo, setSelectedPromo] = useState<PromoProduct >(featuredPromos[0]);
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
   const { addProductToCart } = useContext(CartContext);
@@ -77,29 +77,32 @@ console.log( products[0])
     setSelectedPromo(promo);
   };
   const onAddProduct = async () => {
-    const tempCartProduct ={
-      _id: selectedPromo?._id,
-      image: selectedPromo?.images[0],
-      price: selectedPromo?.price,
-      size: selectedPromo?.size,
-      slug: selectedPromo?.slug,
-      title: selectedPromo?.title,
-      type: selectedPromo?.type,
-      quantity: 1,
-    };
-    console.log("EL PRODUCTO AGREGADO", tempCartProduct);
-    if (!tempCartProduct) {
-      return;
-    }
+
+      const tempCartProduct ={
+        _id: selectedPromo!._id,
+        image: selectedPromo!.images[0],
+        price: selectedPromo!.price,
+        size: selectedPromo!.size,
+        slug: selectedPromo!.slug,
+        title: selectedPromo!.title,
+        type: selectedPromo!.type,
+        quantity: 1,
+      };
+      console.log("EL PRODUCTO AGREGADO", tempCartProduct);
+      if (!tempCartProduct) {
+        return;
+      }
+     
+  
+  
     try {
-     if (!tempCartProduct){
-       addProductToCart(tempCartProduct);
-
+      if (tempCartProduct !== undefined){
+        addProductToCart(tempCartProduct);
+ 
+      }
+     } catch (error) {
+       console.error(error);
      }
-    } catch (error) {
-      console.error(error);
-    }
-
 
   };
   return (

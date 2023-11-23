@@ -2,26 +2,16 @@ import Promociones from "@/components/ui/Promociones";
 import { ShopLayout } from "../components/layouts";
 import type { GetServerSideProps, NextPage } from "next";
 import { dbProducts } from "@/database";
-import { IType } from "@/interfaces";
+import { IProduct, IType } from "@/interfaces";
 
 
-type PromoProduct = {
-  _id: string;
-  description: string;
-  images: string[];
-  inStock: number;
-  price: number;
-  slug: string;
-  size: string;
-  title: string;
-  type: IType;
-};
 interface Props {
-  products: PromoProduct[];
+  products: IProduct[];
 }
 
 
 const promociones: NextPage<Props> = ({products}) => {
+  console.log(products)
   return (
     <ShopLayout
       title={"Promociones-PR"}
