@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Box,
   Button,
@@ -13,63 +13,91 @@ import FeaturedPromo from "./FeaturePromo";
 import styles from "./Promociones.module.css";
 import Image from "next/image";
 import { disconnect } from "../../database/db";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
+import { useProducts } from "@/hooks";
+import { CartContext } from "@/context";
+import { ICartProduct, IType } from "@/interfaces";
+import { pepireyesApi } from "@/axiosApi";
+import { dbProducts } from "@/database";
+import { GetServerSideProps,  } from "next";
+
+
 type PromoProduct = {
+  _id: string;
+  description: string;
+  images: string[];
+  inStock: number;
+  price: number;
+  slug: string;
+  size: string;
   title: string;
-  price: string;
-  image: string;
-  imageLabel: string;
+  type: IType;
 };
 
-const featuredPromos: PromoProduct[] = [
-  {
-    title: "Combo Hamburguesa",
-    price: "$9900",
-    image: "/products/2023-07-03 at 14.25.13.jpeg",
-    imageLabel: "promo hamburguesa",
-  },
-  {
-    title: "Combo de pepito",
-    price: "$9900",
-    image: "/products/2023-07-03 at 14.25.14 (5).jpeg",
-    imageLabel: "promo pepito",
-  },
-  {
-    title: "Combo de cachapa",
-    price: "$9900",
-    image: "/products/2023-07-03 at 14.25.12.jpeg",
-    imageLabel: "promo cachapa",
-  },
-];
+
 const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
-  display: 'flex',
-  justifyItems: 'center',
-  flexDirection:'column',
-  alignItems: 'center'
+  display: "flex",
+  justifyItems: "center",
+  flexDirection: "column",
+  alignItems: "center",
 };
 
-const Promociones = () => {
+const Promociones = ({products}:PromoProduct ) => {
+
+
+  // const { products, isLoading } = useProducts("/products");
+  const promoProduct = (category: string) => {
+    return products.filter((product) => product.type === category);
+  };
+  const featuredPromos = promoProduct("combo");
+console.log(products)
   const [selectedPromo, setSelectedPromo] = useState<PromoProduct | null>(null);
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
+  const { addProductToCart } = useContext(CartContext);
+ 
+
   const handleImageModal = (promo: PromoProduct) => {
     setSelectedPromo(promo);
     setOpen(true);
   };
   const handleImage = (promo: PromoProduct) => {
     setSelectedPromo(promo);
-   
   };
+  const onAddProduct = async () => {
+    const tempCartProduct ={
+      _id: selectedPromo?._id,
+      image: selectedPromo?.images[0],
+      price: selectedPromo?.price,
+      size: selectedPromo?.size,
+      slug: selectedPromo?.slug,
+      title: selectedPromo?.title,
+      type: selectedPromo?.type,
+      quantity: 1,
+    };
+    console.log("EL PRODUCTO AGREGADO", tempCartProduct);
+    if (!tempCartProduct) {
+      return;
+    }
+    try {
+      // const product = await pepireyesApi.get(`/products/${selectedPromo?.slug}`);
+      // console.log(product);
+       addProductToCart(tempCartProduct);
+    } catch (error) {
+      console.error(error);
+    }
 
+
+  };
   return (
     <Grid container className={`paddings ${styles.wrapper}`}>
       <Grid
@@ -93,52 +121,49 @@ const Promociones = () => {
         }}
       >
         <Typography variant="h2" component={"h2"}>
-         Inicio / <span> Promociones </span>
+          Inicio / <span> Promociones </span>
         </Typography>
         {featuredPromos.map((post) => (
           <FeaturedPromo
-        
             key={post.title}
             post={post}
             handleImage={handleImage}
             handleImageModal={handleImageModal}
           />
         ))}
-       
       </Grid>
       {selectedPromo && (
         <Modal
           open={open}
           onClose={handleClose}
           aria-labelledby={`modal-modal-${selectedPromo.title}`}
-          aria-describedby={`modal-modal-${selectedPromo.imageLabel}`}
+          aria-describedby={`modal-modal-${selectedPromo.slug}`}
         >
-          
           <Box sx={style}>
-          <IconButton  sx={{position: "absolute", top:'1%', right: '3%'}} onClick={() => handleClose()}>
-           <CloseIcon />  
-            
-           </IconButton>
-           <Typography id="modal-modal-title" variant="h6" component="h2">
-            {selectedPromo.title}
+            <IconButton
+              sx={{ position: "absolute", top: "1%", right: "3%" }}
+              onClick={() => handleClose()}
+            >
+              <CloseIcon />
+            </IconButton>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              {selectedPromo.title}
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               Descripcion
             </Typography>
-           
+
             <CardMedia
-                image={`${selectedPromo.image}`}
-                component="img"
-                sx={{ borderRadius: "5px", width: "21rem" }}
-              />
-               <Typography variant="subtitle1" color="text.secondary">
+              image={`${selectedPromo.images[0]}`}
+              component="img"
+              sx={{ borderRadius: "5px", width: "21rem" }}
+            />
+            <Typography variant="subtitle1" color="text.secondary">
               {selectedPromo.price}
             </Typography>
-           
-          
           </Box>
         </Modal>
-          )}
+      )}
       <Grid
         item
         sx={{
@@ -150,28 +175,47 @@ const Promociones = () => {
         xs={12}
         sm={6}
       >
-       
         {selectedPromo && (
           <Box>
             <CardActionArea>
               <CardMedia
-                image={`${selectedPromo.image}`}
+                image={`${selectedPromo.images[0]}`}
                 component="img"
-                sx={{ borderRadius: "5px", width: "25rem" }}
+                sx={{ borderRadius: "5px", width: "25rem" , height:'27rem', objectFit:'cover'}}
               />
             </CardActionArea>
             {/* <Image width={500} height={500} src={selectedPromo.image} alt={selectedPromo.imageLabel} /> */}
-            <Typography variant="h2" component="h2">
+          <Box sx={{ width: "25rem"}}>
+          <Typography variant="h2" component="h2">
               {selectedPromo.title}
             </Typography>
-            <Typography variant="subtitle1" color="text.secondary">
-              {selectedPromo.price}
+            <Typography variant="subtitle1" paragraph>
+              {selectedPromo.description}
             </Typography>
+            
+            </Box> 
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+               
+              }}
+            >
+              <Typography variant="subtitle1" color="text.secondary">
+                {selectedPromo.price}
+              </Typography>
+              <Button onClick={onAddProduct} color="secondary">
+                Agregar al carrito
+              </Button>{" "}
+            </Box>
           </Box>
         )}
       </Grid>
     </Grid>
   );
 };
+
+
 
 export default Promociones;

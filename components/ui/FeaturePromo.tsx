@@ -6,13 +6,13 @@ import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import { Button, TabScrollButton } from '@mui/material';
-import handler from '../../pages/api/hello';
+
+
 interface FeaturedPostProps {
   post: {
     price: string;
-    image: string;
-    imageLabel: string;
+    images: string[];
+    slug: string;
     title: string;
   };
   
@@ -49,8 +49,8 @@ export default function FeaturedPromo(props: FeaturedPostProps) {
           <CardMedia
             component="img"
             sx={{ width: 160, height:200, display:  'block'  }}
-            image={post.image}
-            alt={post.imageLabel}
+            image={post.images[0]}
+            alt={post.slug}
           />
         </Card>
       </CardActionArea>
@@ -78,8 +78,8 @@ export default function FeaturedPromo(props: FeaturedPostProps) {
           <CardMedia
             component="img"
             sx={{ width: 160, height:200, display:  'block'  }}
-            image={post.image}
-            alt={post.imageLabel}
+            image={post.images[0]}
+            alt={post.slug}
           />
         </Card>
       </CardActionArea>

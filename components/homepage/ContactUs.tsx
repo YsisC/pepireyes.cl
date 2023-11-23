@@ -29,7 +29,7 @@ export default function ContacUs() {
     e.preventDefault();
 
     // Aquí puedes utilizar formData para enviar los datos al servidor
-    console.log(formData);
+    // console.log(formData);
 
     // Ejemplo de cómo podrías hacer una llamada a la API
     pepireyesApi.post('/send', formData);
