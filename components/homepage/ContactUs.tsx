@@ -1,4 +1,4 @@
-import React, { useRef , FormEventHandler } from 'react'
+import React, { useRef , FormEventHandler, useState } from 'react'
 import css from './ContactUs.module.css'
 import { motion } from 'framer-motion'
 import {  staggerChildren, textVariant } from '../../utils/motion'
@@ -8,22 +8,40 @@ import Link from '@/themeMUI/Link'
 import { EmailOutlined, WhatsApp, LocationCity } from '@mui/icons-material'
 import { Button,   Typography } from "@mui/material";
 import emailjs from '@emailjs/browser';
+import { pepireyesApi } from '@/axiosApi'
 
 export default function ContacUs() {
+  const [formData, setFormData] = useState({
+    user_name: '',
+    user_email: '',
+    message: '',
+  });
 
-    const form = useRef<HTMLFormElement>(null);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
-    const sendEmail: FormEventHandler<HTMLFormElement> = (e) => {
-        e.preventDefault();
-        // // service_lho7c0d
-        // emailjs.sendForm('service_lho7c0d', 'template_ozg6bnh', form.current, 'YlzgSN1UZ1WmJXYvs')
-        //     .then((result) => {
-        //         console.log(result.text);
-        //     }, (error) => {
-        //         console.log(error.text);
-        //     });
-        // e.target.reset()
-    };
+  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Aquí puedes utilizar formData para enviar los datos al servidor
+    console.log(formData);
+
+    // Ejemplo de cómo podrías hacer una llamada a la API
+    pepireyesApi.post('/send', formData);
+
+    // Limpiar el formulario después del envío
+    setFormData({
+      user_name: '',
+      user_email: '',
+      message: '',
+    });
+  };
+
     return (
         <motion.section
           variants={staggerChildren}
@@ -36,12 +54,12 @@ export default function ContacUs() {
           <div className={` ${css.container}`}>
             <Typography variant="h2" component="h2" color={"GrayText"}>CONTAC<span>TANOS </span></Typography>
             <div className={css.informationdiv}>
-              <form ref={form} onSubmit={sendEmail}>
-                <input type="text" placeholder="Tu nombre" name='user_name' required />
-                <input type="email" name='user_email' placeholder="Tu correo electronico" required />
-                <textarea placeholder="Tu mensaje" name='message' rows={10} required />
-                <Button type="submit" className='circular-btn-second'  > Enviar mensaje</Button>
-              </form>
+            <form onSubmit={sendEmail}>
+            <input type="text" placeholder="Tu nombre" name='user_name' value={formData.user_name} onChange={handleChange} required />
+            <input type="email" name='user_email' placeholder="Tu correo electronico" value={formData.user_email} onChange={handleChange} required />
+            <textarea placeholder="Tu mensaje" name='message' rows={10} value={formData.message} onChange={handleChange} required />
+            <Button type="submit" color='secondary' sx={{  fontSize: 'medium'}}> Enviar mensaje</Button>
+          </form>
               {/* Rest of the component */}
               <motion.div 
                     variants={textVariant(0.5)}

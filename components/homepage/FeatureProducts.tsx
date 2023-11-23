@@ -15,7 +15,7 @@ const FeatureProducts: FC = () => {
         <Typography variant="h2" component="h2" color={"GrayText"}>
           NUESTRO <span> MENU </span>
         </Typography>
-        <Button href="/menu" color="secondary" className="circular-btn-second">
+        <Button href="/menu" variant='outlined' color="secondary" sx={{ fontSize: 'large'}}>
           VER TODO
         </Button>
       </div>

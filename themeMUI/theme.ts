@@ -23,6 +23,7 @@ export const  theme  = createTheme({
       light:'FFBF18',
       main: '#ffbc0d' //YELLOW
     },
+
     info: {
       main: '#ffff' //white
     },
