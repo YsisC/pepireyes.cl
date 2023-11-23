@@ -11,15 +11,13 @@ import {
 } from "@mui/material";
 import FeaturedPromo from "./FeaturePromo";
 import styles from "./Promociones.module.css";
-import Image from "next/image";
-import { disconnect } from "../../database/db";
+
 import CloseIcon from "@mui/icons-material/Close";
-import { useProducts } from "@/hooks";
+
 import { CartContext } from "@/context";
 import { ICartProduct, IType } from "@/interfaces";
-import { pepireyesApi } from "@/axiosApi";
-import { dbProducts } from "@/database";
-import { GetServerSideProps,  } from "next";
+
+
 
 
 type PromoProduct = {
@@ -33,8 +31,12 @@ type PromoProduct = {
   title: string;
   type: IType;
 };
+interface Props {
+  products: PromoProduct[];
+}
 
 
+// Modal style
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -51,15 +53,16 @@ const style = {
   alignItems: "center",
 };
 
-const Promociones = ({products}:PromoProduct ) => {
+const Promociones = ({products}:Props ) => {
 
-
+console.log(typeof products)
+console.log( products[0])
   // const { products, isLoading } = useProducts("/products");
   const promoProduct = (category: string) => {
     return products.filter((product) => product.type === category);
   };
   const featuredPromos = promoProduct("combo");
-console.log(products)
+
   const [selectedPromo, setSelectedPromo] = useState<PromoProduct | null>(null);
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
@@ -89,9 +92,10 @@ console.log(products)
       return;
     }
     try {
-      // const product = await pepireyesApi.get(`/products/${selectedPromo?.slug}`);
-      // console.log(product);
+     if (!tempCartProduct){
        addProductToCart(tempCartProduct);
+
+     }
     } catch (error) {
       console.error(error);
     }

@@ -16,9 +16,12 @@ type PromoProduct = {
   title: string;
   type: IType;
 };
+interface Props {
+  products: PromoProduct[];
+}
 
 
-const promociones: NextPage = ({products}:PromoProduct) => {
+const promociones: NextPage<Props> = ({products}) => {
   return (
     <ShopLayout
       title={"Promociones-PR"}

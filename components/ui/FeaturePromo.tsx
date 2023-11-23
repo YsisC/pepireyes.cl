@@ -10,7 +10,7 @@ import CardMedia from '@mui/material/CardMedia';
 
 interface FeaturedPostProps {
   post: {
-    price: string;
+    price: number;
     images: string[];
     slug: string;
     title: string;

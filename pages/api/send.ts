@@ -10,7 +10,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const data = await resend.emails.send({
       from: "Acme <onboarding@resend.dev>",
-      to: ["ysisclongart@gmail.com"],
+      to: ["pepireyesspa2021@gmail.com"],
       subject: "Formulario de contacto Pepireyes",
       react: EmailTemplate({user_name, user_email, message  }),
       text: "Formulario de contacto Pepireyes",
