@@ -25,7 +25,10 @@
   -webkit-animation-name: fadeIn;
   animation-name: fadeIn;
 }
-
+.flex-beetween {
+  display: flex;
+  justify-content: space-between;
+}
 .circular-btn {
   border-radius: 30px;
 }
@@ -91,6 +94,11 @@ footer {
   padding-left: 24.9rem;
   width: 80vw;
 }
+
+.w-screen{
+  width: 100vw;
+}
+
 .nav-button::-webkit-scrollbar {
   width: 0; /* Esto oculta la barra de desplazamiento en navegadores basados en WebKit (Google Chrome, Safari) */
 }
