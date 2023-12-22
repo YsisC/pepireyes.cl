@@ -64,7 +64,7 @@ const ProductPage: NextPage<Props> = ({ product }) => {
     }
 
     addProductToCart(tempCartProduct);
-    router.back()
+    router.push('/cart')
   };
 
   const onSelectedSize = (size: ISize) => {
