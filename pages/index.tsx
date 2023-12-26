@@ -14,7 +14,8 @@ import ContacUs from "@/components/homepage/ContactUs";
 import { useLoadScript } from "@react-google-maps/api";
 import { useOpenLocal } from "@/hooks/useOpenLocal";
 import ModalOpenLocal from "@/components/homepage/ModalOpenLocal";
-import Carousel from "@/components/products/Carousel";
+
+import Carrousel from "@/components/products/Carrousel";
 
 const HomePage: NextPage = () => {
   const [open, setOpen] = useState(false);
@@ -53,7 +54,8 @@ const HomePage: NextPage = () => {
       </section>
       <Banner />
       {/* <FeatureProducts /> */}
-      <Carousel />
+
+      <Carrousel />
       <ContacUs />
       <ModalOpenLocal
         open={openLocal}

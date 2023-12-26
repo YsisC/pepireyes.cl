@@ -30,6 +30,10 @@
 height: 18rem;
 /* width: 100%; */
 }
+.menu_header {
+
+    margin-bottom: 3rem;
+  }
 
 @media (min-width: 640px) {
     .container {
