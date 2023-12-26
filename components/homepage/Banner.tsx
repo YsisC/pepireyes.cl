@@ -7,9 +7,12 @@ import Image from "next/image";
 export default function Banner() {
   return (
     <section className={`paddings ${styles.wrapper} `}>
+       <div className={styles.menu_header}>
+
       <Typography variant="h2" component="h2" color={"GrayText"}>
           NUESTRA <span>  TRAYECTORIA </span>
         </Typography>
+       </div>
       <div className={`innerWidth  ${styles.container}`}>
         <CardMedia component={'img'} src="/img/tienda.jpeg"  className={styles.img_banner} alt="Tienda"></CardMedia>
         <div className={styles.bannerText}>

@@ -61,6 +61,7 @@ export const ShopLayout: FC<Props> = ({
         style={{
           paddingTop: "3.4rem",
           paddingBottom: "1.5rem",
+          width: "100vw"
         }}
       >
         {children}

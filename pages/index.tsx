@@ -15,6 +15,8 @@ import { useLoadScript } from "@react-google-maps/api";
 import { useOpenLocal } from "@/hooks/useOpenLocal";
 import ModalOpenLocal from "@/components/homepage/ModalOpenLocal";
 
+import Carrousel from "@/components/products/Carrousel";
+
 const HomePage: NextPage = () => {
   const [open, setOpen] = useState(false);
   const { openLocal, verificarEstadoDeTienda } = useOpenLocal();
@@ -47,17 +49,21 @@ const HomePage: NextPage = () => {
       title={"Pepireyes "}
       pageDescription={"Encuentra los mejores productos de pepireyes aquí"}
     >
+      <>
       <section className=" paddings">
         <ProductSlideshow images={featuredProduct} />
       </section>
       <Banner />
-      <FeatureProducts />
+      {/* <FeatureProducts /> */}
+
+      <Carrousel />
       <ContacUs />
       <ModalOpenLocal
         open={openLocal}
         handleOpen={handleOpen}
         handleClose={handleClose}
-      />
+        />
+        </>
     </ShopLayout>
   );
 };
