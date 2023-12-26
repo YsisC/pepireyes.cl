@@ -8,7 +8,6 @@ import "slick-carousel/slick/slick-theme.css";
 
 import {
   Card,
-  IconButton,
   Box,
   Button,
   Typography,
@@ -16,8 +15,7 @@ import {
   Chip,
   CardMedia,
 } from "@mui/material";
-import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+
 import style from "./Carrousel.module.css";
 import Link from "next/link";
 

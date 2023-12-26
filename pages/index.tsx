@@ -49,6 +49,7 @@ const HomePage: NextPage = () => {
       title={"Pepireyes "}
       pageDescription={"Encuentra los mejores productos de pepireyes aquí"}
     >
+      <>
       <section className=" paddings">
         <ProductSlideshow images={featuredProduct} />
       </section>
@@ -61,7 +62,8 @@ const HomePage: NextPage = () => {
         open={openLocal}
         handleOpen={handleOpen}
         handleClose={handleClose}
-      />
+        />
+        </>
     </ShopLayout>
   );
 };
