@@ -59,9 +59,11 @@ const Carrousel = () => {
     };
 
   return (
+<>
+
     <div className={` ${style.wrapper}`}>
    <div className={`${style.menu_header}`}>
-        <Typography fontSize={"20"} variant="h2" component="h2" color={"GrayText"}>
+        <Typography  variant="h2" component="h2" color={"GrayText"}>
           NUESTRO <span> NUEVOS PRODUCTOS </span>
         </Typography>
         <Button href="/menu" variant='outlined' color="secondary" sx={{ fontSize: 'large'}}>
@@ -110,6 +112,7 @@ const Carrousel = () => {
       </div>
     
     </div>
+</>
   );
 };
 

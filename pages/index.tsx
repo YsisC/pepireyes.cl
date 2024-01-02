@@ -55,7 +55,7 @@ const HomePage: NextPage = () => {
       </section>
       <Banner />
       {/* <FeatureProducts /> */}
-
+   
       <Carrousel />
       <ContacUs />
       <ModalOpenLocal
@@ -63,6 +63,7 @@ const HomePage: NextPage = () => {
         handleOpen={handleOpen}
         handleClose={handleClose}
         />
+     
         </>
     </ShopLayout>
   );

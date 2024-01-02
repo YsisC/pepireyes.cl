@@ -1,81 +1,80 @@
 .wrapper {
-    overflow: hidden;
-   
+  overflow: hidden;
 }
-.wrapper h2{
-    font-size: xx-large;
+.wrapper h2 {
+  font-size: xx-large;
 }
 
-.wrapper span{
-    color:  #ffbc0d;
+.wrapper span {
+  color: #ffbc0d;
 }
 .container {
-    margin-top: 8rem/* 128px */;
-    margin-bottom: 8rem/* 128px */;
-    display: flex;
-    margin: auto;
-    flex-direction: column;
-    padding: 0 1.5rem 0 1.5rem;
-    max-width: 80vw;
-} 
+  margin-top: 3rem /* 128px */;
+  margin-bottom: 8rem /* 128px */;
+  display: flex;
 
+  flex-direction: column;
+
+  width: 90vw;
+  max-width: 90vw;
+}
 
 .bannerText {
-    background-color: rgb(241, 236, 236);
-    padding: 1rem 0.5rem 1rem 0.5rem;
-    font-size: smaller;
+  background-color: rgb(241, 236, 236);
+  padding: 1rem 0.5rem 1rem 0.5rem;
+  font-size: smaller;
 }
-.img_banner{
-height: 18rem;
-/* width: 100%; */
+.img_banner {
+  height: 18rem;
+  width: 100%;
 }
 .menu_header {
-
-    margin-bottom: 3rem;
-  }
+  margin-bottom: 2rem;
+  text-align: center;
+  
+}
 
 @media (min-width: 640px) {
-    .container {
-       
-        max-width: 80vw;
-    }
+  .container {
+    max-width: 85vw;
+  }
 }
 @media (min-width: 1024px) {
-    .container {
-        margin: 1rem 10rem;
-        flex-direction: row;
-        padding-left: 0px;
-        padding-right: 0px;
-    }
-    .img_banner{
-        height: 36rem;
-        width: 40rem;
-        }
-    .bannerText { 
-        position: absolute;
-        padding: 1rem 2rem 1rem 2rem;
-        height: 22rem;
-        margin-top: 14rem;
-        margin-left: 17rem;
-        width: 45rem;
-    
-    }
+  .container {
+    /* margin: 1rem 10rem; */
+    flex-direction: row;
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 80vw;
+    margin: 0 auto;
+  }
+  .img_banner {
+    height: 36rem;
+    width: 80%;
+  }
+  .bannerText {
+    position: absolute;
+    padding: 1rem 2rem 1rem 2rem;
+    height: 22rem;
+    margin-top: 14rem;
+    margin-left: 17rem;
+    width: 45rem;
+  }
 }
 
 @media (min-width: 1280px) {
-    .bannerText { 
-       
-        width: 49rem;
-        height: 22rem;
-    }
-    .img_banner{
-        height: 36rem;
-        width: 50rem;
-        }
+  .bannerText {
+    width: 49rem;
+    height: 22rem;
+  }
+  .img_banner {
+    height: 36rem;
+    width: 50rem;
+  }
 }
 @media (min-width: 1536px) {
-    .bannerText { 
-        width: 52rem;
-        height: 22rem;
-    }
+  .bannerText {
+    width: 52rem;
+    height: 22rem;
+  }
 }

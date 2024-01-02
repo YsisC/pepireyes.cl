@@ -13,7 +13,7 @@ export default function Banner() {
           NUESTRA <span>  TRAYECTORIA </span>
         </Typography>
        </div>
-      <div className={`innerWidth  ${styles.container}`}>
+      <div className={` ${styles.container}`}>
         <CardMedia component={'img'} src="/img/tienda.jpeg"  className={styles.img_banner} alt="Tienda"></CardMedia>
         <div className={styles.bannerText}>
           <Typography variant="h3" component="h3" color={"GrayText"}>

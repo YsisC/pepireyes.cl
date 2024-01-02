@@ -54,4 +54,8 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 3rem;
+ 
+}
+.menu_header h2{
+  font-size: x-large;
 }
